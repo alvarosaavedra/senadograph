@@ -15,7 +15,7 @@
   $: ({ senators, graphData, parties, committees } = data);
   
   let graphComponent: CytoscapeGraph;
-  let currentGraphData = graphData;
+  let currentGraphData: GraphData = graphData || { nodes: [], edges: [] };
   let showFilters = false;
   let searchResults: SearchResult[] = [];
   
@@ -125,7 +125,7 @@
   </button>
   
   <p class="text-sm text-gray-500">
-    {currentGraphData.nodes.length} senators
+    {currentGraphData?.nodes?.length || 0} senators
   </p>
 </div>
 
