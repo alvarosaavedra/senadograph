@@ -1,8 +1,28 @@
 import { getDriver } from "./neo4j";
+import {
+  getMockSenators,
+  getMockSenatorById,
+  getMockParties,
+  getMockCommittees,
+  getMockGraphData,
+  getMockLawById,
+  getMockLawsForSenator,
+  getMockCommitteesForSenator,
+  getMockAuthorsForLaw,
+} from "./mockData";
 import type { Senator, Party, Law, Committee, GraphData } from "$lib/types";
 
+// Helper to check if we should use mock data
+function useMockData(): boolean {
+  return getDriver() === null;
+}
+
 export async function getAllSenators(): Promise<Senator[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockSenators();
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -31,7 +51,11 @@ export async function getAllSenators(): Promise<Senator[]> {
 }
 
 export async function getSenatorById(id: string): Promise<Senator | null> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockSenatorById(id);
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -67,7 +91,11 @@ export async function getSenatorById(id: string): Promise<Senator | null> {
 }
 
 export async function getAllParties(): Promise<Party[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockParties();
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -90,7 +118,11 @@ export async function getAllParties(): Promise<Party[]> {
 }
 
 export async function getAllCommittees(): Promise<Committee[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockCommittees();
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -110,7 +142,11 @@ export async function getAllCommittees(): Promise<Committee[]> {
 }
 
 export async function getInitialGraphData(): Promise<GraphData> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockGraphData();
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -164,7 +200,11 @@ export async function getInitialGraphData(): Promise<GraphData> {
 }
 
 export async function getLawById(id: string): Promise<Law | null> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockLawById(id);
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -197,7 +237,11 @@ export async function getLawById(id: string): Promise<Law | null> {
 }
 
 export async function getLawsForSenator(senatorId: string): Promise<Law[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockLawsForSenator(senatorId);
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -227,7 +271,11 @@ export async function getLawsForSenator(senatorId: string): Promise<Law[]> {
 export async function getCommitteesForSenator(
   senatorId: string,
 ): Promise<Committee[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockCommitteesForSenator(senatorId);
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {
@@ -250,7 +298,11 @@ export async function getCommitteesForSenator(
 }
 
 export async function getAuthorsForLaw(lawId: string): Promise<Senator[]> {
-  const driver = getDriver();
+  if (useMockData()) {
+    return getMockAuthorsForLaw(lawId);
+  }
+
+  const driver = getDriver()!;
   const session = driver.session();
 
   try {

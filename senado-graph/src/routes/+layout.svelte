@@ -3,8 +3,6 @@
   import { setupI18n, _ } from '$lib/i18n';
   import '../app.css';
   
-  export let data;
-  
   onMount(() => {
     setupI18n();
   });

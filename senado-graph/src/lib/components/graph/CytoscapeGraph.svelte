@@ -94,7 +94,7 @@
         nodes: graphData.nodes,
         edges: graphData.edges
       },
-      style,
+      style: style as any,
       layout: { name: 'preset' },
       minZoom: 0.2,
       maxZoom: 3,

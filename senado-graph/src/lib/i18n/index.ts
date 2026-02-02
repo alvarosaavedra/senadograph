@@ -1,8 +1,8 @@
-import { register, init, _ } from "svelte-i18n";
+import { register, init } from "svelte-i18n";
 import { browser } from "$app/environment";
 
-// Export _ for translations
-export { _ };
+// Re-export _ from svelte-i18n for convenience
+export { _ } from "svelte-i18n";
 
 // Register locales
 register("es", () => import("./es.json"));

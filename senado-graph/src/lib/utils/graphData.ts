@@ -1,10 +1,18 @@
 import type { GraphData, GraphFilters } from "$lib/types";
-import { getDriver } from "./neo4j";
+import { getDriver } from "$lib/database/neo4j";
+import { getMockGraphData } from "$lib/database/mockData";
+import type { Record as Neo4jRecord } from "neo4j-driver";
 
 export async function getFilteredGraphData(
   filters: GraphFilters,
 ): Promise<GraphData> {
   const driver = getDriver();
+  
+  if (!driver) {
+    // Return mock data if no database connection
+    return getMockGraphData();
+  }
+  
   const session = driver.session();
 
   try {
@@ -51,7 +59,7 @@ export async function getFilteredGraphData(
 
     const relationshipsResult = await session.run(relQuery, params);
 
-    const nodes = senatorsResult.records.map((record) => ({
+    const nodes = senatorsResult.records.map((record: Neo4jRecord) => ({
       data: {
         id: record.get("senator").id,
         label: record.get("senator").name,
@@ -62,7 +70,7 @@ export async function getFilteredGraphData(
       },
     }));
 
-    const edges = relationshipsResult.records.map((record, index) => ({
+    const edges = relationshipsResult.records.map((record: Neo4jRecord, index: number) => ({
       data: {
         id: `edge_${index}`,
         source: record.get("source"),
