@@ -15,9 +15,14 @@
   $: ({ senators, graphData, parties, committees } = data);
   
   let graphComponent: CytoscapeGraph;
-  let currentGraphData: GraphData = graphData || { nodes: [], edges: [] };
+  let currentGraphData: GraphData;
   let showFilters = false;
   let searchResults: SearchResult[] = [];
+  
+  // Reactive update when graphData changes from server
+  $: if (graphData) {
+    currentGraphData = graphData;
+  }
   
   function handleNodeClick(nodeId: string, type: string) {
     if (type === 'senator') {
