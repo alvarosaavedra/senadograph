@@ -1,4 +1,4 @@
-import type { GraphData, GraphFilters } from "$lib/types";
+import type { GraphData, GraphFilters, EdgeType } from "$lib/types";
 import { getDriver } from "$lib/database/neo4j";
 import { getMockGraphData } from "$lib/database/mockData";
 import type { Record as Neo4jRecord } from "neo4j-driver";
@@ -75,7 +75,7 @@ export async function getFilteredGraphData(
         id: `edge_${index}`,
         source: record.get("source"),
         target: record.get("target"),
-        type: "voted_same",
+        type: "voted_same" as EdgeType,
         agreement: record.get("agreement"),
       },
     }));

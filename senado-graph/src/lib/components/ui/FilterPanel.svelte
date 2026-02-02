@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GraphFilters } from '$lib/types';
+  import type { GraphFilters, NodeType, LawStatus, LobbyistType } from '$lib/types';
 
   export let parties: { id: string; name: string; color?: string }[] = [];
   export let committees: { id: string; name: string }[] = [];
@@ -11,6 +11,14 @@
   let endDate: string = '';
   let activeOnly: boolean = false;
 
+  let entityTypes: NodeType[] = ['senator', 'law', 'party', 'committee', 'lobbyist'];
+  let lawStatuses: LawStatus[] = ['approved', 'rejected', 'in_discussion', 'withdrawn'];
+  let selectedLawStatuses: LawStatus[] = [];
+  let agreementMin: number = 0;
+  let agreementMax: number = 100;
+  let lobbyistTypes: LobbyistType[] = ['company', 'union', 'ngo', 'professional_college'];
+  let selectedLobbyistTypes: LobbyistType[] = [];
+
   function handleApply() {
     const filters: GraphFilters = {
       parties: selectedParties.length > 0 ? selectedParties : undefined,
@@ -20,6 +28,10 @@
           ? { start: startDate, end: endDate }
           : undefined,
       activeOnly,
+      entityTypes,
+      lawStatuses: selectedLawStatuses.length > 0 ? selectedLawStatuses : undefined,
+      agreementRange: { min: agreementMin / 100, max: agreementMax / 100 },
+      lobbyistTypes: selectedLobbyistTypes.length > 0 ? selectedLobbyistTypes : undefined
     };
     onApplyFilters(filters);
   }
@@ -30,6 +42,11 @@
     startDate = '';
     endDate = '';
     activeOnly = false;
+    entityTypes = ['senator', 'law', 'party', 'committee', 'lobbyist'];
+    selectedLawStatuses = [];
+    agreementMin = 0;
+    agreementMax = 100;
+    selectedLobbyistTypes = [];
     onApplyFilters({});
   }
 
@@ -40,29 +57,72 @@
       selectedParties = [...selectedParties, partyId];
     }
   }
+
+  function toggleEntityType(type: NodeType) {
+    if (entityTypes.includes(type)) {
+      entityTypes = entityTypes.filter((t) => t !== type);
+    } else {
+      entityTypes = [...entityTypes, type];
+    }
+  }
+
+  function toggleLawStatus(status: LawStatus) {
+    if (selectedLawStatuses.includes(status)) {
+      selectedLawStatuses = selectedLawStatuses.filter((s) => s !== status);
+    } else {
+      selectedLawStatuses = [...selectedLawStatuses, status];
+    }
+  }
+
+  function toggleLobbyistType(type: LobbyistType) {
+    if (selectedLobbyistTypes.includes(type)) {
+      selectedLobbyistTypes = selectedLobbyistTypes.filter((t) => t !== type);
+    } else {
+      selectedLobbyistTypes = [...selectedLobbyistTypes, type];
+    }
+  }
 </script>
 
-<div class="bg-white rounded-lg shadow-md p-4 w-full max-w-xs">
-  <h3 class="text-lg font-semibold text-gray-800 mb-4">
+<div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow">
+  <h3 class="text-xl font-bold gradient-text mb-6">
     Filters
   </h3>
 
-  <div class="space-y-4">
+  <div class="space-y-5">
+    <!-- Entity Types -->
     <div>
-      <span class="block text-sm font-medium text-gray-700 mb-2">
+      <span class="block text-sm font-medium text-gray-700 mb-3">
+        Show Entities
+      </span>
+      <div class="flex flex-wrap gap-2">
+        {#each ['senator', 'law', 'party', 'committee', 'lobbyist'] as type}
+          <button
+            on:click={() => toggleEntityType(type as NodeType)}
+            class:active={entityTypes.includes(type as NodeType)}
+            class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200"
+          >
+            {type.replace('_', ' ').replace('senator', 'Senator').replace('law', 'Law').replace('party', 'Party').replace('committee', 'Committee').replace('lobbyist', 'Lobbyist')}
+          </button>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Parties -->
+    <div>
+      <span class="block text-sm font-medium text-gray-700 mb-3">
         Party
       </span>
-      <div class="space-y-2 max-h-40 overflow-y-auto" role="group" aria-label="Party">
+      <div class="space-y-2 max-h-48 overflow-y-auto pr-2" role="group" aria-label="Party">
         {#each parties as party}
-          <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+          <label class="flex items-center space-x-3 cursor-pointer hover:bg-white/50 p-2 rounded-lg transition-colors">
             <input
               type="checkbox"
               checked={selectedParties.includes(party.id)}
               on:change={() => toggleParty(party.id)}
-              class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-offset-0"
             />
             <span
-              class="w-3 h-3 rounded-full"
+              class="w-4 h-4 rounded-full shadow-sm"
               style="background-color: {party.color || '#ccc'}"
             ></span>
             <span class="text-sm text-gray-700">{party.name}</span>
@@ -71,14 +131,15 @@
       </div>
     </div>
 
+    <!-- Committee -->
     <div>
-      <label for="committee-select" class="block text-sm font-medium text-gray-700 mb-2">
+      <label for="committee-select" class="block text-sm font-medium text-gray-700 mb-3">
         Committee
       </label>
       <select
         id="committee-select"
         bind:value={selectedCommittee}
-        class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        class="w-full px-4 py-2 bg-white/50 border border-white/30 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent backdrop-blur-sm"
       >
         <option value="">Clear</option>
         {#each committees as committee}
@@ -87,8 +148,72 @@
       </select>
     </div>
 
+    <!-- Law Statuses -->
+    {#if entityTypes.includes('law')}
+      <div>
+        <span class="block text-sm font-medium text-gray-700 mb-3">
+          Law Status
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {#each ['approved', 'rejected', 'in_discussion', 'withdrawn'] as status}
+            <button
+              on:click={() => toggleLawStatus(status as LawStatus)}
+              class:active={selectedLawStatuses.includes(status as LawStatus)}
+              class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200"
+            >
+              {status.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            </button>
+          {/each}
+        </div>
+      </div>
+    {/if}
+
+    <!-- Agreement Range -->
+    {#if entityTypes.includes('senator')}
+      <div>
+        <span class="block text-sm font-medium text-gray-700 mb-3">
+          Voting Agreement: {agreementMin}% - {agreementMax}%
+        </span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          bind:value={agreementMin}
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
+        />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          bind:value={agreementMax}
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
+        />
+      </div>
+    {/if}
+
+    <!-- Lobbyist Types -->
+    {#if entityTypes.includes('lobbyist')}
+      <div>
+        <span class="block text-sm font-medium text-gray-700 mb-3">
+          Lobbyist Type
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {#each ['company', 'union', 'ngo', 'professional_college'] as type}
+            <button
+              on:click={() => toggleLobbyistType(type as LobbyistType)}
+              class:active={selectedLobbyistTypes.includes(type as LobbyistType)}
+              class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200"
+            >
+              {type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            </button>
+          {/each}
+        </div>
+      </div>
+    {/if}
+
+    <!-- Date Range -->
     <div>
-      <span class="block text-sm font-medium text-gray-700 mb-2">
+      <span class="block text-sm font-medium text-gray-700 mb-3">
         Date Range
       </span>
       <div class="space-y-2">
@@ -96,39 +221,45 @@
           type="date"
           bind:value={startDate}
           aria-label="Start date"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full px-4 py-2 bg-white/50 border border-white/30 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent backdrop-blur-sm"
         />
         <input
           type="date"
           bind:value={endDate}
           aria-label="End date"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full px-4 py-2 bg-white/50 border border-white/30 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent backdrop-blur-sm"
         />
       </div>
     </div>
 
-    <label class="flex items-center space-x-2 cursor-pointer">
+    <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white/50 transition-colors">
       <input
         type="checkbox"
         bind:checked={activeOnly}
-        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+        class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-offset-0"
       />
       <span class="text-sm text-gray-700">Active Only</span>
     </label>
 
-    <div class="flex gap-2 pt-2">
+    <div class="flex gap-3 pt-4">
       <button
         on:click={handleApply}
-        class="flex-1 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        class="flex-1 px-6 py-2.5 bg-gradient-primary text-white text-sm font-medium rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-105 active:scale-95"
       >
         Apply
       </button>
       <button
         on:click={handleClear}
-        class="flex-1 px-4 py-2 bg-gray-200 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        class="flex-1 px-6 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-colors hover:scale-105 active:scale-95 duration-300"
       >
         Clear
       </button>
     </div>
   </div>
 </div>
+
+<style>
+  .active {
+    @apply bg-gradient-primary text-white border-transparent;
+  }
+</style>

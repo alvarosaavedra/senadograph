@@ -1,3 +1,133 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-page min-h-screen antialiased;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-glass backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .card-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-primary text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-glow transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .btn-gradient-secondary {
+    @apply bg-gradient-secondary text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-glow transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .btn-gradient-accent {
+    @apply bg-gradient-accent text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-glow-accent transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .input-glass {
+    @apply glass-panel px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300;
+  }
+
+  .stat-card {
+    @apply glass-panel rounded-xl p-6 card-hover relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .gradient-text-secondary {
+    @apply bg-gradient-secondary bg-clip-text text-transparent;
+  }
+
+  .gradient-text-accent {
+    @apply bg-gradient-accent bg-clip-text text-transparent;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold gradient-text mb-2;
+  }
+
+  .subtitle {
+    @apply text-lg text-gray-600 mb-6;
+  }
+
+  .node-tooltip {
+    @apply absolute z-50 px-4 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg pointer-events-none opacity-0 transition-opacity duration-200;
+  }
+
+  .node-tooltip.visible {
+    @apply opacity-100;
+  }
+
+  .slide-in-right {
+    @apply fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out;
+  }
+
+  .slide-in-right.open {
+    @apply translate-x-0;
+  }
+
+  .overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 transition-opacity duration-300 pointer-events-none;
+  }
+
+  .overlay.open {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-primary-200 text-primary-900;
+}
+
+::-moz-selection {
+  @apply bg-primary-200 text-primary-900;
+}

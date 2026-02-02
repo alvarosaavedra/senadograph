@@ -10,7 +10,7 @@ import {
   getMockCommitteesForSenator,
   getMockAuthorsForLaw,
 } from "./mockData";
-import type { Senator, Party, Law, Committee, GraphData } from "$lib/types";
+import type { Senator, Party, Law, Committee, GraphData, EdgeType } from "$lib/types";
 
 // Helper to check if we should use mock data
 function useMockData(): boolean {
@@ -188,7 +188,7 @@ export async function getInitialGraphData(): Promise<GraphData> {
         id: `edge_${index}`,
         source: record.get("source"),
         target: record.get("target"),
-        type: "voted_same",
+        type: "voted_same" as EdgeType,
         agreement: record.get("agreement"),
       },
     }));
