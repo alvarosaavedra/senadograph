@@ -7,6 +7,7 @@
 
 <script lang="ts">
   import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
 
   export let onSearch: (query: string) => void;
   export let results: SearchResult[] = [];
@@ -77,11 +78,15 @@
   }
 
   onMount(() => {
-    document.addEventListener('click', handleClickOutside);
+    if (browser) {
+      document.addEventListener('click', handleClickOutside);
+    }
   });
 
   onDestroy(() => {
-    document.removeEventListener('click', handleClickOutside);
+    if (browser) {
+      document.removeEventListener('click', handleClickOutside);
+    }
     clearTimeout(debounceTimer);
   });
 </script>
