@@ -9,6 +9,7 @@
   let container: HTMLElement;
   let cy: cytoscape.Core;
   let layout: cytoscape.Layouts;
+  let isInitialized = false;
   
   const style = [
     {
@@ -86,7 +87,7 @@
   ];
   
   function initCytoscape() {
-    if (!container || !graphData) return;
+    if (!container || !graphData || isInitialized) return;
     
     cy = cytoscape({
       container,
@@ -106,6 +107,8 @@
       const node = evt.target;
       onNodeClick(node.id(), node.data('type'));
     });
+    
+    isInitialized = true;
     
     // Run force-directed layout
     runLayout();
@@ -134,7 +137,7 @@
   }
   
   function updateGraph() {
-    if (!cy) return;
+    if (!cy || !graphData) return;
     
     // Remove old elements
     cy.elements().remove();
@@ -170,7 +173,10 @@
   }
   
   onMount(() => {
-    initCytoscape();
+    // Small delay to ensure container is ready and data is available
+    setTimeout(() => {
+      initCytoscape();
+    }, 100);
   });
   
   onDestroy(() => {
@@ -183,8 +189,12 @@
   });
   
   // Watch for graph data changes
-  $: if (cy && graphData) {
-    updateGraph();
+  $: if (container && graphData) {
+    if (!isInitialized) {
+      initCytoscape();
+    } else if (cy) {
+      updateGraph();
+    }
   }
 </script>
 

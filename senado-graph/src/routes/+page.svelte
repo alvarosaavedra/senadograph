@@ -1,21 +1,85 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
   import type { GraphData } from '$lib/types';
   import CytoscapeGraph from '$lib/components/graph/CytoscapeGraph.svelte';
   import GraphControls from '$lib/components/graph/GraphControls.svelte';
+  import FilterPanel from '$lib/components/ui/FilterPanel.svelte';
+  import SearchBar from '$lib/components/ui/SearchBar.svelte';
+  import DataDisclaimer from '$lib/components/ui/DataDisclaimer.svelte';
+  import { filterStore, searchQuery, updateFilters, clearFilters } from '$lib/stores/filters';
   import { goto } from '$app/navigation';
+  import type { GraphFilters } from '$lib/types';
+  import type { SearchResult } from '$lib/components/ui/SearchBar.svelte';
   
   export let data;
   
   $: ({ senators, graphData, parties, committees } = data);
   
   let graphComponent: CytoscapeGraph;
+  let currentGraphData: GraphData;
+  let showFilters = false;
+  let searchResults: SearchResult[] = [];
+  
+  // Reactive update when graphData changes from server
+  $: if (graphData) {
+    currentGraphData = graphData;
+  }
   
   function handleNodeClick(nodeId: string, type: string) {
     if (type === 'senator') {
       goto(`/senador/${nodeId}`);
     } else if (type === 'law') {
       goto(`/ley/${nodeId}`);
+    }
+  }
+  
+  async function handleApplyFilters(filters: GraphFilters) {
+    updateFilters(filters);
+    
+    try {
+      const res = await fetch('/api/graph', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(filters)
+      });
+      
+      if (!res.ok) throw new Error('Failed to fetch filtered data');
+      currentGraphData = await res.json();
+    } catch (err) {
+      console.error('Error applying filters:', err);
+    }
+  }
+  
+  function handleClearFilters() {
+    clearFilters();
+    currentGraphData = graphData;
+  }
+  
+  function handleSearch(query: string) {
+    searchQuery.set(query);
+    // Simple client-side search for demo
+    const senatorResults: SearchResult[] = senators.map(s => ({ 
+      type: 'senator' as const, 
+      id: s.id, 
+      name: s.name,
+      party: s.party 
+    }));
+    const partyResults: SearchResult[] = parties.map(p => ({ 
+      type: 'party' as const, 
+      id: p.id, 
+      name: p.name,
+      shortName: p.shortName 
+    }));
+    
+    searchResults = [...senatorResults, ...partyResults].filter(item => {
+      const itemName = item.type === 'law' ? item.title : item.name;
+      return itemName.toLowerCase().includes(query.toLowerCase());
+    }).slice(0, 5);
+  }
+  
+  function handleSearchSelect(event: CustomEvent) {
+    const item = event.detail;
+    if (item.type === 'senator') {
+      goto(`/senador/${item.id}`);
     }
   }
 </script>
@@ -25,8 +89,11 @@
   <meta name="description" content="Chilean Senate Relationship Visualization" />
 </svelte:head>
 
+<!-- Data Disclaimer -->
+<DataDisclaimer />
+
 <!-- Hero Section -->
-<div class="text-center mb-12">
+<div class="text-center mb-8">
   <h1 class="text-4xl font-bold text-gray-900 mb-4">
     SenadoGraph
   </h1>
@@ -35,34 +102,55 @@
   </p>
 </div>
 
-<!-- Data Disclaimer -->
-<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-  <div class="flex items-start">
-    <div class="flex-shrink-0">
-      <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-      </svg>
-    </div>
-    <div class="ml-3">
-      <h3 class="text-sm font-medium text-blue-800">Data Disclaimer</h3>
-      <p class="mt-1 text-sm text-blue-700">This data comes from public sources of the Chilean Senate (senado.cl).</p>
-    </div>
-  </div>
+<!-- Search Bar -->
+<div class="mb-6">
+  <SearchBar 
+    onSearch={handleSearch}
+    results={searchResults}
+    placeholder="Search senators, parties..."
+    on:select={handleSearchSelect}
+  />
 </div>
+
+<!-- Controls Bar -->
+<div class="flex justify-between items-center mb-4">
+  <button
+    on:click={() => showFilters = !showFilters}
+    class="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors"
+  >
+    <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+    </svg>
+    <span class="text-gray-700">Filters</span>
+    {#if ($filterStore.parties && $filterStore.parties.length > 0) || ($filterStore.committees && $filterStore.committees.length > 0)}
+      <span class="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
+        {($filterStore.parties?.length || 0) + ($filterStore.committees?.length || 0)}
+      </span>
+    {/if}
+  </button>
+  
+  <p class="text-sm text-gray-500">
+    {currentGraphData?.nodes?.length || 0} senators
+  </p>
+</div>
+
+<!-- Filter Panel -->
+{#if showFilters}
+  <div class="mb-6">
+    <FilterPanel 
+      {parties}
+      {committees}
+      onApplyFilters={handleApplyFilters}
+    />
+  </div>
+{/if}
 
 <!-- Graph Visualization -->
 <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-  <div class="px-6 py-4 border-b border-gray-200">
-    <h2 class="text-lg font-semibold text-gray-900">Senators</h2>
-    <p class="text-sm text-gray-500 mt-1">
-      {graphData.nodes.length} senators
-    </p>
-  </div>
-  
   <div class="relative h-[600px]">
     <CytoscapeGraph 
       bind:this={graphComponent}
-      {graphData} 
+      graphData={currentGraphData} 
       onNodeClick={handleNodeClick} 
     />
     <GraphControls 
