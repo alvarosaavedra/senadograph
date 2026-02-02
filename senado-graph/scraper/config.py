@@ -12,9 +12,10 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
 # Scraping configuration
 BASE_URL = "https://www.senado.cl"
-SENATORS_URL = f"{BASE_URL}/senadores"
-LAWS_URL = f"{BASE_URL}/proyectos-ley"
-LOBBY_URL = f"{BASE_URL}/lobby"
+SENATORS_URL = f"{BASE_URL}/appsenado/index.php?mo=senadores&ac=listado"
+LAWS_API_URL = "https://tramitacion.senado.cl/wspublico/tramitacion.php"
+LAWS_URL = f"{BASE_URL}/appsenado/index.php?mo=tramitacion&ac=busquedaTramitacion"
+LOBBY_URL = f"{BASE_URL}/appsenado/index.php?mo=lobby"
 
 # Request configuration
 REQUEST_TIMEOUT = 30

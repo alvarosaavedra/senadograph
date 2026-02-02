@@ -126,6 +126,22 @@ class Neo4jSeeder:
 
         print("Sample relationships created")
 
+    def seed_law_authorships(self, authorships: list):
+        """Seed law authorship relationships."""
+        print(f"Seeding {len(authorships)} authorship relationships...")
+
+        query = """
+        UNWIND $authorships AS auth
+        MATCH (s:Senator {id: auth.senator_id})
+        MATCH (l:Law {id: auth.law_id})
+        MERGE (s)-[:AUTHORED {role: auth.role, date: auth.date}]->(l)
+        """
+
+        with self.driver.session() as session:
+            session.run(query, authorships=authorships)
+
+        print("Authorship relationships seeded")
+
 
 def load_mock_data():
     """Load mock data for testing when scraping fails."""
@@ -311,10 +327,34 @@ def main():
             print("Using mock law data...")
             _, _, laws = load_mock_data()
 
+        try:
+            with open(f"{data_dir}/authorships.json", "r", encoding="utf-8") as f:
+                authorships = json.load(f)
+        except FileNotFoundError:
+            print("Using mock authorship data...")
+            authorships = []
+            if senators and laws:
+                import random
+
+                for senator in senators:
+                    for _ in range(random.randint(1, 3)):
+                        law = random.choice(laws)
+                        authorships.append(
+                            {
+                                "senator_id": senator["id"],
+                                "law_id": law["id"],
+                                "role": "principal"
+                                if random.random() > 0.5
+                                else "co_sponsor",
+                                "date": law["dateProposed"],
+                            }
+                        )
+
         # Seed data
         seeder.seed_parties(parties)
         seeder.seed_senators(senators)
         seeder.seed_laws(laws)
+        seeder.seed_law_authorships(authorships)
 
         # Create sample relationships
         seeder.create_sample_relationships()
