@@ -1,10 +1,23 @@
 <script lang="ts">
   import { _ } from '$lib/i18n';
   import type { GraphData } from '$lib/types';
+  import CytoscapeGraph from '$lib/components/graph/CytoscapeGraph.svelte';
+  import GraphControls from '$lib/components/graph/GraphControls.svelte';
+  import { goto } from '$app/navigation';
   
   export let data;
   
   $: ({ senators, graphData, parties, committees } = data);
+  
+  let graphComponent: CytoscapeGraph;
+  
+  function handleNodeClick(nodeId: string, type: string) {
+    if (type === 'senator') {
+      goto(`/senador/${nodeId}`);
+    } else if (type === 'law') {
+      goto(`/ley/${nodeId}`);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -37,25 +50,32 @@
   </div>
 </div>
 
-<!-- Graph Visualization Container -->
-<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<!-- Graph Visualization -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
   <div class="px-6 py-4 border-b border-gray-200">
     <h2 class="text-lg font-semibold text-gray-900">{$_('nav.senators')}</h2>
     <p class="text-sm text-gray-500 mt-1">
-      {senators.length} {$_('nav.senators').toLowerCase()} {$_('common.loading')}
+      {graphData.nodes.length} {$_('nav.senators').toLowerCase()} {$_('common.loading') === 'Loading...' ? '' : ''}
     </p>
   </div>
   
-  <div class="p-6">
-    <!-- Graph visualization will go here in Phase 3 -->
-    <div class="h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <p class="text-gray-500">{$_('common.loading')}</p>
-    </div>
+  <div class="relative h-[600px]">
+    <CytoscapeGraph 
+      bind:this={graphComponent}
+      {graphData} 
+      onNodeClick={handleNodeClick} 
+    />
+    <GraphControls 
+      onZoomIn={() => graphComponent?.zoomIn()}
+      onZoomOut={() => graphComponent?.zoomOut()}
+      onFit={() => graphComponent?.fit()}
+      onResetLayout={() => graphComponent?.resetLayout()}
+    />
   </div>
 </div>
 
 <!-- Senator List -->
-<div class="mt-8 bg-white rounded-lg shadow-md overflow-hidden">
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
   <div class="px-6 py-4 border-b border-gray-200">
     <h2 class="text-lg font-semibold text-gray-900">{$_('nav.senators')}</h2>
   </div>

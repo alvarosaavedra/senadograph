@@ -3,7 +3,7 @@
 ## Project Status
 
 **Started**: February 2, 2026  
-**Current Phase**: Phase 2 - Server-Side Pages  
+**Current Phase**: Phase 3 - Graph Visualization  
 **Approach**: Test-Driven Development (TDD)  
 **Commit Strategy**: Commit after each phase completion
 
@@ -22,27 +22,17 @@
 
 **Commit**: `feat: Phase 1 - Foundation setup` ✓
 
-### Phase 2: Server-Side Pages (Week 2) 🔄 IN PROGRESS
+### Phase 2: Server-Side Pages (Week 2) ✅ COMPLETED
 
-- [ ] +layout.server.ts (common data)
-- [ ] Home page (+page.server.ts + +page.svelte)
-- [ ] Senator detail page (prerendered)
-- [ ] Law detail page (prerendered)
-- [ ] Neo4j queries module
+- [x] +layout.server.ts (common data)
+- [x] Home page (+page.server.ts + +page.svelte)
+- [x] Senator detail page (prerendered)
+- [x] Law detail page (prerendered)
+- [x] Neo4j queries module
 
-**Commit**: `feat: Phase 2 - Server-side pages and Neo4j queries`
+**Commit**: `feat: Phase 2 - Server-side pages and Neo4j queries` ✓
 
-### Phase 2: Server-Side Pages (Week 2) ⏳ PENDING
-
-- [ ] +layout.server.ts (common data)
-- [ ] Home page (+page.server.ts + +page.svelte)
-- [ ] Senator detail page (prerendered)
-- [ ] Law detail page (prerendered)
-- [ ] Neo4j queries module
-
-**Commit**: `feat: Phase 2 - Server-side pages and Neo4j queries`
-
-### Phase 3: Graph Visualization (Week 3) ⏳ PENDING
+### Phase 3: Graph Visualization (Week 3) 🔄 IN PROGRESS
 
 - [ ] Integrate Cytoscape.js
 - [ ] Implement force-directed layout (cose)
