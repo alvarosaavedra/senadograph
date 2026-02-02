@@ -181,6 +181,19 @@ async function applyFilters() {
 }
 ```
 
+## Git Workflow & Commit Strategy
+
+- **Commit after each phase** completion (as defined in PLAN.md)
+- **Phase commit messages**:
+  - `feat: Phase 1 - Foundation setup`
+  - `feat: Phase 2 - Server-side pages and Neo4j queries`
+  - `feat: Phase 3 - Graph visualization with Cytoscape.js`
+  - `feat: Phase 4 - Client-side features and UI components`
+  - `feat: Phase 5 - Polish, testing and optimization`
+  - `feat: Phase 6 - Deployment and documentation`
+- Write meaningful commit messages describing what was implemented
+- Update PROGRESS.md after each phase
+
 ## Deployment Notes
 
 - Vercel: Connect GitHub repo for auto-deploy

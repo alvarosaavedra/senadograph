@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "SenadoGraph",
+    "subtitle": "Visualización de Relaciones del Senado Chileno"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre",
+    "senators": "Senadores",
+    "laws": "Proyectos de Ley"
+  },
+  "filters": {
+    "title": "Filtros",
+    "party": "Partido",
+    "committee": "Comisión",
+    "dateRange": "Rango de Fechas",
+    "topic": "Tema",
+    "activeOnly": "Solo Activos",
+    "apply": "Aplicar",
+    "clear": "Limpiar"
+  },
+  "search": {
+    "placeholder": "Buscar senadores, leyes, partidos...",
+    "noResults": "No se encontraron resultados"
+  },
+  "senator": {
+    "name": "Nombre",
+    "party": "Partido",
+    "region": "Región",
+    "email": "Correo",
+    "biography": "Biografía",
+    "committees": "Comisiones",
+    "authoredLaws": "Proyectos de Ley",
+    "votingHistory": "Historial de Votación",
+    "lobbyMeetings": "Reuniones de Lobby"
+  },
+  "law": {
+    "title": "Título",
+    "boletin": "Boletín",
+    "status": "Estado",
+    "dateProposed": "Fecha de Propuesta",
+    "topic": "Tema",
+    "description": "Descripción",
+    "authors": "Autores",
+    "coSponsors": "Co-patrocinadores",
+    "votingResults": "Resultados de Votación"
+  },
+  "status": {
+    "approved": "Aprobado",
+    "rejected": "Rechazado",
+    "in_discussion": "En Discusión",
+    "withdrawn": "Retirado"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "more": "Más",
+    "less": "Menos"
+  },
+  "disclaimer": {
+    "title": "Aviso de Datos",
+    "text": "Estos datos provienen de fuentes públicas del Senado de Chile (senado.cl). La precisión depende de las fuentes oficiales y se actualiza periódicamente."
+  },
+  "language": {
+    "es": "Español",
+    "en": "Inglés"
+  }
+}

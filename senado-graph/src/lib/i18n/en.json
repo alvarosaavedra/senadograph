@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "SenadoGraph",
+    "subtitle": "Chilean Senate Relationship Visualization"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "senators": "Senators",
+    "laws": "Law Projects"
+  },
+  "filters": {
+    "title": "Filters",
+    "party": "Party",
+    "committee": "Committee",
+    "dateRange": "Date Range",
+    "topic": "Topic",
+    "activeOnly": "Active Only",
+    "apply": "Apply",
+    "clear": "Clear"
+  },
+  "search": {
+    "placeholder": "Search senators, laws, parties...",
+    "noResults": "No results found"
+  },
+  "senator": {
+    "name": "Name",
+    "party": "Party",
+    "region": "Region",
+    "email": "Email",
+    "biography": "Biography",
+    "committees": "Committees",
+    "authoredLaws": "Law Projects",
+    "votingHistory": "Voting History",
+    "lobbyMeetings": "Lobby Meetings"
+  },
+  "law": {
+    "title": "Title",
+    "boletin": "Bulletin",
+    "status": "Status",
+    "dateProposed": "Date Proposed",
+    "topic": "Topic",
+    "description": "Description",
+    "authors": "Authors",
+    "coSponsors": "Co-sponsors",
+    "votingResults": "Voting Results"
+  },
+  "status": {
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "in_discussion": "In Discussion",
+    "withdrawn": "Withdrawn"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "more": "More",
+    "less": "Less"
+  },
+  "disclaimer": {
+    "title": "Data Disclaimer",
+    "text": "This data comes from public sources of the Chilean Senate (senado.cl). Accuracy depends on official sources and is updated periodically."
+  },
+  "language": {
+    "es": "Spanish",
+    "en": "English"
+  }
+}
