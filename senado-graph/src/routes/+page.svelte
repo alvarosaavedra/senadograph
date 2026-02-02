@@ -1,88 +1,170 @@
 <script lang="ts">
-  import type { GraphData } from '$lib/types';
+  import type { GraphData, NodeType, EdgeType } from '$lib/types';
   import CytoscapeGraph from '$lib/components/graph/CytoscapeGraph.svelte';
   import GraphControls from '$lib/components/graph/GraphControls.svelte';
+  import GraphLegend from '$lib/components/graph/GraphLegend.svelte';
+  import NodeDetailsPanel from '$lib/components/graph/NodeDetailsPanel.svelte';
   import FilterPanel from '$lib/components/ui/FilterPanel.svelte';
   import SearchBar from '$lib/components/ui/SearchBar.svelte';
   import DataDisclaimer from '$lib/components/ui/DataDisclaimer.svelte';
+  import StatsCards from '$lib/components/dashboard/StatsCards.svelte';
   import { filterStore, searchQuery, updateFilters, clearFilters } from '$lib/stores/filters';
   import { goto } from '$app/navigation';
   import type { GraphFilters } from '$lib/types';
   import type { SearchResult } from '$lib/components/ui/SearchBar.svelte';
-  
+  import { getMockSenators, getMockLaws } from '$lib/database/mockData';
+
   export let data;
-  
+
   $: ({ senators, graphData, parties, committees } = data);
-  
+
   let graphComponent: CytoscapeGraph;
   let currentGraphData: GraphData;
   let showFilters = false;
   let searchResults: SearchResult[] = [];
-  
-  // Reactive update when graphData changes from server
+  let showNodeDetails = false;
+  let selectedNode: typeof graphData.nodes[0]['data'] | null = null;
+
+  $: partyBreakdown = parties.map(p => ({
+    name: p.shortName,
+    count: senators.filter(s => s.party === p.shortName).length,
+    color: p.color
+  })).sort((a, b) => b.count - a.count);
+
+  $: lawStatusBreakdown = [
+    { status: 'approved', count: Math.floor(Math.random() * 5) + 2 },
+    { status: 'in_discussion', count: Math.floor(Math.random() * 8) + 5 },
+    { status: 'rejected', count: Math.floor(Math.random() * 3) + 1 },
+    { status: 'withdrawn', count: Math.floor(Math.random() * 2) }
+  ];
+
+  $: nodeCounts = {
+    senators: currentGraphData?.nodes?.filter(n => n.data.type === 'senator').length || 0,
+    laws: currentGraphData?.nodes?.filter(n => n.data.type === 'law').length || 0,
+    parties: currentGraphData?.nodes?.filter(n => n.data.type === 'party').length || 0,
+    committees: currentGraphData?.nodes?.filter(n => n.data.type === 'committee').length || 0,
+    lobbyists: currentGraphData?.nodes?.filter(n => n.data.type === 'lobbyist').length || 0
+  };
+
+  $: edgeCounts = {
+    authored: currentGraphData?.edges?.filter(e => e.data.type === 'authored').length || 0,
+    member_of: currentGraphData?.edges?.filter(e => e.data.type === 'member_of').length || 0,
+    belongs_to: currentGraphData?.edges?.filter(e => e.data.type === 'belongs_to').length || 0,
+    lobby: currentGraphData?.edges?.filter(e => e.data.type === 'lobby').length || 0,
+    voted_same: currentGraphData?.edges?.filter(e => e.data.type === 'voted_same').length || 0
+  };
+
   $: if (graphData) {
     currentGraphData = graphData;
   }
-  
+
   function handleNodeClick(nodeId: string, type: string) {
+    const node = currentGraphData?.nodes?.find(n => n.data.id === nodeId);
+    if (!node) return;
+
+    selectedNode = node.data;
+
     if (type === 'senator') {
-      goto(`/senador/${nodeId}`);
+      showNodeDetails = true;
     } else if (type === 'law') {
-      goto(`/ley/${nodeId}`);
+      showNodeDetails = true;
+    } else {
+      showNodeDetails = true;
     }
   }
-  
+
+  function getConnectedNodes(nodeId: string) {
+    if (!currentGraphData) return [];
+
+    const connectedEdges = currentGraphData.edges.filter(e =>
+      e.data.source === nodeId || e.data.target === nodeId
+    );
+
+    return connectedEdges.map(edge => {
+      const connectedId = edge.data.source === nodeId ? edge.data.target : edge.data.source;
+      const connectedNode = currentGraphData?.nodes?.find(n => n.data.id === connectedId);
+
+      if (!connectedNode) return null;
+
+      return {
+        id: connectedNode.data.id,
+        label: connectedNode.data.label,
+        type: connectedNode.data.type,
+        edgeType: edge.data.type
+      };
+    }).filter(Boolean) as Array<{
+      id: string;
+      label: string;
+      type: NodeType;
+      edgeType: EdgeType;
+    }>;
+  }
+
+  $: connectedNodes = selectedNode ? getConnectedNodes(selectedNode.id) : [];
+
   async function handleApplyFilters(filters: GraphFilters) {
     updateFilters(filters);
-    
+
     try {
       const res = await fetch('/api/graph', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(filters)
       });
-      
+
       if (!res.ok) throw new Error('Failed to fetch filtered data');
       currentGraphData = await res.json();
     } catch (err) {
       console.error('Error applying filters:', err);
     }
   }
-  
+
   function handleClearFilters() {
     clearFilters();
     currentGraphData = graphData;
   }
-  
+
   function handleSearch(query: string) {
     searchQuery.set(query);
-    // Simple client-side search for demo
-    const senatorResults: SearchResult[] = senators.map(s => ({ 
-      type: 'senator' as const, 
-      id: s.id, 
+    const senatorResults: SearchResult[] = senators.map(s => ({
+      type: 'senator' as const,
+      id: s.id,
       name: s.name,
-      party: s.party 
+      party: s.party
     }));
-    const partyResults: SearchResult[] = parties.map(p => ({ 
-      type: 'party' as const, 
-      id: p.id, 
+    const partyResults: SearchResult[] = parties.map(p => ({
+      type: 'party' as const,
+      id: p.id,
       name: p.name,
-      shortName: p.shortName 
+      shortName: p.shortName
     }));
-    
+
     searchResults = [...senatorResults, ...partyResults].filter(item => {
       const itemName = item.type === 'law' ? item.title : item.name;
       return itemName.toLowerCase().includes(query.toLowerCase());
     }).slice(0, 5);
   }
-  
+
   function handleSearchSelect(event: CustomEvent) {
     const item = event.detail;
     if (item.type === 'senator') {
       goto(`/senador/${item.id}`);
     }
   }
+
+  function closeNodeDetails() {
+    showNodeDetails = false;
+    selectedNode = null;
+  }
+
+  function handleEscape(e: KeyboardEvent) {
+    if (e.key === 'Escape' && showNodeDetails) {
+      closeNodeDetails();
+    }
+  }
 </script>
+
+<svelte:window on:keydown={handleEscape} />
 
 <svelte:head>
   <title>SenadoGraph</title>
@@ -93,51 +175,61 @@
 <DataDisclaimer />
 
 <!-- Hero Section -->
-<div class="text-center mb-8">
-  <h1 class="text-4xl font-bold text-gray-900 mb-4">
+<div class="text-center mb-8 animate-fade-in-down">
+  <h1 class="section-title">
     SenadoGraph
   </h1>
-  <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-    Chilean Senate Relationship Visualization
+  <p class="subtitle max-w-2xl mx-auto">
+    Explore the Chilean Senate's intricate network of relationships, voting patterns, and collaborations
   </p>
 </div>
 
+<!-- Stats Cards -->
+<StatsCards
+  totalSenators={senators.length}
+  totalParties={parties.length}
+  totalLaws={12}
+  totalCommittees={committees.length}
+  {partyBreakdown}
+  {lawStatusBreakdown}
+/>
+
 <!-- Search Bar -->
-<div class="mb-6">
-  <SearchBar 
+<div class="mb-6 animate-fade-in-up" style="animation-delay: 400ms;">
+  <SearchBar
     onSearch={handleSearch}
     results={searchResults}
-    placeholder="Search senators, parties..."
+    placeholder="Search senators, parties, laws..."
     on:select={handleSearchSelect}
   />
 </div>
 
 <!-- Controls Bar -->
-<div class="flex justify-between items-center mb-4">
+<div class="flex justify-between items-center mb-4 animate-fade-in-up" style="animation-delay: 500ms;">
   <button
     on:click={() => showFilters = !showFilters}
-    class="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors"
+    class="btn-gradient-secondary flex items-center space-x-2"
   >
-    <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
     </svg>
-    <span class="text-gray-700">Filters</span>
+    <span>Filters</span>
     {#if ($filterStore.parties && $filterStore.parties.length > 0) || ($filterStore.committees && $filterStore.committees.length > 0)}
-      <span class="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
-        {($filterStore.parties?.length || 0) + ($filterStore.committees?.length || 0)}
+      <span class="ml-2 px-2 py-0.5 bg-white/30 text-xs rounded-full backdrop-blur-sm">
+        {($filterStore.parties?.length || 0) + ($filterStore.committees?.length || 0)} active
       </span>
     {/if}
   </button>
-  
-  <p class="text-sm text-gray-500">
-    {currentGraphData?.nodes?.length || 0} senators
+
+  <p class="text-sm text-gray-600 font-medium">
+    {currentGraphData?.nodes?.length || 0} nodes • {currentGraphData?.edges?.length || 0} connections
   </p>
 </div>
 
 <!-- Filter Panel -->
 {#if showFilters}
-  <div class="mb-6">
-    <FilterPanel 
+  <div class="mb-6 animate-fade-in-up">
+    <FilterPanel
       {parties}
       {committees}
       onApplyFilters={handleApplyFilters}
@@ -146,14 +238,14 @@
 {/if}
 
 <!-- Graph Visualization -->
-<div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-  <div class="relative h-[600px]">
-    <CytoscapeGraph 
+<div class="glass-panel rounded-2xl overflow-hidden mb-8 animate-fade-in-up" style="animation-delay: 600ms;">
+  <div class="relative h-[700px]">
+    <CytoscapeGraph
       bind:this={graphComponent}
-      graphData={currentGraphData} 
-      onNodeClick={handleNodeClick} 
+      graphData={currentGraphData}
+      onNodeClick={handleNodeClick}
     />
-    <GraphControls 
+    <GraphControls
       onZoomIn={() => graphComponent?.zoomIn()}
       onZoomOut={() => graphComponent?.zoomOut()}
       onFit={() => graphComponent?.fit()}
@@ -163,21 +255,35 @@
 </div>
 
 <!-- Senator List -->
-<div class="bg-white rounded-lg shadow-md overflow-hidden">
-  <div class="px-6 py-4 border-b border-gray-200">
-    <h2 class="text-lg font-semibold text-gray-900">Senators</h2>
+<div class="glass-panel rounded-2xl overflow-hidden animate-fade-in-up" style="animation-delay: 700ms;">
+  <div class="px-6 py-4 border-b border-white/20 bg-gradient-primary/10">
+    <h2 class="text-lg font-semibold gradient-text">Featured Senators</h2>
   </div>
-  
-  <div class="divide-y divide-gray-200">
-    {#each senators.slice(0, 10) as senator}
-      <a 
-        href="/senador/{senator.id}" 
-        class="block px-6 py-4 hover:bg-gray-50 transition-colors"
+
+  <div class="divide-y divide-white/10">
+    {#each senators.slice(0, 10) as senator, index}
+      <a
+        href="/senador/{senator.id}"
+        class="block px-6 py-4 hover:bg-white/50 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
+        style="animation-delay: {700 + index * 50}ms;"
       >
         <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-sm font-medium text-gray-900">{senator.name}</h3>
-            <p class="text-sm text-gray-500">{senator.party} • {senator.region}</p>
+          <div class="flex items-center gap-4">
+            {#if senator.photoUrl}
+              <img
+                src={senator.photoUrl}
+                alt={senator.name}
+                class="w-12 h-12 rounded-full object-cover shadow-md"
+              />
+            {:else}
+              <div class="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold">
+                {senator.name.charAt(0)}
+              </div>
+            {/if}
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900">{senator.name}</h3>
+              <p class="text-sm text-gray-600">{senator.party} • {senator.region}</p>
+            </div>
           </div>
           <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -186,12 +292,26 @@
       </a>
     {/each}
   </div>
-  
+
   {#if senators.length > 10}
-    <div class="px-6 py-4 border-t border-gray-200">
-      <p class="text-sm text-gray-500 text-center">
-        {senators.length - 10} more...
+    <div class="px-6 py-4 border-t border-white/20 bg-gradient-primary/5">
+      <p class="text-sm text-gray-600 text-center font-medium">
+        {senators.length - 10} more senators
       </p>
     </div>
   {/if}
 </div>
+
+<!-- Graph Legend -->
+<GraphLegend
+  {nodeCounts}
+  {edgeCounts}
+/>
+
+<!-- Node Details Panel -->
+<NodeDetailsPanel
+  bind:isOpen={showNodeDetails}
+  nodeData={selectedNode}
+  connectedNodes={connectedNodes}
+  onClose={closeNodeDetails}
+/>

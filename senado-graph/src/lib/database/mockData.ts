@@ -1,4 +1,4 @@
-import type { Senator, Party, Law, Committee, GraphData } from "$lib/types";
+import type { Senator, Party, Law, Committee, GraphData, Lobbyist } from "$lib/types";
 
 // Mock data for development without Neo4j
 const mockParties: Party[] = [
@@ -151,6 +151,30 @@ const mockLaws: Law[] = [
   },
 ];
 
+const mockLobbyists: Lobbyist[] = [
+  {
+    id: "lobbyist_001",
+    name: "Mining Association",
+    type: "company",
+    industry: "Mining",
+    industryEn: "Mining",
+  },
+  {
+    id: "lobbyist_002",
+    name: "Workers Union",
+    type: "union",
+    industry: "Labor",
+    industryEn: "Labor",
+  },
+  {
+    id: "lobbyist_003",
+    name: "Environmental NGO",
+    type: "ngo",
+    industry: "Environment",
+    industryEn: "Environment",
+  },
+];
+
 export function getMockParties(): Party[] {
   return mockParties;
 }
@@ -167,6 +191,10 @@ export function getMockLaws(): Law[] {
   return mockLaws;
 }
 
+export function getMockLobbyists(): Lobbyist[] {
+  return mockLobbyists;
+}
+
 export function getMockSenatorById(id: string): Senator | null {
   return mockSenators.find((s) => s.id === id) || null;
 }
@@ -176,7 +204,6 @@ export function getMockLawById(id: string): Law | null {
 }
 
 export function getMockLawsForSenator(senatorId: string): Law[] {
-  // Return some laws for each senator (mock relationship)
   if (senatorId === "senator_001") return [mockLaws[0], mockLaws[1]];
   if (senatorId === "senator_002") return [mockLaws[0], mockLaws[2]];
   if (senatorId === "senator_003") return [mockLaws[1]];
@@ -184,7 +211,6 @@ export function getMockLawsForSenator(senatorId: string): Law[] {
 }
 
 export function getMockCommitteesForSenator(senatorId: string): Committee[] {
-  // Return some committees for each senator (mock relationship)
   if (senatorId === "senator_001") return [mockCommittees[0], mockCommittees[1]];
   if (senatorId === "senator_002") return [mockCommittees[1]];
   if (senatorId === "senator_003") return [mockCommittees[0], mockCommittees[2]];
@@ -192,7 +218,6 @@ export function getMockCommitteesForSenator(senatorId: string): Committee[] {
 }
 
 export function getMockAuthorsForLaw(lawId: string): Senator[] {
-  // Return some senators for each law (mock relationship)
   if (lawId === "law_12345") return [mockSenators[0], mockSenators[1]];
   if (lawId === "law_12346") return [mockSenators[0], mockSenators[2]];
   if (lawId === "law_12347") return [mockSenators[1], mockSenators[3]];
@@ -200,26 +225,80 @@ export function getMockAuthorsForLaw(lawId: string): Senator[] {
 }
 
 export function getMockGraphData(): GraphData {
-  const nodes = mockSenators.map((senator) => {
-    const party = mockParties.find((p) => p.shortName === senator.party);
-    return {
+  const nodes = [
+    ...mockSenators.map((senator) => {
+      const party = mockParties.find((p) => p.shortName === senator.party);
+      return {
+        data: {
+          id: senator.id,
+          label: senator.name,
+          type: "senator" as const,
+          color: party?.color || "#cccccc",
+          party: senator.party,
+          region: senator.region,
+        },
+      };
+    }),
+    ...mockLaws.map((law) => ({
       data: {
-        id: senator.id,
-        label: senator.name,
-        type: "senator" as const,
-        color: party?.color || "#cccccc",
-        party: senator.party,
-        region: senator.region,
+        id: law.id,
+        label: law.boletin,
+        type: "law" as const,
+        status: law.status,
+        topic: law.topic,
       },
-    };
-  });
+    })),
+    ...mockParties.map((party) => ({
+      data: {
+        id: party.id,
+        label: party.shortName,
+        type: "party" as const,
+        color: party.color,
+        ideology: party.ideology,
+        memberCount: mockSenators.filter((s) => s.party === party.shortName).length,
+      },
+    })),
+    ...mockCommittees.map((committee) => ({
+      data: {
+        id: committee.id,
+        label: committee.name,
+        type: "committee" as const,
+      },
+    })),
+    ...mockLobbyists.map((lobbyist) => ({
+      data: {
+        id: lobbyist.id,
+        label: lobbyist.name,
+        type: "lobbyist" as const,
+        lobbyistType: lobbyist.type,
+        industry: lobbyist.industry,
+      },
+    })),
+  ];
 
   const edges = [
-    { data: { id: "edge_1", source: "senator_001", target: "senator_002", type: "voted_same", agreement: 0.85 } },
-    { data: { id: "edge_2", source: "senator_001", target: "senator_003", type: "voted_same", agreement: 0.72 } },
-    { data: { id: "edge_3", source: "senator_002", target: "senator_003", type: "voted_same", agreement: 0.45 } },
-    { data: { id: "edge_4", source: "senator_001", target: "senator_005", type: "voted_same", agreement: 0.9 } },
-    { data: { id: "edge_5", source: "senator_002", target: "senator_004", type: "voted_same", agreement: 0.68 } },
+    { data: { id: "edge_1", source: "senator_001", target: "senator_002", type: "voted_same" as const, agreement: 0.85 } },
+    { data: { id: "edge_2", source: "senator_001", target: "senator_003", type: "voted_same" as const, agreement: 0.72 } },
+    { data: { id: "edge_3", source: "senator_002", target: "senator_003", type: "voted_same" as const, agreement: 0.45 } },
+    { data: { id: "edge_4", source: "senator_001", target: "senator_005", type: "voted_same" as const, agreement: 0.9 } },
+    { data: { id: "edge_5", source: "senator_002", target: "senator_004", type: "voted_same" as const, agreement: 0.68 } },
+    { data: { id: "edge_6", source: "senator_001", target: "law_12345", type: "authored" as const } },
+    { data: { id: "edge_7", source: "senator_002", target: "law_12345", type: "authored" as const } },
+    { data: { id: "edge_8", source: "senator_001", target: "law_12346", type: "authored" as const } },
+    { data: { id: "edge_9", source: "senator_002", target: "law_12347", type: "authored" as const } },
+    { data: { id: "edge_10", source: "senator_001", target: "party_rn", type: "belongs_to" as const } },
+    { data: { id: "edge_11", source: "senator_005", target: "party_rn", type: "belongs_to" as const } },
+    { data: { id: "edge_12", source: "senator_002", target: "party_ps", type: "belongs_to" as const } },
+    { data: { id: "edge_13", source: "senator_003", target: "party_udi", type: "belongs_to" as const } },
+    { data: { id: "edge_14", source: "senator_004", target: "party_pdc", type: "belongs_to" as const } },
+    { data: { id: "edge_15", source: "senator_001", target: "committee_education", type: "member_of" as const } },
+    { data: { id: "edge_16", source: "senator_001", target: "committee_finance", type: "member_of" as const } },
+    { data: { id: "edge_17", source: "senator_002", target: "committee_finance", type: "member_of" as const } },
+    { data: { id: "edge_18", source: "senator_003", target: "committee_education", type: "member_of" as const } },
+    { data: { id: "edge_19", source: "senator_003", target: "committee_health", type: "member_of" as const } },
+    { data: { id: "edge_20", source: "lobbyist_001", target: "senator_001", type: "lobby" as const } },
+    { data: { id: "edge_21", source: "lobbyist_002", target: "senator_002", type: "lobby" as const } },
+    { data: { id: "edge_22", source: "lobbyist_003", target: "senator_004", type: "lobby" as const } },
   ];
 
   return { nodes, edges };

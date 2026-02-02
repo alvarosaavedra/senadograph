@@ -68,13 +68,29 @@ export interface Lobbyist {
 }
 
 // Graph data types
+export type NodeType = "senator" | "law" | "party" | "committee" | "lobbyist";
+
+export type EdgeType =
+  | "authored"
+  | "member_of"
+  | "belongs_to"
+  | "lobby"
+  | "voted_same";
+
 export interface GraphNode {
   data: {
     id: string;
     label: string;
-    type: "senator" | "law" | "party" | "committee" | "lobbyist";
+    type: NodeType;
     color?: string;
     size?: number;
+    status?: LawStatus;
+    ideology?: string;
+    lobbyistType?: LobbyistType;
+    party?: string;
+    region?: string;
+    agreement?: number;
+    memberCount?: number;
     [key: string]: unknown;
   };
 }
@@ -85,7 +101,9 @@ export interface GraphEdge {
     source: string;
     target: string;
     label?: string;
-    type: string;
+    type: EdgeType;
+    agreement?: number;
+    strength?: number;
     [key: string]: unknown;
   };
 }
@@ -104,6 +122,13 @@ export interface GraphFilters {
     end: string;
   };
   topics?: string[];
-  relationshipTypes?: string[];
+  relationshipTypes?: EdgeType[];
   activeOnly?: boolean;
+  entityTypes?: NodeType[];
+  lawStatuses?: LawStatus[];
+  agreementRange?: {
+    min: number;
+    max: number;
+  };
+  lobbyistTypes?: LobbyistType[];
 }
