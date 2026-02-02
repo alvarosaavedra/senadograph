@@ -14,16 +14,21 @@
   import type { SearchResult } from '$lib/components/ui/SearchBar.svelte';
   import { getMockSenators, getMockLaws } from '$lib/database/mockData';
 
-  export let data;
+   export let data;
 
-  $: ({ senators, graphData, parties, committees } = data);
+   let graphComponent: CytoscapeGraph;
+   let currentGraphData: GraphData;
+   let showFilters = false;
+   let searchResults: SearchResult[] = [];
+   let showNodeDetails = false;
+   let selectedNode: any = null;
 
-  let graphComponent: CytoscapeGraph;
-  let currentGraphData: GraphData;
-  let showFilters = false;
-  let searchResults: SearchResult[] = [];
-  let showNodeDetails = false;
-  let selectedNode: typeof graphData.nodes[0]['data'] | null = null;
+   $: ({ senators, graphData, parties, committees } = data);
+
+   // Initialize currentGraphData when data loads
+   $: if (graphData && !currentGraphData) {
+     currentGraphData = graphData;
+   }
 
   $: partyBreakdown = parties.map(p => ({
     name: p.shortName,
@@ -38,28 +43,30 @@
     { status: 'withdrawn', count: Math.floor(Math.random() * 2) }
   ];
 
-  $: nodeCounts = {
-    senators: currentGraphData?.nodes?.filter(n => n.data.type === 'senator').length || 0,
-    laws: currentGraphData?.nodes?.filter(n => n.data.type === 'law').length || 0,
-    parties: currentGraphData?.nodes?.filter(n => n.data.type === 'party').length || 0,
-    committees: currentGraphData?.nodes?.filter(n => n.data.type === 'committee').length || 0,
-    lobbyists: currentGraphData?.nodes?.filter(n => n.data.type === 'lobbyist').length || 0
+   $: nodeCounts = {
+    senators: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'senator').length || 0,
+    laws: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'law').length || 0,
+    parties: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'party').length || 0,
+    committees: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'committee').length || 0,
+    lobbyists: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'lobbyist').length || 0
   };
 
   $: edgeCounts = {
-    authored: currentGraphData?.edges?.filter(e => e.data.type === 'authored').length || 0,
-    member_of: currentGraphData?.edges?.filter(e => e.data.type === 'member_of').length || 0,
-    belongs_to: currentGraphData?.edges?.filter(e => e.data.type === 'belongs_to').length || 0,
-    lobby: currentGraphData?.edges?.filter(e => e.data.type === 'lobby').length || 0,
-    voted_same: currentGraphData?.edges?.filter(e => e.data.type === 'voted_same').length || 0
+    authored: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'authored').length || 0,
+    member_of: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'member_of').length || 0,
+    belongs_to: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'belongs_to').length || 0,
+    lobby: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'lobby').length || 0,
+    voted_same: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'voted_same').length || 0
   };
 
   $: if (graphData) {
+    console.log('Page: graphData available, setting currentGraphData', graphData);
     currentGraphData = graphData;
   }
 
   function handleNodeClick(nodeId: string, type: string) {
-    const node = currentGraphData?.nodes?.find(n => n.data.id === nodeId);
+    const dataToUse = currentGraphData || graphData;
+    const node = dataToUse?.nodes?.find(n => n.data.id === nodeId);
     if (!node) return;
 
     selectedNode = node.data;
@@ -74,15 +81,16 @@
   }
 
   function getConnectedNodes(nodeId: string) {
-    if (!currentGraphData) return [];
+    const dataToUse = currentGraphData || graphData;
+    if (!dataToUse) return [];
 
-    const connectedEdges = currentGraphData.edges.filter(e =>
+    const connectedEdges = dataToUse.edges.filter(e =>
       e.data.source === nodeId || e.data.target === nodeId
     );
 
     return connectedEdges.map(edge => {
       const connectedId = edge.data.source === nodeId ? edge.data.target : edge.data.source;
-      const connectedNode = currentGraphData?.nodes?.find(n => n.data.id === connectedId);
+      const connectedNode = dataToUse?.nodes?.find(n => n.data.id === connectedId);
 
       if (!connectedNode) return null;
 
@@ -221,9 +229,9 @@
     {/if}
   </button>
 
-  <p class="text-sm text-gray-600 font-medium">
-    {currentGraphData?.nodes?.length || 0} nodes • {currentGraphData?.edges?.length || 0} connections
-  </p>
+   <p class="text-sm text-gray-600 font-medium">
+     {(currentGraphData || graphData)?.nodes?.length || 0} nodes • {(currentGraphData || graphData)?.edges?.length || 0} connections
+   </p>
 </div>
 
 <!-- Filter Panel -->
@@ -239,19 +247,19 @@
 
 <!-- Graph Visualization -->
 <div class="glass-panel rounded-2xl overflow-hidden mb-8 animate-fade-in-up" style="animation-delay: 600ms;">
-  <div class="relative h-[700px]">
-    <CytoscapeGraph
-      bind:this={graphComponent}
-      graphData={currentGraphData}
-      onNodeClick={handleNodeClick}
-    />
-    <GraphControls
-      onZoomIn={() => graphComponent?.zoomIn()}
-      onZoomOut={() => graphComponent?.zoomOut()}
-      onFit={() => graphComponent?.fit()}
-      onResetLayout={() => graphComponent?.resetLayout()}
-    />
-  </div>
+   <div class="relative h-[700px]">
+     <CytoscapeGraph
+       bind:this={graphComponent}
+       graphData={currentGraphData || graphData}
+       onNodeClick={handleNodeClick}
+     />
+     <GraphControls
+       onZoomIn={() => graphComponent?.zoomIn()}
+       onZoomOut={() => graphComponent?.zoomOut()}
+       onFit={() => graphComponent?.fit()}
+       onResetLayout={() => graphComponent?.resetLayout()}
+     />
+   </div>
 </div>
 
 <!-- Senator List -->

@@ -1,49 +1,50 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-
+  
   export let totalSenators: number = 0;
   export let totalParties: number = 0;
   export let totalLaws: number = 0;
   export let totalCommittees: number = 0;
   export let partyBreakdown: { name: string; count: number; color: string }[] = [];
   export let lawStatusBreakdown: { status: string; count: number }[] = [];
-
+  
   let animatedTotalSenators = 0;
   let animatedTotalParties = 0;
   let animatedTotalLaws = 0;
   let animatedTotalCommittees = 0;
-
-  function animateValue(start: number, end: number, duration: number): number {
-    let startTimestamp: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      return Math.floor(progress * (end - start) + start);
-    };
-    return step(performance.now());
-  }
-
+  
+  let isMounted = false;
+  
   onMount(() => {
+    isMounted = true;
     const duration = 1500;
     const startTime = performance.now();
-
+    
     const animate = () => {
       const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-
+      
       animatedTotalSenators = Math.floor(easeProgress * totalSenators);
       animatedTotalParties = Math.floor(easeProgress * totalParties);
       animatedTotalLaws = Math.floor(easeProgress * totalLaws);
       animatedTotalCommittees = Math.floor(easeProgress * totalCommittees);
-
+      
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
-
+    
     requestAnimationFrame(animate);
   });
+  
+  $: if (!isMounted) {
+    // On SSR, use actual values directly
+    animatedTotalSenators = totalSenators;
+    animatedTotalParties = totalParties;
+    animatedTotalLaws = totalLaws;
+    animatedTotalCommittees = totalCommittees;
+  }
 </script>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

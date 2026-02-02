@@ -194,6 +194,9 @@ export async function getInitialGraphData(): Promise<GraphData> {
     }));
 
     return { nodes, edges };
+  } catch (err) {
+    console.error("Graph: Error fetching from database:", err);
+    return getMockGraphData();
   } finally {
     await session.close();
   }

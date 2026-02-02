@@ -255,8 +255,10 @@
     }
   ];
   
-  function initCytoscape() {
-    if (!container || !graphData || isInitialized) return;
+   function initCytoscape() {
+    if (!container || !graphData || isInitialized) {
+      return;
+    }
 
     cy = cytoscape({
       container,
@@ -370,11 +372,25 @@
     runLayout();
   }
   
-  onMount(() => {
-    // Small delay to ensure container is ready and data is available
-    setTimeout(() => {
-      initCytoscape();
-    }, 100);
+   onMount(() => {
+    // Set container ID for debugging
+    if (container) {
+      container.id = 'cytoscape-container';
+    }
+    
+    // Ensure container exists and data is available before initializing
+    const checkAndInit = () => {
+      if (container) {
+        if (graphData && graphData.nodes?.length > 0) {
+          initCytoscape();
+        } else {
+          setTimeout(checkAndInit, 100);
+        }
+      } else {
+        setTimeout(checkAndInit, 100);
+      }
+    };
+    setTimeout(checkAndInit, 100);
   });
   
   onDestroy(() => {
@@ -386,14 +402,15 @@
     }
   });
   
-  // Watch for graph data changes
-  $: if (container && graphData) {
-    if (!isInitialized) {
-      initCytoscape();
-    } else if (cy) {
-      updateGraph();
-    }
-  }
+   // Watch for graph data changes
+   $: if (graphData && container && !isInitialized) {
+     initCytoscape();
+   }
+
+   // Update graph when data changes (if already initialized)
+   $: if (graphData && container && isInitialized && cy) {
+     updateGraph();
+   }
 </script>
 
 <div bind:this={container} class="w-full h-full min-h-[500px]"></div>

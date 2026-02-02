@@ -11,9 +11,9 @@ export function getDriver(): Driver | null {
 
   if (!driver) {
     try {
-      const NEO4J_URI = import.meta.env.VITE_NEO4J_URI || import.meta.env.NEO4J_URI;
-      const NEO4J_USERNAME = import.meta.env.VITE_NEO4J_USERNAME || import.meta.env.NEO4J_USERNAME;
-      const NEO4J_PASSWORD = import.meta.env.VITE_NEO4J_PASSWORD || import.meta.env.NEO4J_PASSWORD;
+      const NEO4J_URI = process.env.NEO4J_URI || import.meta.env.NEO4J_URI;
+      const NEO4J_USERNAME = process.env.NEO4J_USERNAME || import.meta.env.NEO4J_USERNAME;
+      const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || import.meta.env.NEO4J_PASSWORD;
 
       if (!NEO4J_URI || !NEO4J_USERNAME || !NEO4J_PASSWORD) {
         console.warn("Neo4j credentials not configured, using mock data");
@@ -26,7 +26,7 @@ export function getDriver(): Driver | null {
         neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD)
       );
     } catch (err) {
-      console.error("Failed to create Neo4j driver:", err);
+      console.error("Neo4j: Failed to create driver:", err);
       connectionFailed = true;
       return null;
     }
