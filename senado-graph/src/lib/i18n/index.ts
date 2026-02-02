@@ -1,4 +1,4 @@
-import { register, init } from "svelte-i18n";
+import { register, init, locale } from "svelte-i18n";
 import { browser } from "$app/environment";
 
 // Re-export _ from svelte-i18n for convenience
@@ -8,16 +8,22 @@ export { _ } from "svelte-i18n";
 register("es", () => import("./es.json"));
 register("en", () => import("./en.json"));
 
-// Initialize i18n
+// Initialize i18n immediately (for SSR)
+const defaultLocale = "es";
+
+// Set up i18n with default locale
+init({
+  fallbackLocale: defaultLocale,
+  initialLocale: defaultLocale,
+});
+
+// Function to update locale on client side
 export function setupI18n() {
   if (browser) {
     const savedLang = localStorage.getItem("language");
-    const defaultLang = savedLang || "es";
-
-    init({
-      fallbackLocale: "es",
-      initialLocale: defaultLang,
-    });
+    if (savedLang && (savedLang === "es" || savedLang === "en")) {
+      locale.set(savedLang);
+    }
   }
 }
 
@@ -25,6 +31,6 @@ export function setupI18n() {
 export function setLanguage(lang: "es" | "en") {
   if (browser) {
     localStorage.setItem("language", lang);
-    window.location.reload();
+    locale.set(lang);
   }
 }

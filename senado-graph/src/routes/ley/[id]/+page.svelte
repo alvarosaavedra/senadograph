@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { _ } from '$lib/i18n';
-  
   export let data;
   
   $: ({ law, authors } = data);
@@ -8,6 +6,13 @@
   function formatDate(dateString: string): string {
     return new Date(dateString).toLocaleDateString();
   }
+  
+  const statusLabels: Record<string, string> = {
+    approved: 'Approved',
+    rejected: 'Rejected',
+    withdrawn: 'Withdrawn',
+    in_discussion: 'In Discussion'
+  };
 </script>
 
 <svelte:head>
@@ -21,7 +26,7 @@
     <svg class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
     </svg>
-    {$_('nav.home')}
+    Home
   </a>
 </div>
 
@@ -34,7 +39,7 @@
          law.status === 'rejected' ? 'bg-red-100 text-red-800' : 
          law.status === 'withdrawn' ? 'bg-gray-100 text-gray-800' : 
          'bg-yellow-100 text-yellow-800'}">
-        {$_(`status.${law.status}`)}
+        {statusLabels[law.status] || law.status}
       </span>
       <span class="text-sm text-gray-500 font-mono">{law.boletin}</span>
     </div>
@@ -42,11 +47,11 @@
     <h1 class="text-2xl font-bold text-gray-900 mb-2">{law.title}</h1>
     
     {#if law.topic}
-      <p class="text-sm text-gray-500 mb-4">{$_('law.topic')}: {law.topic}</p>
+      <p class="text-sm text-gray-500 mb-4">Topic: {law.topic}</p>
     {/if}
     
     <p class="text-sm text-gray-600">
-      {$_('law.dateProposed')}: {formatDate(law.dateProposed)}
+      Date Proposed: {formatDate(law.dateProposed)}
     </p>
   </div>
 </div>
@@ -57,7 +62,7 @@
     <div class="lg:col-span-2">
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">{$_('law.description')}</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Description</h2>
         </div>
         <div class="px-6 py-4">
           <p class="text-gray-700 whitespace-pre-line">{law.description}</p>
@@ -72,7 +77,7 @@
     {#if authors.length > 0}
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">{$_('law.authors')}</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Authors</h2>
         </div>
         <ul class="divide-y divide-gray-200">
           {#each authors as author}

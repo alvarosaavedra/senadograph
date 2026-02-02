@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { _ } from '$lib/i18n';
+  import { _ } from 'svelte-i18n';
   import type { GraphData } from '$lib/types';
   import CytoscapeGraph from '$lib/components/graph/CytoscapeGraph.svelte';
   import GraphControls from '$lib/components/graph/GraphControls.svelte';
@@ -21,17 +21,17 @@
 </script>
 
 <svelte:head>
-  <title>SenadoGraph - {$_('app.subtitle')}</title>
-  <meta name="description" content={$_('app.subtitle')} />
+  <title>SenadoGraph</title>
+  <meta name="description" content="Chilean Senate Relationship Visualization" />
 </svelte:head>
 
 <!-- Hero Section -->
 <div class="text-center mb-12">
   <h1 class="text-4xl font-bold text-gray-900 mb-4">
-    {$_('app.title')}
+    SenadoGraph
   </h1>
   <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-    {$_('app.subtitle')}
+    Chilean Senate Relationship Visualization
   </p>
 </div>
 
@@ -44,8 +44,8 @@
       </svg>
     </div>
     <div class="ml-3">
-      <h3 class="text-sm font-medium text-blue-800">{$_('disclaimer.title')}</h3>
-      <p class="mt-1 text-sm text-blue-700">{$_('disclaimer.text')}</p>
+      <h3 class="text-sm font-medium text-blue-800">Data Disclaimer</h3>
+      <p class="mt-1 text-sm text-blue-700">This data comes from public sources of the Chilean Senate (senado.cl).</p>
     </div>
   </div>
 </div>
@@ -53,9 +53,9 @@
 <!-- Graph Visualization -->
 <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
   <div class="px-6 py-4 border-b border-gray-200">
-    <h2 class="text-lg font-semibold text-gray-900">{$_('nav.senators')}</h2>
+    <h2 class="text-lg font-semibold text-gray-900">Senators</h2>
     <p class="text-sm text-gray-500 mt-1">
-      {graphData.nodes.length} {$_('nav.senators').toLowerCase()} {$_('common.loading') === 'Loading...' ? '' : ''}
+      {graphData.nodes.length} senators
     </p>
   </div>
   
@@ -77,7 +77,7 @@
 <!-- Senator List -->
 <div class="bg-white rounded-lg shadow-md overflow-hidden">
   <div class="px-6 py-4 border-b border-gray-200">
-    <h2 class="text-lg font-semibold text-gray-900">{$_('nav.senators')}</h2>
+    <h2 class="text-lg font-semibold text-gray-900">Senators</h2>
   </div>
   
   <div class="divide-y divide-gray-200">
@@ -102,7 +102,7 @@
   {#if senators.length > 10}
     <div class="px-6 py-4 border-t border-gray-200">
       <p class="text-sm text-gray-500 text-center">
-        {senators.length - 10} {$_('common.more')}...
+        {senators.length - 10} more...
       </p>
     </div>
   {/if}

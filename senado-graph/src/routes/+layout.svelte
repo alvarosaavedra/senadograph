@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { setupI18n, _ } from '$lib/i18n';
+  import { setupI18n } from '$lib/i18n';
   import '../app.css';
   
-  onMount(() => {
-    setupI18n();
-  });
+  // Setup i18n on client (updates locale from localStorage if available)
+  setupI18n();
 </script>
 
 <div class="min-h-screen bg-gray-50">
@@ -21,10 +19,10 @@
         <!-- Navigation -->
         <nav class="flex space-x-8">
           <a href="/" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-            {$_('nav.home')}
+            Home
           </a>
           <a href="/sobre" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-            {$_('nav.about')}
+            About
           </a>
         </nav>
       </div>
@@ -41,10 +39,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <p class="text-sm text-gray-500">
-          © {new Date().getFullYear()} SenadoGraph - {$_('app.subtitle')}
+          © {new Date().getFullYear()} SenadoGraph - Chilean Senate Relationship Visualization
         </p>
         <div class="flex space-x-4 text-sm text-gray-500">
-          <span>{$_('disclaimer.title')}</span>
+          <span>Data Disclaimer</span>
         </div>
       </div>
     </div>

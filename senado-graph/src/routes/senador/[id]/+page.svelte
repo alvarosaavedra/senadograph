@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { _ } from '$lib/i18n';
-  
   export let data;
   
   $: ({ senator, laws, committees } = data);
@@ -17,7 +15,7 @@
     <svg class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
     </svg>
-    {$_('nav.home')}
+    Home
   </a>
 </div>
 
@@ -63,7 +61,7 @@
     <div class="lg:col-span-2">
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">{$_('senator.biography')}</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Biography</h2>
         </div>
         <div class="px-6 py-4">
           <p class="text-gray-700 whitespace-pre-line">{senator.biography}</p>
@@ -78,7 +76,7 @@
     {#if committees.length > 0}
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">{$_('senator.committees')}</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Committees</h2>
         </div>
         <ul class="divide-y divide-gray-200">
           {#each committees as committee}
@@ -94,7 +92,7 @@
     {#if laws.length > 0}
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">{$_('senator.authoredLaws')}</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Law Projects</h2>
         </div>
         <ul class="divide-y divide-gray-200">
           {#each laws as law}
