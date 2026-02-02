@@ -25,10 +25,11 @@
 
    $: ({ senators, graphData, parties, committees } = data);
 
-   // Initialize currentGraphData when data loads
-   $: if (graphData && !currentGraphData) {
-     currentGraphData = graphData;
-   }
+    // Initialize currentGraphData when data loads
+    $: if (graphData && !currentGraphData) {
+      console.log('Page: Initializing currentGraphData', graphData);
+      currentGraphData = graphData;
+    }
 
   $: partyBreakdown = parties.map(p => ({
     name: p.shortName,
@@ -36,12 +37,22 @@
     color: p.color
   })).sort((a, b) => b.count - a.count);
 
-  $: lawStatusBreakdown = [
-    { status: 'approved', count: Math.floor(Math.random() * 5) + 2 },
-    { status: 'in_discussion', count: Math.floor(Math.random() * 8) + 5 },
-    { status: 'rejected', count: Math.floor(Math.random() * 3) + 1 },
-    { status: 'withdrawn', count: Math.floor(Math.random() * 2) }
-  ];
+  $: lawStatusBreakdown = (() => {
+    const laws = (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'law') || [];
+    const statusCounts = { approved: 0, in_discussion: 0, rejected: 0, withdrawn: 0 };
+    laws.forEach(law => {
+      const status = law.data.status;
+      if (status && statusCounts.hasOwnProperty(status)) {
+        statusCounts[status]++;
+      }
+    });
+    return [
+      { status: 'approved', count: statusCounts.approved },
+      { status: 'in_discussion', count: statusCounts.in_discussion },
+      { status: 'rejected', count: statusCounts.rejected },
+      { status: 'withdrawn', count: statusCounts.withdrawn }
+    ];
+  })();
 
    $: nodeCounts = {
     senators: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'senator').length || 0,
@@ -196,7 +207,7 @@
 <StatsCards
   totalSenators={senators.length}
   totalParties={parties.length}
-  totalLaws={12}
+  totalLaws={(currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'law').length || 0}
   totalCommittees={committees.length}
   {partyBreakdown}
   {lawStatusBreakdown}

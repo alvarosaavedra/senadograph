@@ -2,276 +2,256 @@
   import { onMount, onDestroy } from 'svelte';
   import cytoscape from 'cytoscape';
   import type { GraphData } from '$lib/types';
-  
+
   export let graphData: GraphData;
   export let onNodeClick: (nodeId: string, type: string) => void = () => {};
-  
+
   let container: HTMLElement;
   let cy: cytoscape.Core;
   let layout: cytoscape.Layouts;
   let isInitialized = false;
-  
-  const style = [
-    {
-      selector: 'node',
-      style: {
-        'label': 'data(label)',
-        'font-size': '12px',
-        'text-valign': 'bottom',
-        'text-halign': 'center',
-        'text-background-color': '#ffffff',
-        'text-background-opacity': 0.9,
-        'text-background-padding': '3px',
-        'text-margin-y': 5,
-        'border-width': 2,
-        'border-color': '#ffffff',
-        'border-opacity': 0.8,
-        'transition-property': 'width, height, border-width, border-color',
-        'transition-duration': '0.2s'
-      }
-    },
-    {
-      selector: 'node[type="senator"]',
-      style: {
-        'shape': 'ellipse',
-        'width': 45,
-        'height': 45,
-        'background-color': 'data(color)',
-        'background-blacken': 0
-      }
-    },
-    {
-      selector: 'node[type="senator"]:hover',
-      style: {
-        'width': 52,
-        'height': 52,
-        'border-width': 4,
-        'border-color': '#fbbf24',
-        'border-opacity': 1,
-        'box-shadow': '0 0 20px rgba(251, 191, 36, 0.5)'
-      }
-    },
-    {
-      selector: 'node[type="law"]',
-      style: {
-        'shape': 'roundrectangle',
-        'width': 50,
-        'height': 35,
-        'background-color': (ele: cytoscape.NodeSingular) => {
-          const status = ele.data('status');
-          switch (status) {
-            case 'approved':
-              return '#10b981';
-            case 'rejected':
-              return '#ef4444';
-            case 'in_discussion':
-              return '#3b82f6';
-            case 'withdrawn':
-              return '#6b7280';
-            default:
-              return '#94a3b8';
-          }
-        }
-      }
-    },
-    {
-      selector: 'node[type="law"]:hover',
-      style: {
-        'width': 58,
-        'height': 40,
-        'border-width': 4,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: 'node[type="party"]',
-      style: {
-        'shape': 'diamond',
-        'width': 60,
-        'height': 60,
-        'background-color': 'data(color)',
-        'border-width': 3,
-        'border-color': '#ffffff',
-        'font-size': '14px',
-        'font-weight': 'bold'
-      }
-    },
-    {
-      selector: 'node[type="party"]:hover',
-      style: {
-        'width': 70,
-        'height': 70,
-        'border-width': 5,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: 'node[type="committee"]',
-      style: {
-        'shape': 'hexagon',
-        'width': 40,
-        'height': 40,
-        'background-color': '#8b5cf6',
-        'background-gradient-stop-colors': '#8b5cf6, #ec4899',
-        'background-gradient-direction': 'to-bottom'
-      }
-    },
-    {
-      selector: 'node[type="committee"]:hover',
-      style: {
-        'width': 48,
-        'height': 48,
-        'border-width': 4,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: 'node[type="lobbyist"]',
-      style: {
-        'shape': 'ellipse',
-        'width': 30,
-        'height': 30,
-        'background-color': (ele: cytoscape.NodeSingular) => {
-          const type = ele.data('lobbyistType');
-          switch (type) {
-            case 'company':
-              return '#f97316';
-            case 'union':
-              return '#fbbf24';
-            case 'ngo':
-              return '#14b8a6';
-            case 'professional_college':
-              return '#6366f1';
-            default:
-              return '#94a3b8';
-          }
-        }
-      }
-    },
-    {
-      selector: 'node[type="lobbyist"]:hover',
-      style: {
-        'width': 36,
-        'height': 36,
-        'border-width': 3,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: 'edge',
-      style: {
-        'width': 1.5,
-        'line-color': '#94a3b8',
-        'target-arrow-color': '#94a3b8',
-        'curve-style': 'bezier',
-        'opacity': 0.5,
-        'transition-property': 'width, opacity, line-color',
-        'transition-duration': '0.2s'
-      }
-    },
-    {
-      selector: 'edge[type="authored"]',
-      style: {
-        'width': 2.5,
-        'line-color': '#3b82f6',
-        'target-arrow-color': '#3b82f6',
-        'target-arrow-shape': 'triangle',
-        'opacity': 0.7
-      }
-    },
-    {
-      selector: 'edge[type="member_of"]',
-      style: {
-        'width': 1.5,
-        'line-color': '#8b5cf6',
-        'line-style': 'dashed',
-        'line-dash-pattern': [6, 3],
-        'opacity': 0.6
-      }
-    },
-    {
-      selector: 'edge[type="belongs_to"]',
-      style: {
-        'width': 1,
-        'line-color': '#94a3b8',
-        'opacity': 0.4
-      }
-    },
-    {
-      selector: 'edge[type="lobby"]',
-      style: {
-        'width': 2,
-        'line-color': '#f97316',
-        'line-style': 'dotted',
-        'line-dash-pattern': [2, 2],
-        'opacity': 0.6
-      }
-    },
-    {
-      selector: 'edge[type="voted_same"]',
-      style: {
-        'width': (ele: cytoscape.EdgeSingular) => {
-          const agreement = ele.data('agreement') || 0.5;
-          return 1 + agreement * 3;
-        },
-        'line-color': (ele: cytoscape.EdgeSingular) => {
-          const agreement = ele.data('agreement') || 0.5;
-          if (agreement > 0.8) return '#10b981';
-          if (agreement > 0.6) return '#3b82f6';
-          if (agreement > 0.4) return '#f59e0b';
-          return '#ef4444';
-        },
-        'opacity': (ele: cytoscape.EdgeSingular) => {
-          const agreement = ele.data('agreement') || 0.5;
-          return 0.2 + agreement * 0.5;
-        }
-      }
-    },
-    {
-      selector: ':selected',
-      style: {
-        'border-width': 4,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: '.highlighted',
-      style: {
-        'border-width': 4,
-        'border-color': '#fbbf24',
-        'border-opacity': 1
-      }
-    },
-    {
-      selector: '.dimmed',
-      style: {
-        'opacity': 0.3
-      }
-    }
-  ];
-  
-   function initCytoscape() {
-    if (!container || !graphData || isInitialized) {
-      return;
-    }
+  let isInitializing = false;
 
-    cy = cytoscape({
-      container,
-      elements: {
-        nodes: graphData.nodes,
-        edges: graphData.edges
-      },
-      style: style as any,
-      layout: { name: 'preset' },
-      minZoom: 0.15,
-      maxZoom: 3,
-      wheelSensitivity: 0.25
-    });
+   function initCytoscape() {
+     if (!container || !graphData || isInitialized || isInitializing) {
+       console.log('Cytoscape: init skipped', { container: !!container, graphData: !!graphData, isInitialized, isInitializing });
+       return;
+     }
+
+     if (!graphData.nodes || graphData.nodes.length === 0) {
+       console.warn('Cytoscape: No nodes to render');
+       return;
+     }
+
+     isInitializing = true;
+     console.log('Cytoscape: Initializing with', graphData.nodes.length, 'nodes and', graphData.edges?.length || 0, 'edges');
+
+      try {
+        console.log('Cytoscape: Initializing without styles first');
+
+        const elements = {
+          nodes: graphData.nodes.map(n => ({
+            data: {
+              ...n.data
+            }
+          })),
+          edges: graphData.edges || []
+        };
+
+        console.log('Cytoscape: elements count:', elements.nodes.length, 'nodes,', elements.edges.length, 'edges');
+
+        try {
+          cy = cytoscape({
+            container,
+            elements,
+            layout: { name: 'preset' },
+            minZoom: 0.15,
+            maxZoom: 3,
+            wheelSensitivity: 0.25,
+            style: [
+              {
+                selector: 'node',
+                style: {
+                  'label': 'data(label)',
+                  'font-size': '12px',
+                  'text-valign': 'bottom',
+                  'text-halign': 'center',
+                  'text-background-color': '#ffffff',
+                  'text-background-opacity': 0.9,
+                  'text-background-padding': '3px',
+                  'text-margin-y': 5,
+                  'border-width': 2,
+                  'border-color': '#ffffff',
+                  'border-opacity': 0.8,
+                  'transition-property': 'width, height, border-width, border-color',
+                  'transition-duration': 200
+                }
+              },
+              {
+                selector: 'node[type="senator"]',
+                style: {
+                  'shape': 'ellipse',
+                  'width': 45,
+                  'height': 45,
+                  'background-color': 'data(color)',
+                  'background-blacken': 0
+                }
+              },
+              {
+                selector: 'node[type="senator"]:hover',
+                style: {
+                  'width': 52,
+                  'height': 52,
+                  'border-width': 4,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: 'node[type="law"]',
+                style: {
+                  'shape': 'roundrectangle',
+                  'width': 50,
+                  'height': 35,
+                  'background-color': '#3b82f6'
+                }
+              },
+              {
+                selector: 'node[type="law"]:hover',
+                style: {
+                  'width': 58,
+                  'height': 40,
+                  'border-width': 4,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: 'node[type="party"]',
+                style: {
+                  'shape': 'diamond',
+                  'width': 60,
+                  'height': 60,
+                  'background-color': '#cccccc',
+                  'border-width': 3,
+                  'border-color': '#ffffff',
+                  'font-size': '14px',
+                  'font-weight': 'bold'
+                }
+              },
+              {
+                selector: 'node[type="party"]:hover',
+                style: {
+                  'width': 70,
+                  'height': 70,
+                  'border-width': 5,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: 'node[type="committee"]',
+                style: {
+                  'shape': 'hexagon',
+                  'width': 40,
+                  'height': 40,
+                  'background-color': '#8b5cf6'
+                }
+              },
+              {
+                selector: 'node[type="committee"]:hover',
+                style: {
+                  'width': 48,
+                  'height': 48,
+                  'border-width': 4,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: 'node[type="lobbyist"]',
+                style: {
+                  'shape': 'ellipse',
+                  'width': 30,
+                  'height': 30,
+                  'background-color': '#94a3b8'
+                }
+              },
+              {
+                selector: 'node[type="lobbyist"]:hover',
+                style: {
+                  'width': 36,
+                  'height': 36,
+                  'border-width': 3,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: 'edge',
+                style: {
+                  'width': 1.5,
+                  'line-color': '#94a3b8',
+                  'target-arrow-color': '#94a3b8',
+                  'curve-style': 'bezier',
+                  'opacity': 0.5,
+                  'transition-property': 'width, opacity, line-color',
+                  'transition-duration': 200
+                }
+              },
+              {
+                selector: 'edge[type="authored"]',
+                style: {
+                  'width': 2.5,
+                  'line-color': '#3b82f6',
+                  'target-arrow-color': '#3b82f6',
+                  'target-arrow-shape': 'triangle',
+                  'opacity': 0.7
+                }
+              },
+              {
+                selector: 'edge[type="member_of"]',
+                style: {
+                  'width': 1.5,
+                  'line-color': '#8b5cf6',
+                  'line-style': 'dashed',
+                  'opacity': 0.6
+                }
+              },
+              {
+                selector: 'edge[type="belongs_to"]',
+                style: {
+                  'width': 1,
+                  'line-color': '#94a3b8',
+                  'opacity': 0.4
+                }
+              },
+              {
+                selector: 'edge[type="lobby"]',
+                style: {
+                  'width': 2,
+                  'line-color': '#f97316',
+                  'line-style': 'dotted',
+                  'opacity': 0.6
+                }
+              },
+              {
+                selector: 'edge[type="voted_same"]',
+                style: {
+                  'width': 2.5,
+                  'line-color': '#10b981',
+                  'opacity': 0.5
+                }
+              },
+              {
+                selector: ':selected',
+                style: {
+                  'border-width': 4,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: '.highlighted',
+                style: {
+                  'border-width': 4,
+                  'border-color': '#fbbf24',
+                  'border-opacity': 1
+                }
+              },
+              {
+                selector: '.dimmed',
+                style: {
+                  'opacity': 0.3
+                }
+              }
+            ]
+          });
+          console.log('Cytoscape: initialized successfully');
+        } catch (e) {
+          console.error('Cytoscape init error:', e);
+          throw e;
+        }
 
     // Add click handler
     cy.on('tap', 'node', (evt) => {
@@ -289,11 +269,16 @@
       clearHighlight();
     });
 
-    isInitialized = true;
+     isInitialized = true;
 
-    // Run force-directed layout
-    runLayout();
-  }
+     // Run force-directed layout
+     runLayout();
+     } catch (err) {
+       console.error('Cytoscape: Failed to initialize', err);
+     } finally {
+       isInitializing = false;
+     }
+   }
   
   function runLayout() {
     if (!cy) return;
@@ -373,25 +358,10 @@
   }
   
    onMount(() => {
-    // Set container ID for debugging
-    if (container) {
-      container.id = 'cytoscape-container';
-    }
-    
-    // Ensure container exists and data is available before initializing
-    const checkAndInit = () => {
-      if (container) {
-        if (graphData && graphData.nodes?.length > 0) {
-          initCytoscape();
-        } else {
-          setTimeout(checkAndInit, 100);
-        }
-      } else {
-        setTimeout(checkAndInit, 100);
-      }
-    };
-    setTimeout(checkAndInit, 100);
-  });
+     if (container) {
+       container.id = 'cytoscape-container';
+     }
+   });
   
   onDestroy(() => {
     if (layout) {
@@ -402,13 +372,15 @@
     }
   });
   
-   // Watch for graph data changes
-   $: if (graphData && container && !isInitialized) {
+    // Watch for graph data changes - only init if not already initialized
+    $: if (graphData && container && !isInitialized && graphData.nodes?.length > 0) {
+     console.log('Cytoscape: Reactive init triggered');
      initCytoscape();
    }
 
-   // Update graph when data changes (if already initialized)
-   $: if (graphData && container && isInitialized && cy) {
+    // Update graph when data changes (if already initialized)
+    $: if (graphData && container && isInitialized && cy && graphData.nodes?.length > 0) {
+     console.log('Cytoscape: Reactive update triggered');
      updateGraph();
    }
 </script>

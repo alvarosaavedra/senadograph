@@ -10,7 +10,14 @@ import {
   getMockCommitteesForSenator,
   getMockAuthorsForLaw,
 } from "./mockData";
-import type { Senator, Party, Law, Committee, GraphData, EdgeType } from "$lib/types";
+import type {
+  Senator,
+  Party,
+  Law,
+  Committee,
+  GraphData,
+  EdgeType,
+} from "$lib/types";
 
 // Helper to check if we should use mock data
 function useMockData(): boolean {

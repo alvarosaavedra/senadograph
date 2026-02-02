@@ -7,12 +7,12 @@ export async function getFilteredGraphData(
   filters: GraphFilters,
 ): Promise<GraphData> {
   const driver = getDriver();
-  
+
   if (!driver) {
     // Return mock data if no database connection
     return getMockGraphData();
   }
-  
+
   const session = driver.session();
 
   try {
@@ -70,15 +70,17 @@ export async function getFilteredGraphData(
       },
     }));
 
-    const edges = relationshipsResult.records.map((record: Neo4jRecord, index: number) => ({
-      data: {
-        id: `edge_${index}`,
-        source: record.get("source"),
-        target: record.get("target"),
-        type: "voted_same" as EdgeType,
-        agreement: record.get("agreement"),
-      },
-    }));
+    const edges = relationshipsResult.records.map(
+      (record: Neo4jRecord, index: number) => ({
+        data: {
+          id: `edge_${index}`,
+          source: record.get("source"),
+          target: record.get("target"),
+          type: "voted_same" as EdgeType,
+          agreement: record.get("agreement"),
+        },
+      }),
+    );
 
     return { nodes, edges };
   } finally {

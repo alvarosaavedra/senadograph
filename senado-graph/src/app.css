@@ -42,7 +42,7 @@
   }
 
   .stat-card::before {
-    content: '';
+    content: "";
     @apply absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 transition-opacity duration-300;
   }
 

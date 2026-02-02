@@ -1,4 +1,11 @@
-import type { Senator, Party, Law, Committee, GraphData, Lobbyist } from "$lib/types";
+import type {
+  Senator,
+  Party,
+  Law,
+  Committee,
+  GraphData,
+  Lobbyist,
+} from "$lib/types";
 
 // Mock data for development without Neo4j
 const mockParties: Party[] = [
@@ -211,9 +218,11 @@ export function getMockLawsForSenator(senatorId: string): Law[] {
 }
 
 export function getMockCommitteesForSenator(senatorId: string): Committee[] {
-  if (senatorId === "senator_001") return [mockCommittees[0], mockCommittees[1]];
+  if (senatorId === "senator_001")
+    return [mockCommittees[0], mockCommittees[1]];
   if (senatorId === "senator_002") return [mockCommittees[1]];
-  if (senatorId === "senator_003") return [mockCommittees[0], mockCommittees[2]];
+  if (senatorId === "senator_003")
+    return [mockCommittees[0], mockCommittees[2]];
   return [mockCommittees[2]];
 }
 
@@ -255,7 +264,8 @@ export function getMockGraphData(): GraphData {
         type: "party" as const,
         color: party.color,
         ideology: party.ideology,
-        memberCount: mockSenators.filter((s) => s.party === party.shortName).length,
+        memberCount: mockSenators.filter((s) => s.party === party.shortName)
+          .length,
       },
     })),
     ...mockCommittees.map((committee) => ({
@@ -277,28 +287,187 @@ export function getMockGraphData(): GraphData {
   ];
 
   const edges = [
-    { data: { id: "edge_1", source: "senator_001", target: "senator_002", type: "voted_same" as const, agreement: 0.85 } },
-    { data: { id: "edge_2", source: "senator_001", target: "senator_003", type: "voted_same" as const, agreement: 0.72 } },
-    { data: { id: "edge_3", source: "senator_002", target: "senator_003", type: "voted_same" as const, agreement: 0.45 } },
-    { data: { id: "edge_4", source: "senator_001", target: "senator_005", type: "voted_same" as const, agreement: 0.9 } },
-    { data: { id: "edge_5", source: "senator_002", target: "senator_004", type: "voted_same" as const, agreement: 0.68 } },
-    { data: { id: "edge_6", source: "senator_001", target: "law_12345", type: "authored" as const } },
-    { data: { id: "edge_7", source: "senator_002", target: "law_12345", type: "authored" as const } },
-    { data: { id: "edge_8", source: "senator_001", target: "law_12346", type: "authored" as const } },
-    { data: { id: "edge_9", source: "senator_002", target: "law_12347", type: "authored" as const } },
-    { data: { id: "edge_10", source: "senator_001", target: "party_rn", type: "belongs_to" as const } },
-    { data: { id: "edge_11", source: "senator_005", target: "party_rn", type: "belongs_to" as const } },
-    { data: { id: "edge_12", source: "senator_002", target: "party_ps", type: "belongs_to" as const } },
-    { data: { id: "edge_13", source: "senator_003", target: "party_udi", type: "belongs_to" as const } },
-    { data: { id: "edge_14", source: "senator_004", target: "party_pdc", type: "belongs_to" as const } },
-    { data: { id: "edge_15", source: "senator_001", target: "committee_education", type: "member_of" as const } },
-    { data: { id: "edge_16", source: "senator_001", target: "committee_finance", type: "member_of" as const } },
-    { data: { id: "edge_17", source: "senator_002", target: "committee_finance", type: "member_of" as const } },
-    { data: { id: "edge_18", source: "senator_003", target: "committee_education", type: "member_of" as const } },
-    { data: { id: "edge_19", source: "senator_003", target: "committee_health", type: "member_of" as const } },
-    { data: { id: "edge_20", source: "lobbyist_001", target: "senator_001", type: "lobby" as const } },
-    { data: { id: "edge_21", source: "lobbyist_002", target: "senator_002", type: "lobby" as const } },
-    { data: { id: "edge_22", source: "lobbyist_003", target: "senator_004", type: "lobby" as const } },
+    {
+      data: {
+        id: "edge_1",
+        source: "senator_001",
+        target: "senator_002",
+        type: "voted_same" as const,
+        agreement: 0.85,
+      },
+    },
+    {
+      data: {
+        id: "edge_2",
+        source: "senator_001",
+        target: "senator_003",
+        type: "voted_same" as const,
+        agreement: 0.72,
+      },
+    },
+    {
+      data: {
+        id: "edge_3",
+        source: "senator_002",
+        target: "senator_003",
+        type: "voted_same" as const,
+        agreement: 0.45,
+      },
+    },
+    {
+      data: {
+        id: "edge_4",
+        source: "senator_001",
+        target: "senator_005",
+        type: "voted_same" as const,
+        agreement: 0.9,
+      },
+    },
+    {
+      data: {
+        id: "edge_5",
+        source: "senator_002",
+        target: "senator_004",
+        type: "voted_same" as const,
+        agreement: 0.68,
+      },
+    },
+    {
+      data: {
+        id: "edge_6",
+        source: "senator_001",
+        target: "law_12345",
+        type: "authored" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_7",
+        source: "senator_002",
+        target: "law_12345",
+        type: "authored" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_8",
+        source: "senator_001",
+        target: "law_12346",
+        type: "authored" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_9",
+        source: "senator_002",
+        target: "law_12347",
+        type: "authored" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_10",
+        source: "senator_001",
+        target: "party_rn",
+        type: "belongs_to" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_11",
+        source: "senator_005",
+        target: "party_rn",
+        type: "belongs_to" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_12",
+        source: "senator_002",
+        target: "party_ps",
+        type: "belongs_to" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_13",
+        source: "senator_003",
+        target: "party_udi",
+        type: "belongs_to" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_14",
+        source: "senator_004",
+        target: "party_pdc",
+        type: "belongs_to" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_15",
+        source: "senator_001",
+        target: "committee_education",
+        type: "member_of" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_16",
+        source: "senator_001",
+        target: "committee_finance",
+        type: "member_of" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_17",
+        source: "senator_002",
+        target: "committee_finance",
+        type: "member_of" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_18",
+        source: "senator_003",
+        target: "committee_education",
+        type: "member_of" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_19",
+        source: "senator_003",
+        target: "committee_health",
+        type: "member_of" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_20",
+        source: "lobbyist_001",
+        target: "senator_001",
+        type: "lobby" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_21",
+        source: "lobbyist_002",
+        target: "senator_002",
+        type: "lobby" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_22",
+        source: "lobbyist_003",
+        target: "senator_004",
+        type: "lobby" as const,
+      },
+    },
   ];
 
   return { nodes, edges };

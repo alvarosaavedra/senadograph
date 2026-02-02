@@ -1,4 +1,9 @@
-import { getAllSenators, getInitialGraphData, getAllParties, getAllCommittees } from "$lib/database/queries";
+import {
+  getAllSenators,
+  getInitialGraphData,
+  getAllParties,
+  getAllCommittees,
+} from "$lib/database/queries";
 import type { Senator, GraphData } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 
