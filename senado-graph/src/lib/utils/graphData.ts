@@ -1,23 +1,25 @@
-import type { GraphData, GraphFilters } from '$lib/types';
-import { getDriver } from './neo4j';
+import type { GraphData, GraphFilters } from "$lib/types";
+import { getDriver } from "./neo4j";
 
-export async function getFilteredGraphData(filters: GraphFilters): Promise<GraphData> {
+export async function getFilteredGraphData(
+  filters: GraphFilters,
+): Promise<GraphData> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
     let query = `
       MATCH (s:Senator)
       WHERE s.active = true
     `;
-    
+
     const params: Record<string, unknown> = {};
-    
+
     if (filters.parties && filters.parties.length > 0) {
       query += ` AND s.party IN $parties`;
       params.parties = filters.parties;
     }
-    
+
     query += `
       MATCH (s)-[:BELONGS_TO]->(p:Party)
       RETURN s {
@@ -29,47 +31,47 @@ export async function getFilteredGraphData(filters: GraphFilters): Promise<Graph
         .active
       } AS senator, p.color AS color
     `;
-    
+
     const senatorsResult = await session.run(query, params);
-    
+
     // Get relationships
     let relQuery = `
       MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
       WHERE s1.id < s2.id AND v.agreement > 0.7
     `;
-    
+
     if (filters.parties && filters.parties.length > 0) {
       relQuery += ` AND s1.party IN $parties AND s2.party IN $parties`;
     }
-    
+
     relQuery += `
       RETURN s1.id AS source, s2.id AS target, v.agreement AS agreement
       LIMIT 100
     `;
-    
+
     const relationshipsResult = await session.run(relQuery, params);
-    
-    const nodes = senatorsResult.records.map(record => ({
+
+    const nodes = senatorsResult.records.map((record) => ({
       data: {
-        id: record.get('senator').id,
-        label: record.get('senator').name,
-        type: 'senator' as const,
-        color: record.get('color'),
-        party: record.get('senator').party,
-        region: record.get('senator').region
-      }
+        id: record.get("senator").id,
+        label: record.get("senator").name,
+        type: "senator" as const,
+        color: record.get("color"),
+        party: record.get("senator").party,
+        region: record.get("senator").region,
+      },
     }));
-    
+
     const edges = relationshipsResult.records.map((record, index) => ({
       data: {
         id: `edge_${index}`,
-        source: record.get('source'),
-        target: record.get('target'),
-        type: 'voted_same',
-        agreement: record.get('agreement')
-      }
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "voted_same",
+        agreement: record.get("agreement"),
+      },
     }));
-    
+
     return { nodes, edges };
   } finally {
     await session.close();

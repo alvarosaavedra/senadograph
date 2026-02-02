@@ -1,10 +1,10 @@
-import { getDriver } from './neo4j';
-import type { Senator, Party, Law, Committee, GraphData } from '$lib/types';
+import { getDriver } from "./neo4j";
+import type { Senator, Party, Law, Committee, GraphData } from "$lib/types";
 
 export async function getAllSenators(): Promise<Senator[]> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
     const result = await session.run(`
       MATCH (s:Senator)
@@ -23,8 +23,8 @@ export async function getAllSenators(): Promise<Senator[]> {
         .active
       } AS senator
     `);
-    
-    return result.records.map(record => record.get('senator'));
+
+    return result.records.map((record) => record.get("senator"));
   } finally {
     await session.close();
   }
@@ -33,9 +33,10 @@ export async function getAllSenators(): Promise<Senator[]> {
 export async function getSenatorById(id: string): Promise<Senator | null> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
-    const result = await session.run(`
+    const result = await session.run(
+      `
       MATCH (s:Senator {id: $id})
       RETURN s {
         .id,
@@ -51,13 +52,15 @@ export async function getSenatorById(id: string): Promise<Senator | null> {
         .startDate,
         .active
       } AS senator
-    `, { id });
-    
+    `,
+      { id },
+    );
+
     if (result.records.length === 0) {
       return null;
     }
-    
-    return result.records[0].get('senator');
+
+    return result.records[0].get("senator");
   } finally {
     await session.close();
   }
@@ -66,7 +69,7 @@ export async function getSenatorById(id: string): Promise<Senator | null> {
 export async function getAllParties(): Promise<Party[]> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
     const result = await session.run(`
       MATCH (p:Party)
@@ -79,8 +82,8 @@ export async function getAllParties(): Promise<Party[]> {
         .ideology
       } AS party
     `);
-    
-    return result.records.map(record => record.get('party'));
+
+    return result.records.map((record) => record.get("party"));
   } finally {
     await session.close();
   }
@@ -89,7 +92,7 @@ export async function getAllParties(): Promise<Party[]> {
 export async function getAllCommittees(): Promise<Committee[]> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
     const result = await session.run(`
       MATCH (c:Committee)
@@ -99,8 +102,8 @@ export async function getAllCommittees(): Promise<Committee[]> {
         .nameEn
       } AS committee
     `);
-    
-    return result.records.map(record => record.get('committee'));
+
+    return result.records.map((record) => record.get("committee"));
   } finally {
     await session.close();
   }
@@ -109,7 +112,7 @@ export async function getAllCommittees(): Promise<Committee[]> {
 export async function getInitialGraphData(): Promise<GraphData> {
   const driver = getDriver();
   const session = driver.session();
-  
+
   try {
     // Get all senators with their parties
     const senatorsResult = await session.run(`
@@ -124,7 +127,7 @@ export async function getInitialGraphData(): Promise<GraphData> {
         .active
       } AS senator, p.color AS color
     `);
-    
+
     // Get relationships between senators (voting patterns)
     const relationshipsResult = await session.run(`
       MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
@@ -132,29 +135,140 @@ export async function getInitialGraphData(): Promise<GraphData> {
       RETURN s1.id AS source, s2.id AS target, v.agreement AS agreement
       LIMIT 100
     `);
-    
-    const nodes = senatorsResult.records.map(record => ({
+
+    const nodes = senatorsResult.records.map((record) => ({
       data: {
-        id: record.get('senator').id,
-        label: record.get('senator').name,
-        type: 'senator' as const,
-        color: record.get('color'),
-        party: record.get('senator').party,
-        region: record.get('senator').region
-      }
+        id: record.get("senator").id,
+        label: record.get("senator").name,
+        type: "senator" as const,
+        color: record.get("color"),
+        party: record.get("senator").party,
+        region: record.get("senator").region,
+      },
     }));
-    
+
     const edges = relationshipsResult.records.map((record, index) => ({
       data: {
         id: `edge_${index}`,
-        source: record.get('source'),
-        target: record.get('target'),
-        type: 'voted_same',
-        agreement: record.get('agreement')
-      }
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "voted_same",
+        agreement: record.get("agreement"),
+      },
     }));
-    
+
     return { nodes, edges };
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getLawById(id: string): Promise<Law | null> {
+  const driver = getDriver();
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (l:Law {id: $id})
+      RETURN l {
+        .id,
+        .boletin,
+        .title,
+        .titleEn,
+        .description,
+        .descriptionEn,
+        .dateProposed,
+        .status,
+        .topic
+      } AS law
+    `,
+      { id },
+    );
+
+    if (result.records.length === 0) {
+      return null;
+    }
+
+    return result.records[0].get("law");
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getLawsForSenator(senatorId: string): Promise<Law[]> {
+  const driver = getDriver();
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (s:Senator {id: $senatorId})-[:AUTHORED]->(l:Law)
+      RETURN l {
+        .id,
+        .boletin,
+        .title,
+        .titleEn,
+        .dateProposed,
+        .status,
+        .topic
+      } AS law
+      ORDER BY l.dateProposed DESC
+    `,
+      { senatorId },
+    );
+
+    return result.records.map((record) => record.get("law"));
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getCommitteesForSenator(
+  senatorId: string,
+): Promise<Committee[]> {
+  const driver = getDriver();
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (s:Senator {id: $senatorId})-[:MEMBER_OF]->(c:Committee)
+      RETURN c {
+        .id,
+        .name,
+        .nameEn
+      } AS committee
+    `,
+      { senatorId },
+    );
+
+    return result.records.map((record) => record.get("committee"));
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getAuthorsForLaw(lawId: string): Promise<Senator[]> {
+  const driver = getDriver();
+  const session = driver.session();
+
+  try {
+    const result = await session.run(
+      `
+      MATCH (s:Senator)-[:AUTHORED]->(l:Law {id: $lawId})
+      RETURN s {
+        .id,
+        .name,
+        .nameEn,
+        .party,
+        .region
+      } AS senator
+    `,
+      { lawId },
+    );
+
+    return result.records.map((record) => record.get("senator"));
   } finally {
     await session.close();
   }

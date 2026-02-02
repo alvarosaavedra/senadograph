@@ -25,7 +25,7 @@ export interface Party {
 }
 
 // Law types
-export type LawStatus = 'approved' | 'rejected' | 'in_discussion' | 'withdrawn';
+export type LawStatus = "approved" | "rejected" | "in_discussion" | "withdrawn";
 
 export interface Law {
   id: string;
@@ -40,7 +40,7 @@ export interface Law {
 }
 
 // Vote types
-export type VoteType = 'favor' | 'against' | 'abstained' | 'absent';
+export type VoteType = "favor" | "against" | "abstained" | "absent";
 
 export interface Vote {
   id: string;
@@ -57,7 +57,7 @@ export interface Committee {
 }
 
 // Lobbyist types
-export type LobbyistType = 'company' | 'union' | 'ngo' | 'professional_college';
+export type LobbyistType = "company" | "union" | "ngo" | "professional_college";
 
 export interface Lobbyist {
   id: string;
@@ -72,7 +72,7 @@ export interface GraphNode {
   data: {
     id: string;
     label: string;
-    type: 'senator' | 'law' | 'party' | 'committee' | 'lobbyist';
+    type: "senator" | "law" | "party" | "committee" | "lobbyist";
     color?: string;
     size?: number;
     [key: string]: unknown;
