@@ -23,7 +23,8 @@
    let showNodeDetails = false;
    let selectedNode: any = null;
    let currentFilters: GraphFilters = {
-    lawStatuses: ['approved', 'rejected', 'withdrawn']
+    lawStatuses: ['approved', 'rejected', 'withdrawn'],
+    relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same']
    };
 
    $: ({ senators, graphData, parties, committees } = data);
@@ -144,6 +145,10 @@
 
   function handleClearFilters() {
     clearFilters();
+    currentFilters = {
+      lawStatuses: ['approved', 'rejected', 'withdrawn'],
+      relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same']
+    };
     currentGraphData = graphData;
   }
 
