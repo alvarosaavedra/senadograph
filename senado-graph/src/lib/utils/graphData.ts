@@ -453,7 +453,20 @@ export async function getFilteredGraphData(
       ...lobbyistNodes,
     ];
 
-    return { nodes, edges };
+    // Create a set of all node IDs for filtering edges
+    const nodeIds = new Set(nodes.map((n) => n.data.id));
+
+    // Filter edges to only include those where both source and target exist
+    const validEdges = edges.filter(
+      (edge) =>
+        nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
+    );
+
+    console.log(
+      `Graph: Filtered ${edges.length} edges to ${validEdges.length} valid edges (removed ${edges.length - validEdges.length} orphaned edges)`,
+    );
+
+    return { nodes, edges: validEdges };
   } finally {
     await session.close();
   }
