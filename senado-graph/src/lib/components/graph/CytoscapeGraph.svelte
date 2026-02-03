@@ -39,6 +39,7 @@
         };
 
         console.log('Cytoscape: elements count:', elements.nodes.length, 'nodes,', elements.edges.length, 'edges');
+        console.log('Cytoscape: voted_same edges on init:', elements.edges.filter(e => e.data?.type === 'voted_same').length);
 
         try {
           cy = cytoscape({
@@ -380,12 +381,17 @@
   function updateGraph() {
     if (!cy || !graphData) return;
     
+    console.log('Cytoscape: updateGraph called with', graphData.nodes.length, 'nodes and', graphData.edges?.length || 0, 'edges');
+    console.log('Cytoscape: voted_same edges:', graphData.edges?.filter(e => e.data.type === 'voted_same').length || 0);
+    
     // Remove old elements
     cy.elements().remove();
     
     // Add new elements
     cy.add(graphData.nodes);
     cy.add(graphData.edges);
+    
+    console.log('Cytoscape: Elements added, total:', cy.elements().length, 'nodes:', cy.nodes().length, 'edges:', cy.edges().length);
     
     // Re-run layout
     runLayout();
