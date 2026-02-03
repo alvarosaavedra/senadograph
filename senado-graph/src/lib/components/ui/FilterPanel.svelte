@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { GraphFilters, NodeType, LawStatus, LobbyistType, EdgeType } from '$lib/types';
+  import PresetSelector from './PresetSelector.svelte';
 
   export let parties: { id: string; name: string; color?: string }[] = [];
   export let committees: { id: string; name: string }[] = [];
@@ -90,6 +91,19 @@
     onClose();
   }
 
+  function handleApplyPreset(presetId: string) {
+    const { applyPreset } = import('$lib/config/presets');
+    const presetFilters = applyPreset(presetId);
+    if (presetFilters) {
+      onApplyFilters(presetFilters);
+      onClose();
+    }
+  }
+
+  function handlePresetReset() {
+    handleClear();
+  }
+
   function handleClear() {
     selectedParties = [];
     selectedCommittee = '';
@@ -162,6 +176,14 @@
   </h3>
 
   <div class="space-y-4 overflow-y-auto pr-2 flex-1">
+    <!-- Presets -->
+    <div class="border-b border-gray-200 pb-4">
+      <PresetSelector
+        onApplyPreset={handleApplyPreset}
+        onReset={handlePresetReset}
+      />
+    </div>
+
     <!-- Entity Types -->
     <div>
       <span class="block text-sm font-medium text-gray-700 mb-3">
