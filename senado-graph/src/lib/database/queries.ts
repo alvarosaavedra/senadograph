@@ -194,17 +194,84 @@ export async function getInitialGraphData(
         .status,
         .topic
       } AS law
-      LIMIT 200
+      LIMIT 50
     `;
 
     const lawsResult = await session.run(lawQuery, lawParams);
 
-    // Get relationships between senators (voting patterns)
-    const relationshipsResult = await session.run(`
+    // Get Party nodes with member counts
+    const partiesResult = await session.run(`
+      MATCH (p:Party)
+      OPTIONAL MATCH (s:Senator)-[:BELONGS_TO]->(p)
+      WHERE s.active = true
+      RETURN p {
+        .id,
+        .name,
+        .nameEn,
+        .shortName,
+        .color,
+        .ideology
+      } AS party, count(s) AS memberCount
+    `);
+
+    // Get Committee nodes
+    const committeesResult = await session.run(`
+      MATCH (c:Committee)
+      RETURN c {
+        .id,
+        .name,
+        .nameEn
+      } AS committee
+    `);
+
+    // Get Lobbyist nodes (limit 30)
+    const lobbyistsResult = await session.run(`
+      MATCH (l:Lobbyist)
+      RETURN l {
+        .id,
+        .name,
+        .type,
+        .industry,
+        .industryEn
+      } AS lobbyist
+      LIMIT 30
+    `);
+
+    // Get AUTHORED edges (senator → law)
+    const authoredResult = await session.run(`
+      MATCH (s:Senator)-[:AUTHORED]->(l:Law)
+      WHERE s.active = true
+      RETURN s.id AS source, l.id AS target
+    `);
+
+    // Get BELONGS_TO edges (senator → party)
+    const belongsToResult = await session.run(`
+      MATCH (s:Senator)-[:BELONGS_TO]->(p:Party)
+      WHERE s.active = true
+      RETURN s.id AS source, p.id AS target
+    `);
+
+    // Get MEMBER_OF edges (senator → committee)
+    const memberOfResult = await session.run(`
+      MATCH (s:Senator)-[:MEMBER_OF]->(c:Committee)
+      WHERE s.active = true
+      RETURN s.id AS source, c.id AS target
+    `);
+
+    // Get LOBBY edges (lobbyist → senator)
+    const lobbyResult = await session.run(`
+      MATCH (l:Lobbyist)-[:LOBBY]->(s:Senator)
+      WHERE s.active = true
+      RETURN l.id AS source, s.id AS target
+      LIMIT 50
+    `);
+
+    // Get VOTED_SAME edges between senators (voting patterns) - reduced to 50
+    const votedSameResult = await session.run(`
       MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
       WHERE s1.id < s2.id AND v.agreement > 0.7
       RETURN s1.id AS source, s2.id AS target, v.agreement AS agreement
-      LIMIT 100
+      LIMIT 50
     `);
 
     const senatorNodes = senatorsResult.records.map((record) => ({
@@ -228,17 +295,97 @@ export async function getInitialGraphData(
       },
     }));
 
-    const nodes = [...senatorNodes, ...lawNodes];
-
-    const edges = relationshipsResult.records.map((record, index) => ({
+    const partyNodes = partiesResult.records.map((record) => ({
       data: {
-        id: `edge_${index}`,
+        id: record.get("party").id,
+        label: record.get("party").shortName,
+        type: "party" as const,
+        color: record.get("party").color,
+        ideology: record.get("party").ideology,
+        memberCount: record.get("memberCount").toNumber(),
+      },
+    }));
+
+    const committeeNodes = committeesResult.records.map((record) => ({
+      data: {
+        id: record.get("committee").id,
+        label: record.get("committee").name,
+        type: "committee" as const,
+      },
+    }));
+
+    const lobbyistNodes = lobbyistsResult.records.map((record) => ({
+      data: {
+        id: record.get("lobbyist").id,
+        label: record.get("lobbyist").name,
+        type: "lobbyist" as const,
+        lobbyistType: record.get("lobbyist").type,
+      },
+    }));
+
+    const nodes = [
+      ...senatorNodes,
+      ...lawNodes,
+      ...partyNodes,
+      ...committeeNodes,
+      ...lobbyistNodes,
+    ];
+
+    let edgeIndex = 0;
+
+    const authoredEdges = authoredResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "authored" as EdgeType,
+      },
+    }));
+
+    const belongsToEdges = belongsToResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "belongs_to" as EdgeType,
+      },
+    }));
+
+    const memberOfEdges = memberOfResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "member_of" as EdgeType,
+      },
+    }));
+
+    const lobbyEdges = lobbyResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "lobby" as EdgeType,
+      },
+    }));
+
+    const votedSameEdges = votedSameResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
         source: record.get("source"),
         target: record.get("target"),
         type: "voted_same" as EdgeType,
         agreement: record.get("agreement"),
       },
     }));
+
+    const edges = [
+      ...authoredEdges,
+      ...belongsToEdges,
+      ...memberOfEdges,
+      ...lobbyEdges,
+      ...votedSameEdges,
+    ];
 
     return { nodes, edges };
   } catch (err) {
