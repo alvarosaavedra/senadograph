@@ -199,3 +199,68 @@ async function applyFilters() {
 - Vercel: Connect GitHub repo for auto-deploy
 - Neo4j Aura: Use environment variables, not hardcoded
 - Pre-render routes in `svelte.config.js` for static pages
+
+## Browser Automation with agent-browser
+
+Use `agent-browser` for web automation and testing. Run `agent-browser --help` for all commands.
+
+### Installation
+```bash
+npm install -g agent-browser
+agent-browser install  # Download Chromium (Linux: run `agent-browser install --with-deps` if issues)
+```
+
+### Core Workflow
+1. `agent-browser open <url>` - Navigate to page
+2. `agent-browser snapshot -i` - Get interactive elements with refs (@e1, @e2)
+3. `agent-browser click @e1` / `fill @e2 "text"` - Interact using refs
+4. Re-snapshot after page changes
+
+### Key Commands
+```bash
+# Navigation
+agent-browser open example.com              # Navigate
+agent-browser back / forward / reload        # Navigation controls
+
+# Interaction
+agent-browser click <sel>                   # Click by ref or selector
+agent-browser fill <sel> "text"             # Fill input
+agent-browser type <sel> "text"             # Type into element
+agent-browser press Enter                   # Press key
+
+# Get Info
+agent-browser snapshot                      # Accessibility tree with refs
+agent-browser get text <sel>                # Get text content
+agent-browser get html <sel>                # Get innerHTML
+agent-browser get url                       # Current URL
+
+# Actions
+agent-browser screenshot page.png           # Take screenshot
+agent-browser pdf output.pdf                # Save as PDF
+agent-browser wait <sel>                    # Wait for element
+agent-browser close                         # Close browser
+```
+
+### Options
+- `--session <name>` - Isolated browser sessions
+- `--profile <path>` - Persistent browser profile for cookies/storage
+- `--headers <json>` - Set HTTP headers for authentication
+- `--json` - Machine-readable output for agents
+- `--headed` - Show browser window (vs headless)
+
+### Sessions & Profiles
+```bash
+# Multiple isolated sessions
+agent-browser --session agent1 open site-a.com
+agent-browser --session agent2 open site-b.com
+
+# Persistent profile (cookies, localStorage, login sessions)
+agent-browser --profile ~/.myapp-profile open myapp.com
+```
+
+### For AI Agents
+Use `--json` flag for programmatic interaction:
+```bash
+agent-browser snapshot --json      # Returns JSON with refs
+agent-browser get text @e1 --json  # Returns structured data
+```
