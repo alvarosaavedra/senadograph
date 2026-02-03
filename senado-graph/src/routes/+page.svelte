@@ -40,22 +40,22 @@
     color: p.color
   })).sort((a, b) => b.count - a.count);
 
-  $: lawStatusBreakdown = (() => {
-    const laws = (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'law') || [];
-    const statusCounts = { approved: 0, in_discussion: 0, rejected: 0, withdrawn: 0 };
-    laws.forEach(law => {
-      const status = law.data.status;
-      if (status && statusCounts.hasOwnProperty(status)) {
-        statusCounts[status]++;
-      }
-    });
-    return [
-      { status: 'approved', count: statusCounts.approved },
-      { status: 'in_discussion', count: statusCounts.in_discussion },
-      { status: 'rejected', count: statusCounts.rejected },
-      { status: 'withdrawn', count: statusCounts.withdrawn }
-    ];
-  })();
+   $: lawStatusBreakdown = (() => {
+     const laws = graphData?.nodes?.filter(n => n.data.type === 'law') || [];
+     const statusCounts = { approved: 0, in_discussion: 0, rejected: 0, withdrawn: 0 };
+     laws.forEach(law => {
+       const status = law.data.status;
+       if (status && statusCounts.hasOwnProperty(status)) {
+         statusCounts[status]++;
+       }
+     });
+     return [
+       { status: 'approved', count: statusCounts.approved },
+       { status: 'in_discussion', count: statusCounts.in_discussion },
+       { status: 'rejected', count: statusCounts.rejected },
+       { status: 'withdrawn', count: statusCounts.withdrawn }
+     ];
+   })();
 
    $: nodeCounts = {
     senators: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'senator').length || 0,
@@ -207,15 +207,15 @@
   </p>
 </div>
 
-<!-- Stats Cards -->
+ <!-- Stats Cards -->
 <StatsCards
-  totalSenators={senators.length}
-  totalParties={parties.length}
-  totalLaws={(currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'law').length || 0}
-  totalCommittees={committees.length}
-  {partyBreakdown}
-  {lawStatusBreakdown}
-/>
+   totalSenators={senators.length}
+   totalParties={parties.length}
+   totalLaws={graphData?.nodes?.filter(n => n.data.type === 'law').length || 0}
+   totalCommittees={committees.length}
+   {partyBreakdown}
+   {lawStatusBreakdown}
+ />
 
 <!-- Search Bar -->
 <div class="mb-6 animate-fade-in-up" style="animation-delay: 400ms;">
