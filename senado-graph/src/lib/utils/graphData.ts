@@ -16,123 +16,154 @@ export async function getFilteredGraphData(
   const session = driver.session();
 
   try {
-    // Build senator query with filters
-    let senatorQuery = `
-      MATCH (s:Senator)
-      WHERE s.active = true
-    `;
+    // Determine which entity types to show (default to all if not specified)
+    const entityTypes = filters.entityTypes || [
+      "senator",
+      "law",
+      "party",
+      "committee",
+      "lobbyist",
+    ];
 
     const params: Record<string, unknown> = {};
 
-    if (filters.parties && filters.parties.length > 0) {
-      senatorQuery += ` AND s.party IN $parties`;
-      params.parties = filters.parties;
+    // Only fetch senators if entity type is enabled
+    let senatorsResult: { records: Neo4jRecord[] } = { records: [] };
+    if (entityTypes.includes("senator")) {
+      // Build senator query with filters
+      let senatorQuery = `
+        MATCH (s:Senator)
+        WHERE s.active = true
+      `;
+
+      // Filter by party shortName (not ID)
+      if (filters.parties && filters.parties.length > 0) {
+        senatorQuery += ` AND s.party IN $parties`;
+        params.parties = filters.parties;
+      }
+
+      senatorQuery += `
+        MATCH (s)-[:BELONGS_TO]->(p:Party)
+        RETURN s {
+          .id,
+          .name,
+          .nameEn,
+          .party,
+          .region,
+          .active
+        } AS senator, p.color AS color
+      `;
+
+      senatorsResult = await session.run(senatorQuery, params);
     }
 
-    senatorQuery += `
-      MATCH (s)-[:BELONGS_TO]->(p:Party)
-      RETURN s {
-        .id,
-        .name,
-        .nameEn,
-        .party,
-        .region,
-        .active
-      } AS senator, p.color AS color
-    `;
+    // Only fetch laws if entity type is enabled
+    let lawsResult: { records: Neo4jRecord[] } = { records: [] };
+    if (entityTypes.includes("law")) {
+      // Get law nodes with optional status filter
+      let lawQuery = `
+        MATCH (l:Law)
+      `;
 
-    const senatorsResult = await session.run(senatorQuery, params);
+      if (filters.lawStatuses && filters.lawStatuses.length > 0) {
+        lawQuery += ` WHERE l.status IN $lawStatuses`;
+        params.lawStatuses = filters.lawStatuses;
+      }
 
-    // Get law nodes with optional status filter
-    let lawQuery = `
-      MATCH (l:Law)
-    `;
+      lawQuery += `
+        RETURN l {
+          .id,
+          .boletin,
+          .title,
+          .titleEn,
+          .status,
+          .topic
+        } AS law
+        LIMIT 50
+      `;
 
-    if (filters.lawStatuses && filters.lawStatuses.length > 0) {
-      lawQuery += ` WHERE l.status IN $lawStatuses`;
-      params.lawStatuses = filters.lawStatuses;
+      lawsResult = await session.run(lawQuery, params);
     }
 
-    lawQuery += `
-      RETURN l {
-        .id,
-        .boletin,
-        .title,
-        .titleEn,
-        .status,
-        .topic
-      } AS law
-      LIMIT 50
-    `;
+    // Only fetch parties if entity type is enabled
+    let partiesResult: { records: Neo4jRecord[] } = { records: [] };
+    if (entityTypes.includes("party")) {
+      // Get Party nodes with member counts
+      let partyQuery = `
+        MATCH (p:Party)
+      `;
 
-    const lawsResult = await session.run(lawQuery, params);
+      // Filter by party shortName to match senator.party field
+      if (filters.parties && filters.parties.length > 0) {
+        partyQuery += ` WHERE p.shortName IN $parties`;
+      }
 
-    // Get Party nodes with member counts
-    let partyQuery = `
-      MATCH (p:Party)
-    `;
+      partyQuery += `
+        OPTIONAL MATCH (s:Senator)-[:BELONGS_TO]->(p)
+        WHERE s.active = true
+        RETURN p {
+          .id,
+          .name,
+          .nameEn,
+          .shortName,
+          .color,
+          .ideology
+        } AS party, count(s) AS memberCount
+      `;
 
-    if (filters.parties && filters.parties.length > 0) {
-      partyQuery += ` WHERE p.id IN $parties`;
+      partiesResult = await session.run(partyQuery, params);
     }
 
-    partyQuery += `
-      OPTIONAL MATCH (s:Senator)-[:BELONGS_TO]->(p)
-      WHERE s.active = true
-      RETURN p {
-        .id,
-        .name,
-        .nameEn,
-        .shortName,
-        .color,
-        .ideology
-      } AS party, count(s) AS memberCount
-    `;
+    // Only fetch committees if entity type is enabled
+    let committeesResult: { records: Neo4jRecord[] } = { records: [] };
+    if (entityTypes.includes("committee")) {
+      // Get Committee nodes
+      let committeeQuery = `
+        MATCH (c:Committee)
+      `;
 
-    const partiesResult = await session.run(partyQuery, params);
+      if (filters.committees && filters.committees.length > 0) {
+        committeeQuery += ` WHERE c.id IN $committees`;
+        params.committees = filters.committees;
+      }
 
-    // Get Committee nodes
-    let committeeQuery = `
-      MATCH (c:Committee)
-    `;
+      committeeQuery += `
+        RETURN c {
+          .id,
+          .name,
+          .nameEn
+        } AS committee
+      `;
 
-    if (filters.committees && filters.committees.length > 0) {
-      committeeQuery += ` WHERE c.id IN $committees`;
-      params.committees = filters.committees;
+      committeesResult = await session.run(committeeQuery, params);
     }
 
-    committeeQuery += `
-      RETURN c {
-        .id,
-        .name,
-        .nameEn
-      } AS committee
-    `;
+    // Only fetch lobbyists if entity type is enabled
+    let lobbyistsResult: { records: Neo4jRecord[] } = { records: [] };
+    if (entityTypes.includes("lobbyist")) {
+      // Get Lobbyist nodes (limit 30)
+      let lobbyistQuery = `
+        MATCH (l:Lobbyist)
+      `;
 
-    const committeesResult = await session.run(committeeQuery, params);
+      if (filters.lobbyistTypes && filters.lobbyistTypes.length > 0) {
+        lobbyistQuery += ` WHERE l.type IN $lobbyistTypes`;
+        params.lobbyistTypes = filters.lobbyistTypes;
+      }
 
-    // Get Lobbyist nodes (limit 30)
-    let lobbyistQuery = `
-      MATCH (l:Lobbyist)
-    `;
+      lobbyistQuery += `
+        RETURN l {
+          .id,
+          .name,
+          .type,
+          .industry,
+          .industryEn
+        } AS lobbyist
+        LIMIT 30
+      `;
 
-    if (filters.lobbyistTypes && filters.lobbyistTypes.length > 0) {
-      lobbyistQuery += ` WHERE l.type IN $lobbyistTypes`;
-      params.lobbyistTypes = filters.lobbyistTypes;
+      lobbyistsResult = await session.run(lobbyistQuery, params);
     }
-
-    lobbyistQuery += `
-      RETURN l {
-        .id,
-        .name,
-        .type,
-        .industry,
-        .industryEn
-      } AS lobbyist
-      LIMIT 30
-    `;
-
-    const lobbyistsResult = await session.run(lobbyistQuery, params);
 
     // Get active relationship types from filters
     const activeEdgeTypes = filters.relationshipTypes || [
@@ -146,13 +177,18 @@ export async function getFilteredGraphData(
     let edgeIndex = 0;
     const edges: GraphData["edges"] = [];
 
-    // Get AUTHORED edges (senator → law)
-    if (activeEdgeTypes.includes("authored")) {
+    // Get AUTHORED edges (senator → law) - only if both entity types are enabled
+    if (
+      activeEdgeTypes.includes("authored") &&
+      entityTypes.includes("senator") &&
+      entityTypes.includes("law")
+    ) {
       let authoredQuery = `
         MATCH (s:Senator)-[:AUTHORED]->(l:Law)
         WHERE s.active = true
       `;
 
+      // Use party shortName for filtering
       if (filters.parties && filters.parties.length > 0) {
         authoredQuery += ` AND s.party IN $parties`;
       }
@@ -176,15 +212,20 @@ export async function getFilteredGraphData(
       });
     }
 
-    // Get BELONGS_TO edges (senator → party)
-    if (activeEdgeTypes.includes("belongs_to")) {
+    // Get BELONGS_TO edges (senator → party) - only if both entity types are enabled
+    if (
+      activeEdgeTypes.includes("belongs_to") &&
+      entityTypes.includes("senator") &&
+      entityTypes.includes("party")
+    ) {
       let belongsToQuery = `
         MATCH (s:Senator)-[:BELONGS_TO]->(p:Party)
         WHERE s.active = true
       `;
 
+      // Use party shortName for filtering senators
       if (filters.parties && filters.parties.length > 0) {
-        belongsToQuery += ` AND s.party IN $parties AND p.id IN $parties`;
+        belongsToQuery += ` AND s.party IN $parties AND p.shortName IN $parties`;
       }
 
       belongsToQuery += ` RETURN s.id AS source, p.id AS target`;
@@ -202,13 +243,18 @@ export async function getFilteredGraphData(
       });
     }
 
-    // Get MEMBER_OF edges (senator → committee)
-    if (activeEdgeTypes.includes("member_of")) {
+    // Get MEMBER_OF edges (senator → committee) - only if both entity types are enabled
+    if (
+      activeEdgeTypes.includes("member_of") &&
+      entityTypes.includes("senator") &&
+      entityTypes.includes("committee")
+    ) {
       let memberOfQuery = `
         MATCH (s:Senator)-[:MEMBER_OF]->(c:Committee)
         WHERE s.active = true
       `;
 
+      // Use party shortName for filtering
       if (filters.parties && filters.parties.length > 0) {
         memberOfQuery += ` AND s.party IN $parties`;
       }
@@ -232,13 +278,18 @@ export async function getFilteredGraphData(
       });
     }
 
-    // Get LOBBY edges (lobbyist → senator)
-    if (activeEdgeTypes.includes("lobby")) {
+    // Get LOBBY edges (lobbyist → senator) - only if both entity types are enabled
+    if (
+      activeEdgeTypes.includes("lobby") &&
+      entityTypes.includes("lobbyist") &&
+      entityTypes.includes("senator")
+    ) {
       let lobbyQuery = `
         MATCH (l:Lobbyist)-[:LOBBY]->(s:Senator)
         WHERE s.active = true
       `;
 
+      // Use party shortName for filtering
       if (filters.parties && filters.parties.length > 0) {
         lobbyQuery += ` AND s.party IN $parties`;
       }
@@ -262,13 +313,17 @@ export async function getFilteredGraphData(
       });
     }
 
-    // Get VOTED_SAME edges between senators (voting patterns)
-    if (activeEdgeTypes.includes("voted_same")) {
+    // Get VOTED_SAME edges between senators (voting patterns) - only if senators enabled
+    if (
+      activeEdgeTypes.includes("voted_same") &&
+      entityTypes.includes("senator")
+    ) {
       let votedSameQuery = `
         MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
         WHERE s1.id < s2.id AND v.agreement > 0.7
       `;
 
+      // Use party shortName for filtering
       if (filters.parties && filters.parties.length > 0) {
         votedSameQuery += ` AND s1.party IN $parties AND s2.party IN $parties`;
       }
