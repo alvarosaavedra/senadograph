@@ -176,6 +176,37 @@ class LobbyMeeting:
     lobbyist_id: str
     date: str
     topic: Optional[str] = None
+    senator_name: Optional[str] = None
+    lobbyist_name: Optional[str] = None
+
+
+@dataclass
+class LobbyTrip:
+    """Represents a trip financed by a lobbyist."""
+
+    senator_id: str
+    lobbyist_id: str
+    destination: str
+    purpose: str
+    cost: int
+    funded_by: str
+    invited_by: str
+    senator_name: Optional[str] = None
+    lobbyist_name: Optional[str] = None
+
+
+@dataclass
+class LobbyDonation:
+    """Represents a donation received by a senator."""
+
+    senator_id: str
+    lobbyist_id: str
+    date: str
+    occasion: str
+    item: str
+    donor: str
+    senator_name: Optional[str] = None
+    lobbyist_name: Optional[str] = None
 
 
 @dataclass

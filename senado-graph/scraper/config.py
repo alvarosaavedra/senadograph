@@ -16,6 +16,10 @@ SENATORS_URL = f"{BASE_URL}/appsenado/index.php?mo=senadores&ac=listado"
 LAWS_API_URL = "https://tramitacion.senado.cl/wspublico/tramitacion.php"
 LAWS_URL = f"{BASE_URL}/appsenado/index.php?mo=tramitacion&ac=busquedaTramitacion"
 LOBBY_URL = f"{BASE_URL}/appsenado/index.php?mo=lobby"
+LOBBY_API_BASE = "https://tramitacion.senado.cl/appsenado/index.php"
+LOBBY_LOBBYISTS_URL = f"{LOBBY_API_BASE}?mo=lobby&ac=GetLobistas"
+LOBBY_TRIPS_URL = f"{LOBBY_API_BASE}?mo=lobby&ac=GetViajes"
+LOBBY_DONATIONS_URL = f"{LOBBY_API_BASE}?mo=lobby&ac=GetDonativos"
 
 # Request configuration
 REQUEST_TIMEOUT = 30

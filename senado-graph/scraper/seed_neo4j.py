@@ -28,6 +28,7 @@ class Neo4jSeeder:
             "CREATE CONSTRAINT committee_id IF NOT EXISTS FOR (c:Committee) REQUIRE c.id IS UNIQUE",
             "CREATE CONSTRAINT vote_id IF NOT EXISTS FOR (v:Vote) REQUIRE v.id IS UNIQUE",
             "CREATE CONSTRAINT lobbyist_id IF NOT EXISTS FOR (l:Lobbyist) REQUIRE l.id IS UNIQUE",
+            "CREATE CONSTRAINT donation_id IF NOT EXISTS FOR (d:Donation) REQUIRE d.id IS UNIQUE",
         ]
 
         with self.driver.session() as session:
@@ -224,6 +225,96 @@ class Neo4jSeeder:
                 print("No VOTED_SAME relationships created")
 
         print("Voting similarity calculated")
+
+    def seed_lobbyists(self, lobbyists: list):
+        """Seed lobbyists into Neo4j."""
+        print(f"Seeding {len(lobbyists)} lobbyists...")
+
+        query = """
+        UNWIND $lobbyists AS lobbyist
+        MERGE (l:Lobbyist {id: lobbyist.id})
+        SET l.name = lobbyist.name,
+            l.type = lobbyist.type,
+            l.industry = lobbyist.industry,
+            l.registrationDate = lobbyist.registration_date,
+            l.origin = lobbyist.origin
+        """
+
+        with self.driver.session() as session:
+            session.run(query, lobbyists=lobbyists)
+
+        print("Lobbyists seeded")
+
+    def seed_lobby_meetings(self, meetings: list):
+        """Seed lobby meeting relationships."""
+        print(f"Seeding {len(meetings)} lobby meeting relationships...")
+
+        query = """
+        UNWIND $meetings AS meeting
+        MERGE (s:Senator {id: meeting.senator_id})
+        SET s.name = meeting.senator_name
+        WITH s, meeting
+        MERGE (l:Lobbyist {id: meeting.lobbyist_id})
+        MERGE (s)-[m:MET_WITH_LOBBYIST]->(l)
+        SET m.date = meeting.date,
+            m.topic = meeting.topic,
+            m.senatorName = meeting.senator_name,
+            m.lobbyistName = meeting.lobbyist_name
+        """
+
+        with self.driver.session() as session:
+            session.run(query, meetings=meetings)
+
+        print("Lobby meeting relationships seeded")
+
+    def seed_lobby_trips(self, trips: list):
+        """Seed lobbyist-funded trip relationships."""
+        print(f"Seeding {len(trips)} lobby trip relationships...")
+
+        query = """
+        UNWIND $trips AS trip
+        MERGE (s:Senator {id: trip.senator_id})
+        SET s.name = trip.senator_name
+        WITH s, trip
+        MERGE (l:Lobbyist {id: trip.lobbyist_id})
+        MERGE (s)-[t:TRIP_FUNDED_BY]->(l)
+        SET t.destination = trip.destination,
+            t.purpose = trip.purpose,
+            t.cost = trip.cost,
+            t.fundedBy = trip.funded_by,
+            t.invitedBy = trip.invited_by,
+            t.senatorName = trip.senator_name,
+            t.lobbyistName = trip.lobbyist_name
+        """
+
+        with self.driver.session() as session:
+            session.run(query, trips=trips)
+
+        print("Lobby trip relationships seeded")
+
+    def seed_lobby_donations(self, donations: list):
+        """Seed donation relationships."""
+        print(f"Seeding {len(donations)} donation relationships...")
+
+        query = """
+        UNWIND $donations AS donation
+        MERGE (s:Senator {id: donation.senator_id})
+        SET s.name = donation.senator_name
+        WITH s, donation
+        MERGE (l:Lobbyist {id: donation.lobbyist_id})
+        MERGE (s)-[d:RECEIVED_DONATION]->(l)
+        SET d.date = donation.date,
+            d.occasion = donation.occasion,
+            d.item = donation.item,
+            d.donor = donation.donor,
+            d.senatorName = donation.senator_name,
+            d.lobbyistName = donation.lobbyist_name
+        """
+
+        with self.driver.session() as session:
+            session.run(query, donations=donations)
+
+        print("Donation relationships seeded")
 
 
 def load_mock_data():
@@ -441,6 +532,35 @@ def main():
             print("No voting data found, skipping...")
             votes = []
 
+        # Load lobby data if available
+        try:
+            with open(f"{data_dir}/lobbyists.json", "r", encoding="utf-8") as f:
+                lobbyists = json.load(f)
+        except FileNotFoundError:
+            print("No lobbyist data found, skipping...")
+            lobbyists = []
+
+        try:
+            with open(f"{data_dir}/lobby_meetings.json", "r", encoding="utf-8") as f:
+                meetings = json.load(f)
+        except FileNotFoundError:
+            print("No lobby meeting data found, skipping...")
+            meetings = []
+
+        try:
+            with open(f"{data_dir}/lobby_trips.json", "r", encoding="utf-8") as f:
+                trips = json.load(f)
+        except FileNotFoundError:
+            print("No lobby trip data found, skipping...")
+            trips = []
+
+        try:
+            with open(f"{data_dir}/lobby_donations.json", "r", encoding="utf-8") as f:
+                donations = json.load(f)
+        except FileNotFoundError:
+            print("No donation data found, skipping...")
+            donations = []
+
         # Seed data
         seeder.seed_parties(parties)
         seeder.seed_senators(senators)
@@ -455,6 +575,19 @@ def main():
         else:
             # Create sample relationships
             seeder.create_sample_relationships()
+
+        # Seed lobby data if available
+        if lobbyists:
+            seeder.seed_lobbyists(lobbyists)
+
+        if meetings:
+            seeder.seed_lobby_meetings(meetings)
+
+        if trips:
+            seeder.seed_lobby_trips(trips)
+
+        if donations:
+            seeder.seed_lobby_donations(donations)
 
         print("Seeding complete!")
 

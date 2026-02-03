@@ -12,6 +12,9 @@ from config import (
     SENATORS_URL,
     LAWS_URL,
     LOBBY_URL,
+    LOBBY_LOBBYISTS_URL,
+    LOBBY_TRIPS_URL,
+    LOBBY_DONATIONS_URL,
     REQUEST_TIMEOUT,
     REQUEST_DELAY,
     MAX_RETRIES,
@@ -19,7 +22,15 @@ from config import (
     MAX_BACKOFF,
     IMAGES_DIR,
 )
-from models import Senator, Party, Law, Committee
+from models import (
+    Senator,
+    Party,
+    Law,
+    Committee,
+    LobbyMeeting,
+    LobbyTrip,
+    LobbyDonation,
+)
 
 
 class SenateScraper:
@@ -558,6 +569,256 @@ class SenateScraper:
             return "paired"
         return "absent"
 
+    def scrape_lobbyists(
+        self, years: Optional[List[int]] = None
+    ) -> tuple[List[dict], List[dict]]:
+        """Scrape lobbyist registrations and meetings."""
+        lobbyists = []
+        meetings = []
+
+        if years is None:
+            years = [2024, 2025, 2026]
+
+        print(f"Scraping lobbyist data for years: {years}...")
+
+        for year in years:
+            url = f"{LOBBY_LOBBYISTS_URL}&ano={year}"
+            print(f"Fetching lobbyists from {year}...")
+
+            soup = self._get(url)
+            if not soup:
+                continue
+
+            try:
+                tables = soup.find_all("table", class_="table-result")
+
+                for table in tables:
+                    thead = table.find("thead")
+                    if not thead:
+                        continue
+
+                    headers = [th.get_text(strip=True) for th in thead.find_all("th")]
+
+                    tbody = table.find("tbody")
+                    if not tbody:
+                        continue
+
+                    rows = tbody.find_all("tr")
+
+                    for row in rows:
+                        tds = row.find_all("td")
+                        if len(tds) < 4:
+                            continue
+
+                        name = tds[0].get_text(strip=True)
+                        date = tds[1].get_text(strip=True)
+                        origin = tds[2].get_text(strip=True)
+                        activity = tds[3].get_text(strip=True)
+
+                        lobbyist_id = f"lobbyist_{self._sanitize_id(name)}"
+
+                        lobbyist = {
+                            "id": lobbyist_id,
+                            "name": name,
+                            "type": "organization",
+                            "industry": self._extract_industry(activity),
+                            "registration_date": date,
+                            "origin": origin,
+                        }
+
+                        lobbyists.append(lobbyist)
+
+                        if "Reunión realizada" in origin:
+                            meeting = self._parse_meeting_from_origin(
+                                lobbyist_id, origin, date, activity
+                            )
+                            if meeting:
+                                meetings.append(meeting)
+
+            except Exception as e:
+                print(f"Error parsing lobbyist table for {year}: {e}")
+                continue
+
+            time.sleep(REQUEST_DELAY)
+
+        print(f"Found {len(lobbyists)} lobbyists and {len(meetings)} meetings")
+        return lobbyists, meetings
+
+    def _parse_meeting_from_origin(
+        self, lobbyist_id: str, origin: str, date: str, activity: str
+    ) -> Optional[dict]:
+        """Extract meeting details from origin text."""
+        import re
+
+        match = re.search(
+            r"Reunión realizada el (\d{4}-\d{2}-\d{2}) con ([^)]+)", origin
+        )
+        if match:
+            meeting_date = match.group(1)
+            senator_name = match.group(2).strip()
+
+            senator_id = f"senator_{self._sanitize_id(senator_name)}"
+
+            return {
+                "senator_id": senator_id,
+                "lobbyist_id": lobbyist_id,
+                "senator_name": senator_name,
+                "lobbyist_name": lobbyist_id.replace("lobbyist_", "").replace("_", " "),
+                "date": meeting_date,
+                "topic": activity,
+            }
+
+        return None
+
+    def _extract_industry(self, activity: str) -> str:
+        """Extract industry/sector from activity description."""
+        activity_lower = activity.lower()
+
+        industry_keywords = {
+            "mining": ["minería", "cobre", "minera", "litio"],
+            "energy": ["energía", "renovable", "hidrógeno", "eléctrica"],
+            "fishing": ["pesca", "acuicultura", "salmon", "mar"],
+            "agriculture": ["agrícola", "agricultura", "fruta", "viña", "vino"],
+            "education": ["educación", "universidad", "escuela"],
+            "health": ["salud", "farmacéutica", "médico"],
+            "finance": ["banca", "financiero", "bancario", "seguro"],
+            "technology": ["tecnología", "digital", "software"],
+            "environment": ["medio ambiente", "ambiental", "agua"],
+            "construction": ["construcción", "inmobiliario", "vivienda"],
+            "transport": ["transporte", "aéreo", "ferrocarril"],
+            "labor": ["trabajo", "laboral", "sindical"],
+            "justice": ["justicia", "legal", "ley"],
+        }
+
+        for industry, keywords in industry_keywords.items():
+            if any(keyword in activity_lower for keyword in keywords):
+                return industry
+
+        return "other"
+
+    def scrape_trips(self) -> List[dict]:
+        """Scrape lobbyist-funded trips."""
+        trips = []
+
+        print("Scraping lobbyist-funded trips...")
+        soup = self._get(LOBBY_TRIPS_URL)
+
+        if not soup:
+            return trips
+
+        try:
+            table = soup.find("table", class_="table-result")
+            if not table:
+                print("No trips table found")
+                return trips
+
+            tbody = table.find("tbody")
+            if not tbody:
+                return trips
+
+            rows = tbody.find_all("tr")
+
+            for row in rows:
+                tds = row.find_all("td")
+                if len(tds) < 6:
+                    continue
+
+                senator_name = tds[0].get_text(strip=True)
+                destination = tds[1].get_text(strip=True)
+                purpose = tds[2].get_text(strip=True)
+                cost_text = tds[3].get_text(strip=True)
+                funded_by = tds[4].get_text(strip=True)
+                invited_by = tds[5].get_text(strip=True)
+
+                cost = self._parse_cost(cost_text)
+                senator_id = f"senator_{self._sanitize_id(senator_name)}"
+                lobbyist_id = f"lobbyist_{self._sanitize_id(funded_by)}"
+
+                trip = {
+                    "senator_id": senator_id,
+                    "lobbyist_id": lobbyist_id,
+                    "senator_name": senator_name,
+                    "lobbyist_name": funded_by,
+                    "destination": destination,
+                    "purpose": purpose,
+                    "cost": cost,
+                    "funded_by": funded_by,
+                    "invited_by": invited_by,
+                }
+
+                trips.append(trip)
+
+        except Exception as e:
+            print(f"Error parsing trips table: {e}")
+
+        print(f"Found {len(trips)} trips")
+        return trips
+
+    def scrape_donations(self) -> List[dict]:
+        """Scrape donations received by senators."""
+        donations = []
+
+        print("Scraping donations...")
+        soup = self._get(LOBBY_DONATIONS_URL)
+
+        if not soup:
+            return donations
+
+        try:
+            table = soup.find("table", class_="table-result")
+            if not table:
+                print("No donations table found")
+                return donations
+
+            tbody = table.find("tbody")
+            if not tbody:
+                return donations
+
+            rows = tbody.find_all("tr")
+
+            for row in rows:
+                tds = row.find_all("td")
+                if len(tds) < 5:
+                    continue
+
+                senator_name = tds[0].get_text(strip=True)
+                date = tds[1].get_text(strip=True)
+                occasion = tds[2].get_text(strip=True)
+                item = tds[3].get_text(strip=True)
+                donor = tds[4].get_text(strip=True)
+
+                senator_id = f"senator_{self._sanitize_id(senator_name)}"
+                lobbyist_id = f"lobbyist_{self._sanitize_id(donor)}"
+
+                donation = {
+                    "senator_id": senator_id,
+                    "lobbyist_id": lobbyist_id,
+                    "senator_name": senator_name,
+                    "lobbyist_name": donor,
+                    "date": date,
+                    "occasion": occasion,
+                    "item": item,
+                    "donor": donor,
+                }
+
+                donations.append(donation)
+
+        except Exception as e:
+            print(f"Error parsing donations table: {e}")
+
+        print(f"Found {len(donations)} donations")
+        return donations
+
+    def _parse_cost(self, cost_text: str) -> int:
+        """Parse cost string to integer (in CLP)."""
+        try:
+            cleaned = cost_text.replace(".", "").replace(",", "").strip()
+            if cleaned:
+                return int(cleaned)
+        except (ValueError, AttributeError):
+            pass
+        return 0
+
 
 def main():
     """Main scraping function."""
@@ -587,6 +848,12 @@ def main():
     laws, authorships, votes = scraper.scrape_laws(days=30)
     print(f"Found {len(laws)} laws with {len(votes)} votes")
 
+    # Scrape lobby data
+    print("\nScraping lobby data...")
+    lobbyists, meetings = scraper.scrape_lobbyists(years=[2024, 2025, 2026])
+    trips = scraper.scrape_trips()
+    donations = scraper.scrape_donations()
+
     # Save to JSON files for inspection
     import json
     import os
@@ -608,6 +875,18 @@ def main():
 
     with open(f"{data_dir}/votes.json", "w", encoding="utf-8") as f:
         json.dump(votes, f, ensure_ascii=False, indent=2)
+
+    with open(f"{data_dir}/lobbyists.json", "w", encoding="utf-8") as f:
+        json.dump(lobbyists, f, ensure_ascii=False, indent=2)
+
+    with open(f"{data_dir}/lobby_meetings.json", "w", encoding="utf-8") as f:
+        json.dump(meetings, f, ensure_ascii=False, indent=2)
+
+    with open(f"{data_dir}/lobby_trips.json", "w", encoding="utf-8") as f:
+        json.dump(trips, f, ensure_ascii=False, indent=2)
+
+    with open(f"{data_dir}/lobby_donations.json", "w", encoding="utf-8") as f:
+        json.dump(donations, f, ensure_ascii=False, indent=2)
 
     print("Scraping complete! Data saved to data/ directory")
 
