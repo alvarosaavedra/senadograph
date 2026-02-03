@@ -21,6 +21,11 @@ LOBBY_URL = f"{BASE_URL}/appsenado/index.php?mo=lobby"
 REQUEST_TIMEOUT = 30
 REQUEST_DELAY = 1  # Delay between requests in seconds
 
+# Retry configuration (exponential backoff)
+MAX_RETRIES = 5
+INITIAL_BACKOFF = 1.0  # Initial wait time in seconds
+MAX_BACKOFF = 60.0  # Maximum wait time in seconds
+
 # Data directories
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 IMAGES_DIR = os.path.join(

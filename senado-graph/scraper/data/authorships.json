@@ -1293,5 +1293,3792 @@
     "law_id": "law_17246_15",
     "role": "co_sponsor",
     "date": "18/11/2024"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_17840_12",
+    "role": "principal",
+    "date": "15/09/2025"
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "law_id": "law_17840_12",
+    "role": "co_sponsor",
+    "date": "15/09/2025"
+  },
+  {
+    "senator_id": "senator_gahona_salazar_sergio",
+    "senator_name": "Gahona Salazar, Sergio",
+    "law_id": "law_17840_12",
+    "role": "co_sponsor",
+    "date": "15/09/2025"
+  },
+  {
+    "senator_id": "senator_lagos_weber_ricardo",
+    "senator_name": "Lagos Weber, Ricardo",
+    "law_id": "law_17840_12",
+    "role": "co_sponsor",
+    "date": "15/09/2025"
+  },
+  {
+    "senator_id": "senator_latorre_riveros_juan_ignacio",
+    "senator_name": "Latorre Riveros, Juan Ignacio",
+    "law_id": "law_17840_12",
+    "role": "co_sponsor",
+    "date": "15/09/2025"
+  },
+  {
+    "senator_id": "senator_gazmuri_vieira_ana_maría",
+    "senator_name": "Gazmuri Vieira, Ana María",
+    "law_id": "law_18075_25",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_18075_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_18075_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_orsini_pascal_maite",
+    "senator_name": "Orsini Pascal, Maite",
+    "law_id": "law_18075_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_ramírez_pascal_matías",
+    "senator_name": "Ramírez Pascal, Matías",
+    "law_id": "law_18075_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_cicardini_milla_daniella",
+    "senator_name": "Cicardini Milla, Daniella",
+    "law_id": "law_18078_07",
+    "role": "principal",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_fries_monleón_lorena",
+    "senator_name": "Fries Monleón, Lorena",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_ilabaca_cerda_marcos",
+    "senator_name": "Ilabaca Cerda, Marcos",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_jiles_moreno_pamela",
+    "senator_name": "Jiles Moreno, Pamela",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_longton_herrera_andrés",
+    "senator_name": "Longton Herrera, Andrés",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_manouchehri_lobos_daniel",
+    "senator_name": "Manouchehri  Lobos, Daniel",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_morales_alvarado_javiera",
+    "senator_name": "Morales Alvarado, Javiera",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_venegas_salazar_nelson",
+    "senator_name": "Venegas Salazar, Nelson",
+    "law_id": "law_18078_07",
+    "role": "co_sponsor",
+    "date": "22/01/2026"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_18079_17",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_pugh_olavarría_kenneth",
+    "senator_name": "Pugh Olavarría, Kenneth",
+    "law_id": "law_18079_17",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_bianchi_retamales_karim",
+    "senator_name": "Bianchi Retamales, Karim",
+    "law_id": "law_18080_03",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "senator_name": "Rincón González, Ximena",
+    "law_id": "law_18081_17",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_18081_17",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_bianchi_retamales_karim",
+    "senator_name": "Bianchi Retamales, Karim",
+    "law_id": "law_18083_03",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_espinoza_sandoval_fidel",
+    "senator_name": "Espinoza Sandoval, Fidel",
+    "law_id": "law_18084_13",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_latorre_riveros_juan_ignacio",
+    "senator_name": "Latorre Riveros, Juan Ignacio",
+    "law_id": "law_18084_13",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_núñez_arancibia_daniel",
+    "senator_name": "Núñez Arancibia, Daniel",
+    "law_id": "law_18084_13",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_saavedra_chandía_gastón",
+    "senator_name": "Saavedra Chandía, Gastón",
+    "law_id": "law_18084_13",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_18084_13",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_guillier_álvarez_alejandro",
+    "senator_name": "Guillier Álvarez, Alejandro",
+    "law_id": "law_9680_11",
+    "role": "principal",
+    "date": "29/10/2014"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "law_id": "law_9680_11",
+    "role": "co_sponsor",
+    "date": "29/10/2014"
+  },
+  {
+    "senator_id": "senator_coloma_correa_juan_antonio",
+    "senator_name": "Coloma Correa, Juan Antonio",
+    "law_id": "law_11606_11",
+    "role": "principal",
+    "date": "02/01/2018"
+  },
+  {
+    "senator_id": "senator_garcía_huidobro_sanfuentes_alejandro",
+    "senator_name": "García Huidobro Sanfuentes, Alejandro",
+    "law_id": "law_11606_11",
+    "role": "co_sponsor",
+    "date": "02/01/2018"
+  },
+  {
+    "senator_id": "senator_prokurica_prokurica_baldo",
+    "senator_name": "Prokurica Prokurica, Baldo",
+    "law_id": "law_11606_11",
+    "role": "co_sponsor",
+    "date": "02/01/2018"
+  },
+  {
+    "senator_id": "senator_van_rysselberghe_herrera_jacqueline",
+    "senator_name": "Van Rysselberghe Herrera, Jacqueline",
+    "law_id": "law_11606_11",
+    "role": "co_sponsor",
+    "date": "02/01/2018"
+  },
+  {
+    "senator_id": "senator_von_baer_jahn_ena",
+    "senator_name": "Von Baer Jahn, Ena",
+    "law_id": "law_11606_11",
+    "role": "co_sponsor",
+    "date": "02/01/2018"
+  },
+  {
+    "senator_id": "senator_bellolio_avaria_jaime",
+    "senator_name": "Bellolio Avaria, Jaime",
+    "law_id": "law_11728_04",
+    "role": "principal",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_bobadilla_muñoz_sergio",
+    "senator_name": "Bobadilla Muñoz, Sergio",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_calisto_águila_miguel_ángel",
+    "senator_name": "Calisto Águila, Miguel Ángel",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_flores_garcía_iván",
+    "senator_name": "Flores García, Iván",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_fuenzalida_cobo_juan",
+    "senator_name": "Fuenzalida Cobo, Juan",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_meza_moncada_fernando",
+    "senator_name": "Meza Moncada, Fernando",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_pardo_sáinz_luis",
+    "senator_name": "Pardo Sáinz, Luis",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_schalper_sepúlveda_diego",
+    "senator_name": "Schalper Sepúlveda, Diego",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_trisotti_martínez_renzo",
+    "senator_name": "Trisotti Martínez, Renzo",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_urrutia_soto_osvaldo",
+    "senator_name": "Urrutia Soto, Osvaldo",
+    "law_id": "law_11728_04",
+    "role": "co_sponsor",
+    "date": "09/05/2018"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_12512_11",
+    "role": "principal",
+    "date": "03/04/2019"
+  },
+  {
+    "senator_id": "senator_girardi_lavín_guido",
+    "senator_name": "Girardi Lavín, Guido",
+    "law_id": "law_12512_11",
+    "role": "co_sponsor",
+    "date": "03/04/2019"
+  },
+  {
+    "senator_id": "senator_goic_boroevic_carolina",
+    "senator_name": "Goic Boroevic, Carolina",
+    "law_id": "law_12512_11",
+    "role": "co_sponsor",
+    "date": "03/04/2019"
+  },
+  {
+    "senator_id": "senator_quinteros_lara_rabindranath",
+    "senator_name": "Quinteros Lara, Rabindranath",
+    "law_id": "law_12512_11",
+    "role": "co_sponsor",
+    "date": "03/04/2019"
+  },
+  {
+    "senator_id": "senator_bellolio_avaria_jaime",
+    "senator_name": "Bellolio Avaria, Jaime",
+    "law_id": "law_12885_04",
+    "role": "principal",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_carvajal_ambiado_loreto",
+    "senator_name": "Carvajal Ambiado, Loreto",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_girardi_lavín_cristina",
+    "senator_name": "Girardi Lavín, Cristina",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_hoffmann_opazo_maría_josé",
+    "senator_name": "Hoffmann Opazo, María José",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_muñoz_gonzález_francesca",
+    "senator_name": "Muñoz González, Francesca",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_santibáñez_novoa_marisela",
+    "senator_name": "Santibáñez Novoa, Marisela",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_schalper_sepúlveda_diego",
+    "senator_name": "Schalper Sepúlveda, Diego",
+    "law_id": "law_12885_04",
+    "role": "co_sponsor",
+    "date": "08/08/2019"
+  },
+  {
+    "senator_id": "senator_aravena_acuña_carmen_gloria",
+    "senator_name": "Aravena Acuña, Carmen Gloria",
+    "law_id": "law_14714_01",
+    "role": "principal",
+    "date": "24/11/2021"
+  },
+  {
+    "senator_id": "senator_carvajal_ambiado_loreto",
+    "senator_name": "Carvajal Ambiado, Loreto",
+    "law_id": "law_14714_01",
+    "role": "co_sponsor",
+    "date": "24/11/2021"
+  },
+  {
+    "senator_id": "senator_castro_prieto_juan",
+    "senator_name": "Castro Prieto, Juan",
+    "law_id": "law_14714_01",
+    "role": "co_sponsor",
+    "date": "24/11/2021"
+  },
+  {
+    "senator_id": "senator_elizalde_soto_alvaro",
+    "senator_name": "Elizalde Soto, Alvaro",
+    "law_id": "law_14714_01",
+    "role": "co_sponsor",
+    "date": "24/11/2021"
+  },
+  {
+    "senator_id": "senator_pizarro_soto_jorge",
+    "senator_name": "Pizarro Soto, Jorge",
+    "law_id": "law_14714_01",
+    "role": "co_sponsor",
+    "date": "24/11/2021"
+  },
+  {
+    "senator_id": "senator_castro_gonzález_juan_luis",
+    "senator_name": "Castro González, Juan Luis",
+    "law_id": "law_15850_11",
+    "role": "principal",
+    "date": "18/04/2023"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_15850_11",
+    "role": "co_sponsor",
+    "date": "18/04/2023"
+  },
+  {
+    "senator_id": "senator_latorre_riveros_juan_ignacio",
+    "senator_name": "Latorre Riveros, Juan Ignacio",
+    "law_id": "law_15850_11",
+    "role": "co_sponsor",
+    "date": "18/04/2023"
+  },
+  {
+    "senator_id": "senator_macaya_danús_javier",
+    "senator_name": "Macaya Danús, Javier",
+    "law_id": "law_15850_11",
+    "role": "co_sponsor",
+    "date": "18/04/2023"
+  },
+  {
+    "senator_id": "senator_ordenes_neira_ximena",
+    "senator_name": "Ordenes Neira, Ximena",
+    "law_id": "law_15850_11",
+    "role": "co_sponsor",
+    "date": "18/04/2023"
+  },
+  {
+    "senator_id": "senator_bello_campos_maría_francisca",
+    "senator_name": "Bello Campos, María Francisca",
+    "law_id": "law_15936_18",
+    "role": "principal",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_bulnes_núñez_mercedes",
+    "senator_name": "Bulnes Núñez, Mercedes",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_fries_monleón_lorena",
+    "senator_name": "Fries Monleón, Lorena",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_ibáñez_cotroneo_diego",
+    "senator_name": "Ibáñez Cotroneo, Diego",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_morales_alvarado_javiera",
+    "senator_name": "Morales Alvarado, Javiera",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_riquelme_aliaga_marcela",
+    "senator_name": "Riquelme Aliaga, Marcela",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_sagardia_cabezas_clara",
+    "senator_name": "Sagardia Cabezas, Clara",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_schneider_videla_emilia",
+    "senator_name": "Schneider Videla, Emilia",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_winter_etcheberry_gonzalo",
+    "senator_name": "Winter Etcheberry, Gonzalo",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_yeomans_araya_gael",
+    "senator_name": "Yeomans Araya, Gael",
+    "law_id": "law_15936_18",
+    "role": "co_sponsor",
+    "date": "15/05/2023"
+  },
+  {
+    "senator_id": "senator_leiva_carvajal_raúl",
+    "senator_name": "Leiva Carvajal, Raúl",
+    "law_id": "law_16062_04",
+    "role": "principal",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_ñanco_vásquez_ericka",
+    "senator_name": "Ñanco Vásquez, Ericka",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_ojeda_rebolledo_mauricio",
+    "senator_name": "Ojeda Rebolledo, Mauricio",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_rivas_sánchez_gaspar",
+    "senator_name": "Rivas Sánchez, Gaspar",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_santibáñez_novoa_marisela",
+    "senator_name": "Santibáñez Novoa, Marisela",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_sulantay_olivares_marco_antonio",
+    "senator_name": "Sulantay Olivares, Marco Antonio",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_teao_drago_hotuiti",
+    "senator_name": "Teao Drago, Hotuiti",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_winter_etcheberry_gonzalo",
+    "senator_name": "Winter Etcheberry, Gonzalo",
+    "law_id": "law_16062_04",
+    "role": "co_sponsor",
+    "date": "03/07/2023"
+  },
+  {
+    "senator_id": "senator_allende_bussi_isabel",
+    "senator_name": "Allende Bussi, Isabel",
+    "law_id": "law_16204_12",
+    "role": "principal",
+    "date": "22/08/2023"
+  },
+  {
+    "senator_id": "senator_latorre_riveros_juan_ignacio",
+    "senator_name": "Latorre Riveros, Juan Ignacio",
+    "law_id": "law_16204_12",
+    "role": "co_sponsor",
+    "date": "22/08/2023"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_16204_12",
+    "role": "co_sponsor",
+    "date": "22/08/2023"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_16520_04",
+    "role": "principal",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_durán_salinas_eduardo",
+    "senator_name": "Durán Salinas, Eduardo",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_morales_maldonado_carla",
+    "senator_name": "Morales Maldonado, Carla",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_raphael_mora_marcia",
+    "senator_name": "Raphael Mora, Marcia",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_rey_martínez_hugo",
+    "senator_name": "Rey Martínez, Hugo",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_sauerbaum_muñoz_frank",
+    "senator_name": "Sauerbaum Muñoz, Frank",
+    "law_id": "law_16520_04",
+    "role": "co_sponsor",
+    "date": "20/12/2023"
+  },
+  {
+    "senator_id": "senator_bobadilla_muñoz_sergio",
+    "senator_name": "Bobadilla Muñoz, Sergio",
+    "law_id": "law_16527_04",
+    "role": "principal",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_coloma_alamos_juan_antonio",
+    "senator_name": "Coloma Alamos, Juan Antonio",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_cornejo_lagos_eduardo",
+    "senator_name": "Cornejo Lagos, Eduardo",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_donoso_castro_felipe",
+    "senator_name": "Donoso Castro, Felipe",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_labbé_martínez_cristian",
+    "senator_name": "Labbé Martínez, Cristian",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_lilayu_vivanco_daniel",
+    "senator_name": "Lilayu Vivanco, Daniel",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_martínez_ramírez_cristóbal",
+    "senator_name": "Martínez Ramírez, Cristóbal",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_moreira_barros_cristhian",
+    "senator_name": "Moreira Barros, Cristhian",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_romero_talguia_natalia",
+    "senator_name": "Romero Talguia, Natalia",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_weisse_novoa_flor",
+    "senator_name": "Weisse Novoa, Flor",
+    "law_id": "law_16527_04",
+    "role": "co_sponsor",
+    "date": "19/12/2023"
+  },
+  {
+    "senator_id": "senator_keitel_bianchi_sebastián",
+    "senator_name": "Keitel Bianchi, Sebastián",
+    "law_id": "law_16554_14",
+    "role": "principal",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_durana_semir_josé_miguel",
+    "senator_name": "Durana Semir, José Miguel",
+    "law_id": "law_16559_14",
+    "role": "principal",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_moreira_barros_iván",
+    "senator_name": "Moreira Barros, Iván",
+    "law_id": "law_16559_14",
+    "role": "co_sponsor",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_pugh_olavarría_kenneth",
+    "senator_name": "Pugh Olavarría, Kenneth",
+    "law_id": "law_16559_14",
+    "role": "co_sponsor",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_sandoval_plaza_david",
+    "senator_name": "Sandoval Plaza, David",
+    "law_id": "law_16559_14",
+    "role": "co_sponsor",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_sanhueza_dueñas_gustavo",
+    "senator_name": "Sanhueza Dueñas, Gustavo",
+    "law_id": "law_16559_14",
+    "role": "co_sponsor",
+    "date": "10/01/2024"
+  },
+  {
+    "senator_id": "senator_morales_alvarado_javiera",
+    "senator_name": "Morales Alvarado, Javiera",
+    "law_id": "law_16574_04",
+    "role": "principal",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_placencia_cabello_alejandra",
+    "senator_name": "Placencia Cabello, Alejandra",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_rojas_valderrama_camila",
+    "senator_name": "Rojas Valderrama, Camila",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_schneider_videla_emilia",
+    "senator_name": "Schneider Videla, Emilia",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_serrano_salazar_daniela",
+    "senator_name": "Serrano Salazar, Daniela",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_winter_etcheberry_gonzalo",
+    "senator_name": "Winter Etcheberry, Gonzalo",
+    "law_id": "law_16574_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_barría_angulo_héctor",
+    "senator_name": "Barría Angulo, Héctor",
+    "law_id": "law_16575_04",
+    "role": "principal",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_molina_milman_helia",
+    "senator_name": "Molina Milman, Helia",
+    "law_id": "law_16575_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_16575_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_schneider_videla_emilia",
+    "senator_name": "Schneider Videla, Emilia",
+    "law_id": "law_16575_04",
+    "role": "co_sponsor",
+    "date": "16/01/2024"
+  },
+  {
+    "senator_id": "senator_castro_gonzález_juan_luis",
+    "senator_name": "Castro González, Juan Luis",
+    "law_id": "law_16588_11",
+    "role": "principal",
+    "date": "17/01/2024"
+  },
+  {
+    "senator_id": "senator_gahona_salazar_sergio",
+    "senator_name": "Gahona Salazar, Sergio",
+    "law_id": "law_16588_11",
+    "role": "co_sponsor",
+    "date": "17/01/2024"
+  },
+  {
+    "senator_id": "senator_gatica_bertin_maría_josé",
+    "senator_name": "Gatica Bertin, María José",
+    "law_id": "law_16588_11",
+    "role": "co_sponsor",
+    "date": "17/01/2024"
+  },
+  {
+    "senator_id": "senator_kusanovic_glusevic_alejandro",
+    "senator_name": "Kusanovic Glusevic, Alejandro",
+    "law_id": "law_16588_11",
+    "role": "co_sponsor",
+    "date": "17/01/2024"
+  },
+  {
+    "senator_id": "senator_ordenes_neira_ximena",
+    "senator_name": "Ordenes Neira, Ximena",
+    "law_id": "law_16588_11",
+    "role": "co_sponsor",
+    "date": "17/01/2024"
+  },
+  {
+    "senator_id": "senator_astudillo_peiretti_danisa",
+    "senator_name": "Astudillo Peiretti, Danisa",
+    "law_id": "law_16851_14",
+    "role": "principal",
+    "date": "22/04/2024"
+  },
+  {
+    "senator_id": "senator_ilabaca_cerda_marcos",
+    "senator_name": "Ilabaca Cerda, Marcos",
+    "law_id": "law_16851_14",
+    "role": "co_sponsor",
+    "date": "22/04/2024"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_16851_14",
+    "role": "co_sponsor",
+    "date": "22/04/2024"
+  },
+  {
+    "senator_id": "senator_raphael_mora_marcia",
+    "senator_name": "Raphael Mora, Marcia",
+    "law_id": "law_16851_14",
+    "role": "co_sponsor",
+    "date": "22/04/2024"
+  },
+  {
+    "senator_id": "senator_ulloa_aguilera_héctor",
+    "senator_name": "Ulloa Aguilera, Héctor",
+    "law_id": "law_16851_14",
+    "role": "co_sponsor",
+    "date": "22/04/2024"
+  },
+  {
+    "senator_id": "senator_barrera_moreno_boris",
+    "senator_name": "Barrera Moreno, Boris",
+    "law_id": "law_16853_15",
+    "role": "principal",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_bello_campos_maría_francisca",
+    "senator_name": "Bello Campos, María Francisca",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_bórquez_montecinos_fernando",
+    "senator_name": "Bórquez Montecinos, Fernando",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_camaño_cárdenas_felipe",
+    "senator_name": "Camaño Cárdenas, Felipe",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_cariola_oliva_karol",
+    "senator_name": "Cariola Oliva, Karol",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_cuello_peña_y_lillo_luis",
+    "senator_name": "Cuello Peña Y Lillo, Luis",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_mulet_martínez_jaime",
+    "senator_name": "Mulet Martínez, Jaime",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_pérez_cartes_marlene",
+    "senator_name": "Pérez Cartes, Marlene",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_sáez_quiroz_jaime",
+    "senator_name": "Sáez Quiroz, Jaime",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_serrano_salazar_daniela",
+    "senator_name": "Serrano Salazar, Daniela",
+    "law_id": "law_16853_15",
+    "role": "co_sponsor",
+    "date": "15/05/2024"
+  },
+  {
+    "senator_id": "senator_bianchi_chelech_carlos",
+    "senator_name": "Bianchi Chelech, Carlos",
+    "law_id": "law_16872_15",
+    "role": "principal",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_bórquez_montecinos_fernando",
+    "senator_name": "Bórquez Montecinos, Fernando",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_camaño_cárdenas_felipe",
+    "senator_name": "Camaño Cárdenas, Felipe",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_castillo_rojas_nathalie",
+    "senator_name": "Castillo Rojas, Nathalie",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_coloma_alamos_juan_antonio",
+    "senator_name": "Coloma Alamos, Juan Antonio",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_marzán_pinto_carolina",
+    "senator_name": "Marzán Pinto, Carolina",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_mellado_pino_cosme",
+    "senator_name": "Mellado Pino, Cosme",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_naveillan_arriagada_gloria",
+    "senator_name": "Naveillan Arriagada, Gloria",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_tapia_ramos_cristián",
+    "senator_name": "Tapia Ramos, Cristián",
+    "law_id": "law_16872_15",
+    "role": "co_sponsor",
+    "date": "27/05/2024"
+  },
+  {
+    "senator_id": "senator_cicardini_milla_daniella",
+    "senator_name": "Cicardini Milla, Daniella",
+    "law_id": "law_17301_13",
+    "role": "principal",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_gazmuri_vieira_ana_maría",
+    "senator_name": "Gazmuri Vieira, Ana María",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_giordano_salazar_andrés",
+    "senator_name": "Giordano Salazar, Andrés",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_gonzález_villarroel_mauro",
+    "senator_name": "González Villarroel, Mauro",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_ibáñez_cotroneo_diego",
+    "senator_name": "Ibáñez Cotroneo, Diego",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_pérez_olea_joanna",
+    "senator_name": "Pérez Olea, Joanna",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_tello_rojas_carolina",
+    "senator_name": "Tello Rojas, Carolina",
+    "law_id": "law_17301_13",
+    "role": "co_sponsor",
+    "date": "17/12/2024"
+  },
+  {
+    "senator_id": "senator_aravena_acuña_carmen_gloria",
+    "senator_name": "Aravena Acuña, Carmen Gloria",
+    "law_id": "law_17524_25",
+    "role": "principal",
+    "date": "07/05/2025"
+  },
+  {
+    "senator_id": "senator_durana_semir_josé_miguel",
+    "senator_name": "Durana Semir, José Miguel",
+    "law_id": "law_17524_25",
+    "role": "co_sponsor",
+    "date": "07/05/2025"
+  },
+  {
+    "senator_id": "senator_núñez_urrutia_paulina",
+    "senator_name": "Núñez Urrutia, Paulina",
+    "law_id": "law_17524_25",
+    "role": "co_sponsor",
+    "date": "07/05/2025"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "law_id": "law_17524_25",
+    "role": "co_sponsor",
+    "date": "07/05/2025"
+  },
+  {
+    "senator_id": "senator_barchiesi_chávez_chiara",
+    "senator_name": "Barchiesi  Chávez, Chiara",
+    "law_id": "law_17645_18",
+    "role": "principal",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_concha_smith_sara",
+    "senator_name": "Concha Smith, Sara",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_donoso_castro_felipe",
+    "senator_name": "Donoso Castro, Felipe",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_romero_talguia_natalia",
+    "senator_name": "Romero Talguia, Natalia",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_saffirio_espinoza_jorge",
+    "senator_name": "Saffirio Espinoza, Jorge",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_schubert_rubio_stephan",
+    "senator_name": "Schubert Rubio, Stephan",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_undurraga_gazitúa_francisco",
+    "senator_name": "Undurraga Gazitúa, Francisco",
+    "law_id": "law_17645_18",
+    "role": "co_sponsor",
+    "date": "17/06/2025"
+  },
+  {
+    "senator_id": "senator_cuello_peña_y_lillo_luis",
+    "senator_name": "Cuello Peña Y Lillo, Luis",
+    "law_id": "law_17837_13",
+    "role": "principal",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_giordano_salazar_andrés",
+    "senator_name": "Giordano Salazar, Andrés",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_gonzález_olea_marta",
+    "senator_name": "González Olea, Marta",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_ibáñez_cotroneo_diego",
+    "senator_name": "Ibáñez Cotroneo, Diego",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_ulloa_aguilera_héctor",
+    "senator_name": "Ulloa Aguilera, Héctor",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_yeomans_araya_gael",
+    "senator_name": "Yeomans Araya, Gael",
+    "law_id": "law_17837_13",
+    "role": "co_sponsor",
+    "date": "05/09/2025"
+  },
+  {
+    "senator_id": "senator_flores_garcía_iván",
+    "senator_name": "Flores García, Iván",
+    "law_id": "law_17948_11",
+    "role": "principal",
+    "date": "04/11/2025"
+  },
+  {
+    "senator_id": "senator_gahona_salazar_sergio",
+    "senator_name": "Gahona Salazar, Sergio",
+    "law_id": "law_17948_11",
+    "role": "co_sponsor",
+    "date": "04/11/2025"
+  },
+  {
+    "senator_id": "senator_keitel_bianchi_sebastián",
+    "senator_name": "Keitel Bianchi, Sebastián",
+    "law_id": "law_17948_11",
+    "role": "co_sponsor",
+    "date": "04/11/2025"
+  },
+  {
+    "senator_id": "senator_kuschel_silva_carlos_ignacio",
+    "senator_name": "Kuschel Silva, Carlos Ignacio",
+    "law_id": "law_17948_11",
+    "role": "co_sponsor",
+    "date": "04/11/2025"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_17948_11",
+    "role": "co_sponsor",
+    "date": "04/11/2025"
+  },
+  {
+    "senator_id": "senator_durana_semir_josé_miguel",
+    "senator_name": "Durana Semir, José Miguel",
+    "law_id": "law_18071_17",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_ebensperger_orrego_luz_eliana",
+    "senator_name": "Ebensperger Orrego, Luz Eliana",
+    "law_id": "law_18071_17",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_núñez_arancibia_daniel",
+    "senator_name": "Núñez Arancibia, Daniel",
+    "law_id": "law_18071_17",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_prohens_espinosa_rafael",
+    "senator_name": "Prohens Espinosa, Rafael",
+    "law_id": "law_18071_17",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_velásquez_núñez_esteban",
+    "senator_name": "Velásquez Núñez, Esteban",
+    "law_id": "law_18071_17",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_18073_01",
+    "role": "principal",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_gatica_bertin_maría_josé",
+    "senator_name": "Gatica Bertin, María José",
+    "law_id": "law_18073_01",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_kuschel_silva_carlos_ignacio",
+    "senator_name": "Kuschel Silva, Carlos Ignacio",
+    "law_id": "law_18073_01",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_núñez_urrutia_paulina",
+    "senator_name": "Núñez Urrutia, Paulina",
+    "law_id": "law_18073_01",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "law_id": "law_18073_01",
+    "role": "co_sponsor",
+    "date": "26/01/2026"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_18074_06",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_ahumada_palma_yovana",
+    "senator_name": "Ahumada  Palma, Yovana",
+    "law_id": "law_18076_07",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_arroyo_muñoz_roberto",
+    "senator_name": "Arroyo Muñoz, Roberto",
+    "law_id": "law_18076_07",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_jiles_moreno_pamela",
+    "senator_name": "Jiles Moreno, Pamela",
+    "law_id": "law_18076_07",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_santibáñez_novoa_marisela",
+    "senator_name": "Santibáñez Novoa, Marisela",
+    "law_id": "law_18076_07",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_acevedo_sáez_maría_candelaria",
+    "senator_name": "Acevedo Sáez, María Candelaria",
+    "law_id": "law_18077_25",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_castillo_rojas_nathalie",
+    "senator_name": "Castillo Rojas, Nathalie",
+    "law_id": "law_18077_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_18077_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_pizarro_sierra_lorena",
+    "senator_name": "Pizarro Sierra, Lorena",
+    "law_id": "law_18077_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_ramírez_pascal_matías",
+    "senator_name": "Ramírez Pascal, Matías",
+    "law_id": "law_18077_25",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_aguiló_melo_sergio",
+    "senator_name": "Aguiló Melo, Sergio",
+    "law_id": "law_5268_02",
+    "role": "principal",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_allende_bussi_isabel",
+    "senator_name": "Allende Bussi, Isabel",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_burgos_varela_jorge",
+    "senator_name": "Burgos Varela, Jorge",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_bustos_ramírez_juan",
+    "senator_name": "Bustos Ramírez, Juan",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_ceroni_fuentes_guillermo",
+    "senator_name": "Ceroni Fuentes, Guillermo",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_espinoza_sandoval_fidel",
+    "senator_name": "Espinoza Sandoval, Fidel",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_pacheco_rivas_clemira",
+    "senator_name": "Pacheco Rivas, Clemira",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_pascal_allende_denise",
+    "senator_name": "Pascal Allende, Denise",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_sule_fernández_alejandro",
+    "senator_name": "Sule Fernández, Alejandro",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_tohá_morales_carolina",
+    "senator_name": "Tohá Morales, Carolina",
+    "law_id": "law_5268_02",
+    "role": "co_sponsor",
+    "date": "28/08/2007"
+  },
+  {
+    "senator_id": "senator_muñoz_dalbora_adriana",
+    "senator_name": "Muñoz D'Albora, Adriana",
+    "law_id": "law_7736_11",
+    "role": "principal",
+    "date": "16/06/2011"
+  },
+  {
+    "senator_id": "senator_rivas_sánchez_gaspar",
+    "senator_name": "Rivas Sánchez, Gaspar",
+    "law_id": "law_7736_11",
+    "role": "co_sponsor",
+    "date": "16/06/2011"
+  },
+  {
+    "senator_id": "senator_aguiló_melo_sergio",
+    "senator_name": "Aguiló Melo, Sergio",
+    "law_id": "law_8803_02",
+    "role": "principal",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_araya_guerrero_pedro",
+    "senator_name": "Araya Guerrero, Pedro",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_burgos_varela_jorge",
+    "senator_name": "Burgos Varela, Jorge",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_hales_dib_patricio",
+    "senator_name": "Hales Dib, Patricio",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_harboe_bascuñán_felipe",
+    "senator_name": "Harboe Bascuñán, Felipe",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_león_ramírez_roberto",
+    "senator_name": "León Ramírez, Roberto",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_pérez_arriagada_josé",
+    "senator_name": "Pérez Arriagada, José",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ricardo",
+    "senator_name": "Rincón González, Ricardo",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_schilling_rodríguez_marcelo",
+    "senator_name": "Schilling Rodríguez, Marcelo",
+    "law_id": "law_8803_02",
+    "role": "co_sponsor",
+    "date": "24/01/2013"
+  },
+  {
+    "senator_id": "senator_arriagada_macaya_claudio",
+    "senator_name": "Arriagada Macaya, Claudio",
+    "law_id": "law_9644_11",
+    "role": "principal",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_cariola_oliva_karol",
+    "senator_name": "Cariola Oliva, Karol",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_fernández_allende_maya",
+    "senator_name": "Fernández Allende, Maya",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_hernando_pérez_marcela",
+    "senator_name": "Hernando Pérez, Marcela",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_jackson_drago_giorgio",
+    "senator_name": "Jackson Drago, Giorgio",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_jiménez_fuentes_tucapel",
+    "senator_name": "Jiménez Fuentes, Tucapel",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_mirosevic_verdugo_vlado",
+    "senator_name": "Mirosevic Verdugo, Vlado",
+    "law_id": "law_9644_11",
+    "role": "co_sponsor",
+    "date": "09/10/2014"
+  },
+  {
+    "senator_id": "senator_coloma_alamos_juan_antonio",
+    "senator_name": "Coloma Alamos, Juan Antonio",
+    "law_id": "law_10029_02",
+    "role": "principal",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_gutiérrez_pino_romilio",
+    "senator_name": "Gutiérrez Pino, Romilio",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_hernández_hernández_javier",
+    "senator_name": "Hernández Hernández, Javier",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_hoffmann_opazo_maría_josé",
+    "senator_name": "Hoffmann Opazo, María José",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_kast_rist_josé_antonio",
+    "senator_name": "Kast Rist, José Antonio",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_macaya_danús_javier",
+    "senator_name": "Macaya Danús, Javier",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_nogueira_fernández_claudia",
+    "senator_name": "Nogueira Fernández, Claudia",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_silva_méndez_ernesto",
+    "senator_name": "Silva Méndez, Ernesto",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_turres_figueroa_marisol",
+    "senator_name": "Turres Figueroa, Marisol",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_ulloa_aguillón_jorge",
+    "senator_name": "Ulloa Aguillón, Jorge",
+    "law_id": "law_10029_02",
+    "role": "co_sponsor",
+    "date": "21/04/2015"
+  },
+  {
+    "senator_id": "senator_letelier_norambuena_felipe",
+    "senator_name": "Letelier Norambuena, Felipe",
+    "law_id": "law_10378_02",
+    "role": "principal",
+    "date": "09/11/2015"
+  },
+  {
+    "senator_id": "senator_pascal_allende_denise",
+    "senator_name": "Pascal Allende, Denise",
+    "law_id": "law_10378_02",
+    "role": "co_sponsor",
+    "date": "09/11/2015"
+  },
+  {
+    "senator_id": "senator_poblete_zapata_roberto",
+    "senator_name": "Poblete Zapata, Roberto",
+    "law_id": "law_10378_02",
+    "role": "co_sponsor",
+    "date": "09/11/2015"
+  },
+  {
+    "senator_id": "senator_rocafull_lópez_luis",
+    "senator_name": "Rocafull López, Luis",
+    "law_id": "law_10378_02",
+    "role": "co_sponsor",
+    "date": "09/11/2015"
+  },
+  {
+    "senator_id": "senator_saldívar_auger_raúl",
+    "senator_name": "Saldívar Auger, Raúl",
+    "law_id": "law_10378_02",
+    "role": "co_sponsor",
+    "date": "09/11/2015"
+  },
+  {
+    "senator_id": "senator_browne_urrejola_pedro",
+    "senator_name": "Browne Urrejola, Pedro",
+    "law_id": "law_10732_06",
+    "role": "principal",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_ceroni_fuentes_guillermo",
+    "senator_name": "Ceroni Fuentes, Guillermo",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_jackson_drago_giorgio",
+    "senator_name": "Jackson Drago, Giorgio",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_león_ramírez_roberto",
+    "senator_name": "León Ramírez, Roberto",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_pérez_arriagada_josé",
+    "senator_name": "Pérez Arriagada, José",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_pilowsky_greene_jaime",
+    "senator_name": "Pilowsky Greene, Jaime",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_schilling_rodríguez_marcelo",
+    "senator_name": "Schilling Rodríguez, Marcelo",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_sepúlveda_orbenes_alejandra",
+    "senator_name": "Sepúlveda Orbenes, Alejandra",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_teillier_del_valle_guillermo",
+    "senator_name": "Teillier Del Valle, Guillermo",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_verdugo_soto_germán",
+    "senator_name": "Verdugo Soto, Germán",
+    "law_id": "law_10732_06",
+    "role": "co_sponsor",
+    "date": "01/06/2016"
+  },
+  {
+    "senator_id": "senator_alvarado_ramírez_miguel_ángel",
+    "senator_name": "Alvarado Ramírez, Miguel Ángel",
+    "law_id": "law_10921_02",
+    "role": "principal",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_campos_jara_cristián",
+    "senator_name": "Campos Jara, Cristián",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_ceroni_fuentes_guillermo",
+    "senator_name": "Ceroni Fuentes, Guillermo",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_farcas_guendelman_daniel",
+    "senator_name": "Farcas Guendelman, Daniel",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_fuenzalida_figueroa_gonzalo",
+    "senator_name": "Fuenzalida Figueroa, Gonzalo",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_hernando_pérez_marcela",
+    "senator_name": "Hernando Pérez, Marcela",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_nogueira_fernández_claudia",
+    "senator_name": "Nogueira Fernández, Claudia",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_pilowsky_greene_jaime",
+    "senator_name": "Pilowsky Greene, Jaime",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_silber_romo_gabriel",
+    "senator_name": "Silber Romo, Gabriel",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_10921_02",
+    "role": "co_sponsor",
+    "date": "06/10/2016"
+  },
+  {
+    "senator_id": "senator_alvarado_ramírez_miguel_ángel",
+    "senator_name": "Alvarado Ramírez, Miguel Ángel",
+    "law_id": "law_11577_11",
+    "role": "principal",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_auth_stewart_pepe",
+    "senator_name": "Auth Stewart, Pepe",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_cariola_oliva_karol",
+    "senator_name": "Cariola Oliva, Karol",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_carvajal_ambiado_loreto",
+    "senator_name": "Carvajal Ambiado, Loreto",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_ceroni_fuentes_guillermo",
+    "senator_name": "Ceroni Fuentes, Guillermo",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_girardi_lavín_cristina",
+    "senator_name": "Girardi Lavín, Cristina",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_letelier_norambuena_felipe",
+    "senator_name": "Letelier Norambuena, Felipe",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_melo_contreras_daniel",
+    "senator_name": "Melo Contreras, Daniel",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_mirosevic_verdugo_vlado",
+    "senator_name": "Mirosevic Verdugo, Vlado",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_monsalve_benavides_manuel",
+    "senator_name": "Monsalve Benavides, Manuel",
+    "law_id": "law_11577_11",
+    "role": "co_sponsor",
+    "date": "17/01/2018"
+  },
+  {
+    "senator_id": "senator_pilowsky_greene_jaime",
+    "senator_name": "Pilowsky Greene, Jaime",
+    "law_id": "law_11630_02",
+    "role": "principal",
+    "date": "08/03/2018"
+  },
+  {
+    "senator_id": "senator_leuquén_uribe_aracely",
+    "senator_name": "Leuquén Uribe, Aracely",
+    "law_id": "law_11745_11",
+    "role": "principal",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_longton_herrera_andrés",
+    "senator_name": "Longton Herrera, Andrés",
+    "law_id": "law_11745_11",
+    "role": "co_sponsor",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_luck_urban_karin",
+    "senator_name": "Luck Urban, Karin",
+    "law_id": "law_11745_11",
+    "role": "co_sponsor",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_olivera_de_la_fuente_erika",
+    "senator_name": "Olivera De La Fuente, Erika",
+    "law_id": "law_11745_11",
+    "role": "co_sponsor",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_sabat_fernández_marcela",
+    "senator_name": "Sabat Fernández, Marcela",
+    "law_id": "law_11745_11",
+    "role": "co_sponsor",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_torrealba_alvarado_sebastián",
+    "senator_name": "Torrealba Alvarado, Sebastián",
+    "law_id": "law_11745_11",
+    "role": "co_sponsor",
+    "date": "16/05/2018"
+  },
+  {
+    "senator_id": "senator_carvajal_ambiado_loreto",
+    "senator_name": "Carvajal Ambiado, Loreto",
+    "law_id": "law_11879_02",
+    "role": "principal",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_gutiérrez_gálvez_hugo",
+    "senator_name": "Gutiérrez Gálvez, Hugo",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_jarpa_wevar_carlos_abel",
+    "senator_name": "Jarpa Wevar, Carlos Abel",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_núñez_arancibia_daniel",
+    "senator_name": "Núñez Arancibia, Daniel",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_saffirio_espinoza_rené",
+    "senator_name": "Saffirio Espinoza, René",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_teillier_del_valle_guillermo",
+    "senator_name": "Teillier Del Valle, Guillermo",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_tohá_gonzález_jaime",
+    "senator_name": "Tohá González, Jaime",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_verdessi_belemmi_daniel",
+    "senator_name": "Verdessi Belemmi, Daniel",
+    "law_id": "law_11879_02",
+    "role": "co_sponsor",
+    "date": "05/07/2018"
+  },
+  {
+    "senator_id": "senator_desbordes_jiménez_mario",
+    "senator_name": "Desbordes Jiménez, Mario",
+    "law_id": "law_12004_02",
+    "role": "principal",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_flores_oporto_camila",
+    "senator_name": "Flores Oporto, Camila",
+    "law_id": "law_12004_02",
+    "role": "co_sponsor",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_fuenzalida_cobo_juan",
+    "senator_name": "Fuenzalida Cobo, Juan",
+    "law_id": "law_12004_02",
+    "role": "co_sponsor",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_núñez_urrutia_paulina",
+    "senator_name": "Núñez Urrutia, Paulina",
+    "law_id": "law_12004_02",
+    "role": "co_sponsor",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_paulsen_kehr_diego",
+    "senator_name": "Paulsen Kehr, Diego",
+    "law_id": "law_12004_02",
+    "role": "co_sponsor",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_12004_02",
+    "role": "co_sponsor",
+    "date": "09/08/2018"
+  },
+  {
+    "senator_id": "senator_díaz_díaz_marcelo",
+    "senator_name": "Díaz Díaz, Marcelo",
+    "law_id": "law_12260_02",
+    "role": "principal",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_ilabaca_cerda_marcos",
+    "senator_name": "Ilabaca Cerda, Marcos",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_leiva_carvajal_raúl",
+    "senator_name": "Leiva Carvajal, Raúl",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_naranjo_ortíz_jaime",
+    "senator_name": "Naranjo Ortíz, Jaime",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_rosas_barrientos_patricio",
+    "senator_name": "Rosas Barrientos, Patricio",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_saavedra_chandía_gastón",
+    "senator_name": "Saavedra Chandía, Gastón",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_saldívar_auger_raúl",
+    "senator_name": "Saldívar Auger, Raúl",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_schilling_rodríguez_marcelo",
+    "senator_name": "Schilling Rodríguez, Marcelo",
+    "law_id": "law_12260_02",
+    "role": "co_sponsor",
+    "date": "22/11/2018"
+  },
+  {
+    "senator_id": "senator_berger_fett_bernardo",
+    "senator_name": "Berger Fett, Bernardo",
+    "law_id": "law_12493_02",
+    "role": "principal",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_calisto_águila_miguel_ángel",
+    "senator_name": "Calisto Águila, Miguel Ángel",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_durán_espinoza_jorge",
+    "senator_name": "Durán Espinoza, Jorge",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_galleguillos_castillo_ramón",
+    "senator_name": "Galleguillos Castillo, Ramón",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_pérez_lahsen_leopoldo",
+    "senator_name": "Pérez Lahsen, Leopoldo",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_rathgeb_schifferli_jorge",
+    "senator_name": "Rathgeb Schifferli, Jorge",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_santana_tirachini_alejandro",
+    "senator_name": "Santana Tirachini, Alejandro",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_trisotti_martínez_renzo",
+    "senator_name": "Trisotti Martínez, Renzo",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_undurraga_gazitúa_francisco",
+    "senator_name": "Undurraga Gazitúa, Francisco",
+    "law_id": "law_12493_02",
+    "role": "co_sponsor",
+    "date": "21/03/2019"
+  },
+  {
+    "senator_id": "senator_barrera_moreno_boris",
+    "senator_name": "Barrera Moreno, Boris",
+    "law_id": "law_12692_02",
+    "role": "principal",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_labra_sepúlveda_amaro",
+    "senator_name": "Labra Sepúlveda, Amaro",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_mix_jiménez_claudia",
+    "senator_name": "Mix Jiménez, Claudia",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_mulet_martínez_jaime",
+    "senator_name": "Mulet Martínez, Jaime",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_núñez_arancibia_daniel",
+    "senator_name": "Núñez Arancibia, Daniel",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_soto_ferrada_leonardo",
+    "senator_name": "Soto Ferrada, Leonardo",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_vallejo_dowling_camila",
+    "senator_name": "Vallejo Dowling, Camila",
+    "law_id": "law_12692_02",
+    "role": "co_sponsor",
+    "date": "05/06/2019"
+  },
+  {
+    "senator_id": "senator_castro_gonzález_juan_luis",
+    "senator_name": "Castro González, Juan Luis",
+    "law_id": "law_13081_02",
+    "role": "principal",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_girardi_lavín_cristina",
+    "senator_name": "Girardi Lavín, Cristina",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_gonzález_torres_rodrigo",
+    "senator_name": "González Torres, Rodrigo",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_jarpa_wevar_carlos_abel",
+    "senator_name": "Jarpa Wevar, Carlos Abel",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_pérez_salinas_catalina",
+    "senator_name": "Pérez Salinas, Catalina",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_rojas_valderrama_camila",
+    "senator_name": "Rojas Valderrama, Camila",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_vallejo_dowling_camila",
+    "senator_name": "Vallejo Dowling, Camila",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_venegas_cárdenas_mario",
+    "senator_name": "Venegas Cárdenas, Mario",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_winter_etcheberry_gonzalo",
+    "senator_name": "Winter Etcheberry, Gonzalo",
+    "law_id": "law_13081_02",
+    "role": "co_sponsor",
+    "date": "13/11/2019"
+  },
+  {
+    "senator_id": "senator_cariola_oliva_karol",
+    "senator_name": "Cariola Oliva, Karol",
+    "law_id": "law_13082_02",
+    "role": "principal",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_mix_jiménez_claudia",
+    "senator_name": "Mix Jiménez, Claudia",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_torres_jeldes_víctor",
+    "senator_name": "Torres Jeldes, Víctor",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_velásquez_núñez_esteban",
+    "senator_name": "Velásquez Núñez, Esteban",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_verdessi_belemmi_daniel",
+    "senator_name": "Verdessi Belemmi, Daniel",
+    "law_id": "law_13082_02",
+    "role": "co_sponsor",
+    "date": "15/11/2019"
+  },
+  {
+    "senator_id": "senator_bernales_maldonado_alejandro",
+    "senator_name": "Bernales Maldonado, Alejandro",
+    "law_id": "law_13983_02",
+    "role": "principal",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_castillo_muñoz_natalia",
+    "senator_name": "Castillo Muñoz, Natalia",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_cicardini_milla_daniella",
+    "senator_name": "Cicardini Milla, Daniella",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_gonzález_gatica_félix",
+    "senator_name": "González Gatica, Félix",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_keitel_bianchi_sebastián",
+    "senator_name": "Keitel Bianchi, Sebastián",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_marzán_pinto_carolina",
+    "senator_name": "Marzán Pinto, Carolina",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_mirosevic_verdugo_vlado",
+    "senator_name": "Mirosevic Verdugo, Vlado",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_vidal_rojas_pablo",
+    "senator_name": "Vidal Rojas, Pablo",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_13983_02",
+    "role": "co_sponsor",
+    "date": "04/01/2021"
+  },
+  {
+    "senator_id": "senator_berger_fett_bernardo",
+    "senator_name": "Berger Fett, Bernardo",
+    "law_id": "law_14607_02",
+    "role": "principal",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_celis_montt_andrés",
+    "senator_name": "Celis Montt, Andrés",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_eguiguren_correa_francisco",
+    "senator_name": "Eguiguren Correa, Francisco",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_morán_bahamondes_camilo_andrés",
+    "senator_name": "Morán Bahamondes, Camilo Andrés",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_rubio_escobar_patricia",
+    "senator_name": "Rubio Escobar, Patricia",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_sauerbaum_muñoz_frank",
+    "senator_name": "Sauerbaum Muñoz, Frank",
+    "law_id": "law_14607_02",
+    "role": "co_sponsor",
+    "date": "21/09/2021"
+  },
+  {
+    "senator_id": "senator_sepúlveda_orbenes_alejandra",
+    "senator_name": "Sepúlveda Orbenes, Alejandra",
+    "law_id": "law_14955_03",
+    "role": "principal",
+    "date": "06/05/2022"
+  },
+  {
+    "senator_id": "senator_velásquez_núñez_esteban",
+    "senator_name": "Velásquez Núñez, Esteban",
+    "law_id": "law_14955_03",
+    "role": "co_sponsor",
+    "date": "06/05/2022"
+  },
+  {
+    "senator_id": "senator_berger_fett_bernardo",
+    "senator_name": "Berger Fett, Bernardo",
+    "law_id": "law_14966_02",
+    "role": "principal",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_bobadilla_muñoz_sergio",
+    "senator_name": "Bobadilla Muñoz, Sergio",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_cordero_velásquez_maría_luisa",
+    "senator_name": "Cordero Velásquez, María Luisa",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_mellado_suazo_miguel",
+    "senator_name": "Mellado Suazo, Miguel",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_rathgeb_schifferli_jorge",
+    "senator_name": "Rathgeb Schifferli, Jorge",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_romero_leiva_agustín",
+    "senator_name": "Romero Leiva, Agustín",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_undurraga_gazitúa_francisco",
+    "senator_name": "Undurraga Gazitúa, Francisco",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_weisse_novoa_flor",
+    "senator_name": "Weisse Novoa, Flor",
+    "law_id": "law_14966_02",
+    "role": "co_sponsor",
+    "date": "05/05/2022"
+  },
+  {
+    "senator_id": "senator_alinco_bustos_rené",
+    "senator_name": "Alinco Bustos, René",
+    "law_id": "law_14972_02",
+    "role": "principal",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_araya_guerrero_jaime",
+    "senator_name": "Araya  Guerrero, Jaime",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_gonzález_olea_marta",
+    "senator_name": "González Olea, Marta",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_marzán_pinto_carolina",
+    "senator_name": "Marzán Pinto, Carolina",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_molina_milman_helia",
+    "senator_name": "Molina Milman, Helia",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_soto_mardones_raúl",
+    "senator_name": "Soto Mardones, Raúl",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_tapia_ramos_cristián",
+    "senator_name": "Tapia Ramos, Cristián",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_ulloa_aguilera_héctor",
+    "senator_name": "Ulloa Aguilera, Héctor",
+    "law_id": "law_14972_02",
+    "role": "co_sponsor",
+    "date": "10/05/2022"
+  },
+  {
+    "senator_id": "senator_becker_alvear_miguel_ángel",
+    "senator_name": "Becker Alvear, Miguel Ángel",
+    "law_id": "law_15004_02",
+    "role": "principal",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_beltrán_silva_juan_carlos",
+    "senator_name": "Beltrán Silva, Juan Carlos",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_calisto_águila_miguel_ángel",
+    "senator_name": "Calisto Águila, Miguel Ángel",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_celis_montt_andrés",
+    "senator_name": "Celis Montt, Andrés",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_cid_versalovic_sofía",
+    "senator_name": "Cid Versalovic, Sofía",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_cordero_velásquez_maría_luisa",
+    "senator_name": "Cordero Velásquez, María Luisa",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_leal_bizama_henry",
+    "senator_name": "Leal Bizama, Henry",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_mellado_suazo_miguel",
+    "senator_name": "Mellado Suazo, Miguel",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_15004_02",
+    "role": "co_sponsor",
+    "date": "18/05/2022"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_15055_02",
+    "role": "principal",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_celis_montt_andrés",
+    "senator_name": "Celis Montt, Andrés",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_cid_versalovic_sofía",
+    "senator_name": "Cid Versalovic, Sofía",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_jouannet_valderrama_andrés",
+    "senator_name": "Jouannet Valderrama, Andrés",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_leiva_carvajal_raúl",
+    "senator_name": "Leiva Carvajal, Raúl",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_longton_herrera_andrés",
+    "senator_name": "Longton Herrera, Andrés",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_placencia_cabello_alejandra",
+    "senator_name": "Placencia Cabello, Alejandra",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_pulgar_castillo_francisco",
+    "senator_name": "Pulgar Castillo, Francisco",
+    "law_id": "law_15055_02",
+    "role": "co_sponsor",
+    "date": "07/06/2022"
+  },
+  {
+    "senator_id": "senator_bórquez_montecinos_fernando",
+    "senator_name": "Bórquez Montecinos, Fernando",
+    "law_id": "law_15435_02",
+    "role": "principal",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_carter_fernández_álvaro",
+    "senator_name": "Carter Fernández, Álvaro",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_cornejo_lagos_eduardo",
+    "senator_name": "Cornejo Lagos, Eduardo",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_fuenzalida_cobo_juan",
+    "senator_name": "Fuenzalida Cobo, Juan",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_labbé_martínez_cristian",
+    "senator_name": "Labbé Martínez, Cristian",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_leal_bizama_henry",
+    "senator_name": "Leal Bizama, Henry",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_pérez_cartes_marlene",
+    "senator_name": "Pérez Cartes, Marlene",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_trisotti_martínez_renzo",
+    "senator_name": "Trisotti Martínez, Renzo",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_von_mühlenbrock_zamora_gastón",
+    "senator_name": "Von Mühlenbrock Zamora, Gastón",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_weisse_novoa_flor",
+    "senator_name": "Weisse Novoa, Flor",
+    "law_id": "law_15435_02",
+    "role": "co_sponsor",
+    "date": "18/10/2022"
+  },
+  {
+    "senator_id": "senator_becker_alvear_miguel_ángel",
+    "senator_name": "Becker Alvear, Miguel Ángel",
+    "law_id": "law_15494_02",
+    "role": "principal",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_kaiser_barents_von_hohenhagen_johannes",
+    "senator_name": "Kaiser  Barents-Von Hohenhagen, Johannes",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_lilayu_vivanco_daniel",
+    "senator_name": "Lilayu Vivanco, Daniel",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_moreira_barros_cristhian",
+    "senator_name": "Moreira Barros, Cristhian",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_naveillan_arriagada_gloria",
+    "senator_name": "Naveillan Arriagada, Gloria",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_oyarzo_figueroa_rubén_dario",
+    "senator_name": "Oyarzo Figueroa, Rubén Dario",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_ulloa_aguilera_héctor",
+    "senator_name": "Ulloa Aguilera, Héctor",
+    "law_id": "law_15494_02",
+    "role": "co_sponsor",
+    "date": "14/11/2022"
+  },
+  {
+    "senator_id": "senator_ahumada_palma_yovana",
+    "senator_name": "Ahumada  Palma, Yovana",
+    "law_id": "law_15617_02",
+    "role": "principal",
+    "date": "21/12/2022"
+  },
+  {
+    "senator_id": "senator_arroyo_muñoz_roberto",
+    "senator_name": "Arroyo Muñoz, Roberto",
+    "law_id": "law_15617_02",
+    "role": "co_sponsor",
+    "date": "21/12/2022"
+  },
+  {
+    "senator_id": "senator_lee_flores_enrique",
+    "senator_name": "Lee Flores, Enrique",
+    "law_id": "law_15617_02",
+    "role": "co_sponsor",
+    "date": "21/12/2022"
+  },
+  {
+    "senator_id": "senator_naveillan_arriagada_gloria",
+    "senator_name": "Naveillan Arriagada, Gloria",
+    "law_id": "law_15617_02",
+    "role": "co_sponsor",
+    "date": "21/12/2022"
+  },
+  {
+    "senator_id": "senator_pino_fuentes_víctor_alejandro",
+    "senator_name": "Pino  Fuentes, Víctor Alejandro",
+    "law_id": "law_15617_02",
+    "role": "co_sponsor",
+    "date": "21/12/2022"
+  },
+  {
+    "senator_id": "senator_sepúlveda_orbenes_alejandra",
+    "senator_name": "Sepúlveda Orbenes, Alejandra",
+    "law_id": "law_15697_03",
+    "role": "principal",
+    "date": "25/01/2023"
+  },
+  {
+    "senator_id": "senator_velásquez_núñez_esteban",
+    "senator_name": "Velásquez Núñez, Esteban",
+    "law_id": "law_15697_03",
+    "role": "co_sponsor",
+    "date": "25/01/2023"
+  },
+  {
+    "senator_id": "senator_astudillo_peiretti_danisa",
+    "senator_name": "Astudillo Peiretti, Danisa",
+    "law_id": "law_15846_02",
+    "role": "principal",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_bravo_castro_ana_maría",
+    "senator_name": "Bravo Castro, Ana María",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_cicardini_milla_daniella",
+    "senator_name": "Cicardini Milla, Daniella",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_de_rementería_venegas_tomás",
+    "senator_name": "De Rementería Venegas, Tomás",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_ilabaca_cerda_marcos",
+    "senator_name": "Ilabaca Cerda, Marcos",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_leiva_carvajal_raúl",
+    "senator_name": "Leiva Carvajal, Raúl",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_manouchehri_lobos_daniel",
+    "senator_name": "Manouchehri  Lobos, Daniel",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_melo_contreras_daniel",
+    "senator_name": "Melo Contreras, Daniel",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_santana_castillo_juan",
+    "senator_name": "Santana Castillo, Juan",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_venegas_salazar_nelson",
+    "senator_name": "Venegas Salazar, Nelson",
+    "law_id": "law_15846_02",
+    "role": "co_sponsor",
+    "date": "17/04/2023"
+  },
+  {
+    "senator_id": "senator_arroyo_muñoz_roberto",
+    "senator_name": "Arroyo Muñoz, Roberto",
+    "law_id": "law_15870_02",
+    "role": "principal",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_coloma_alamos_juan_antonio",
+    "senator_name": "Coloma Alamos, Juan Antonio",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_guzmán_zepeda_jorge",
+    "senator_name": "Guzmán Zepeda, Jorge",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_leal_bizama_henry",
+    "senator_name": "Leal Bizama, Henry",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_lee_flores_enrique",
+    "senator_name": "Lee Flores, Enrique",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_matheson_villán_christian",
+    "senator_name": "Matheson Villán, Christian",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_schalper_sepúlveda_diego",
+    "senator_name": "Schalper Sepúlveda, Diego",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_teao_drago_hotuiti",
+    "senator_name": "Teao Drago, Hotuiti",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_undurraga_gazitúa_francisco",
+    "senator_name": "Undurraga Gazitúa, Francisco",
+    "law_id": "law_15870_02",
+    "role": "co_sponsor",
+    "date": "19/04/2023"
+  },
+  {
+    "senator_id": "senator_alessandri_vergara_jorge",
+    "senator_name": "Alessandri Vergara, Jorge",
+    "law_id": "law_16082_02",
+    "role": "principal",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_cid_versalovic_sofía",
+    "senator_name": "Cid Versalovic, Sofía",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_jouannet_valderrama_andrés",
+    "senator_name": "Jouannet Valderrama, Andrés",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_longton_herrera_andrés",
+    "senator_name": "Longton Herrera, Andrés",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_naveillan_arriagada_gloria",
+    "senator_name": "Naveillan Arriagada, Gloria",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_schalper_sepúlveda_diego",
+    "senator_name": "Schalper Sepúlveda, Diego",
+    "law_id": "law_16082_02",
+    "role": "co_sponsor",
+    "date": "07/07/2023"
+  },
+  {
+    "senator_id": "senator_rivas_sánchez_gaspar",
+    "senator_name": "Rivas Sánchez, Gaspar",
+    "law_id": "law_16453_02",
+    "role": "principal",
+    "date": "28/11/2023"
+  },
+  {
+    "senator_id": "senator_ahumada_palma_yovana",
+    "senator_name": "Ahumada  Palma, Yovana",
+    "law_id": "law_16702_07",
+    "role": "principal",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_calisto_águila_miguel_ángel",
+    "senator_name": "Calisto Águila, Miguel Ángel",
+    "law_id": "law_16702_07",
+    "role": "co_sponsor",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_olivera_de_la_fuente_erika",
+    "senator_name": "Olivera De La Fuente, Erika",
+    "law_id": "law_16702_07",
+    "role": "co_sponsor",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_pérez_olea_joanna",
+    "senator_name": "Pérez Olea, Joanna",
+    "law_id": "law_16702_07",
+    "role": "co_sponsor",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_pino_fuentes_víctor_alejandro",
+    "senator_name": "Pino  Fuentes, Víctor Alejandro",
+    "law_id": "law_16702_07",
+    "role": "co_sponsor",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_saffirio_espinoza_jorge",
+    "senator_name": "Saffirio Espinoza, Jorge",
+    "law_id": "law_16702_07",
+    "role": "co_sponsor",
+    "date": "19/03/2024"
+  },
+  {
+    "senator_id": "senator_acevedo_sáez_maría_candelaria",
+    "senator_name": "Acevedo Sáez, María Candelaria",
+    "law_id": "law_16861_02",
+    "role": "principal",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_castillo_rojas_nathalie",
+    "senator_name": "Castillo Rojas, Nathalie",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_nuyado_ancapichún_emilia",
+    "senator_name": "Nuyado Ancapichún, Emilia",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_palma_pérez_hernán",
+    "senator_name": "Palma Pérez, Hernán",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_pizarro_sierra_lorena",
+    "senator_name": "Pizarro Sierra, Lorena",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_ramírez_pascal_matías",
+    "senator_name": "Ramírez Pascal, Matías",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_riquelme_aliaga_marcela",
+    "senator_name": "Riquelme Aliaga, Marcela",
+    "law_id": "law_16861_02",
+    "role": "co_sponsor",
+    "date": "16/05/2024"
+  },
+  {
+    "senator_id": "senator_aedo_jeldres_eric",
+    "senator_name": "Aedo Jeldres, Eric",
+    "law_id": "law_16910_02",
+    "role": "principal",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_barría_angulo_héctor",
+    "senator_name": "Barría Angulo, Héctor",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_berger_fett_bernardo",
+    "senator_name": "Berger Fett, Bernardo",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_bórquez_montecinos_fernando",
+    "senator_name": "Bórquez Montecinos, Fernando",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_camaño_cárdenas_felipe",
+    "senator_name": "Camaño Cárdenas, Felipe",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_cifuentes_lillo_ricardo",
+    "senator_name": "Cifuentes Lillo, Ricardo",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_mellado_pino_cosme",
+    "senator_name": "Mellado Pino, Cosme",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_tello_rojas_carolina",
+    "senator_name": "Tello Rojas, Carolina",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_undurraga_vicuña_alberto",
+    "senator_name": "Undurraga Vicuña, Alberto",
+    "law_id": "law_16910_02",
+    "role": "co_sponsor",
+    "date": "04/06/2024"
+  },
+  {
+    "senator_id": "senator_acevedo_sáez_maría_candelaria",
+    "senator_name": "Acevedo Sáez, María Candelaria",
+    "law_id": "law_16960_02",
+    "role": "principal",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_castillo_rojas_nathalie",
+    "senator_name": "Castillo Rojas, Nathalie",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_hertz_cádiz_carmen",
+    "senator_name": "Hertz Cádiz, Carmen",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_hirsch_goldschmidt_tomás",
+    "senator_name": "Hirsch Goldschmidt, Tomás",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_naranjo_ortíz_jaime",
+    "senator_name": "Naranjo Ortíz, Jaime",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_palma_pérez_hernán",
+    "senator_name": "Palma Pérez, Hernán",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_pizarro_sierra_lorena",
+    "senator_name": "Pizarro Sierra, Lorena",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_ramírez_pascal_matías",
+    "senator_name": "Ramírez Pascal, Matías",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_riquelme_aliaga_marcela",
+    "senator_name": "Riquelme Aliaga, Marcela",
+    "law_id": "law_16960_02",
+    "role": "co_sponsor",
+    "date": "01/07/2024"
+  },
+  {
+    "senator_id": "senator_huenchumilla_jaramillo_francisco",
+    "senator_name": "Huenchumilla Jaramillo, Francisco",
+    "law_id": "law_17038_03",
+    "role": "principal",
+    "date": "07/08/2024"
+  },
+  {
+    "senator_id": "senator_beltrán_silva_juan_carlos",
+    "senator_name": "Beltrán Silva, Juan Carlos",
+    "law_id": "law_17160_02",
+    "role": "principal",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_flores_oporto_camila",
+    "senator_name": "Flores Oporto, Camila",
+    "law_id": "law_17160_02",
+    "role": "co_sponsor",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_kaiser_barents_von_hohenhagen_johannes",
+    "senator_name": "Kaiser  Barents-Von Hohenhagen, Johannes",
+    "law_id": "law_17160_02",
+    "role": "co_sponsor",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_labbé_martínez_cristian",
+    "senator_name": "Labbé Martínez, Cristian",
+    "law_id": "law_17160_02",
+    "role": "co_sponsor",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_romero_sáez_leonidas",
+    "senator_name": "Romero Sáez, Leonidas",
+    "law_id": "law_17160_02",
+    "role": "co_sponsor",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_urruticoechea_ríos_cristóbal",
+    "senator_name": "Urruticoechea Ríos, Cristóbal",
+    "law_id": "law_17160_02",
+    "role": "co_sponsor",
+    "date": "03/10/2024"
+  },
+  {
+    "senator_id": "senator_beltrán_silva_juan_carlos",
+    "senator_name": "Beltrán Silva, Juan Carlos",
+    "law_id": "law_17249_02",
+    "role": "principal",
+    "date": "21/11/2024"
+  },
+  {
+    "senator_id": "senator_flores_oporto_camila",
+    "senator_name": "Flores Oporto, Camila",
+    "law_id": "law_17249_02",
+    "role": "co_sponsor",
+    "date": "21/11/2024"
+  },
+  {
+    "senator_id": "senator_cruz_coke_carvallo_luciano",
+    "senator_name": "Cruz-Coke Carvallo, Luciano",
+    "law_id": "law_17354_37",
+    "role": "principal",
+    "date": "15/01/2025"
+  },
+  {
+    "senator_id": "senator_ebensperger_orrego_luz_eliana",
+    "senator_name": "Ebensperger Orrego, Luz Eliana",
+    "law_id": "law_17354_37",
+    "role": "co_sponsor",
+    "date": "15/01/2025"
+  },
+  {
+    "senator_id": "senator_garcía_ruminot_josé",
+    "senator_name": "García Ruminot, José",
+    "law_id": "law_17354_37",
+    "role": "co_sponsor",
+    "date": "15/01/2025"
+  },
+  {
+    "senator_id": "senator_insulza_salinas_josé_miguel",
+    "senator_name": "Insulza Salinas, José Miguel",
+    "law_id": "law_17354_37",
+    "role": "co_sponsor",
+    "date": "15/01/2025"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_17354_37",
+    "role": "co_sponsor",
+    "date": "15/01/2025"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_17370_17",
+    "role": "principal",
+    "date": "30/01/2025"
+  },
+  {
+    "senator_id": "senator_cruz_coke_carvallo_luciano",
+    "senator_name": "Cruz-Coke Carvallo, Luciano",
+    "law_id": "law_17370_17",
+    "role": "co_sponsor",
+    "date": "30/01/2025"
+  },
+  {
+    "senator_id": "senator_ebensperger_orrego_luz_eliana",
+    "senator_name": "Ebensperger Orrego, Luz Eliana",
+    "law_id": "law_17370_17",
+    "role": "co_sponsor",
+    "date": "30/01/2025"
+  },
+  {
+    "senator_id": "senator_kusanovic_glusevic_alejandro",
+    "senator_name": "Kusanovic Glusevic, Alejandro",
+    "law_id": "law_17370_17",
+    "role": "co_sponsor",
+    "date": "30/01/2025"
+  },
+  {
+    "senator_id": "senator_kuschel_silva_carlos_ignacio",
+    "senator_name": "Kuschel Silva, Carlos Ignacio",
+    "law_id": "law_17370_17",
+    "role": "co_sponsor",
+    "date": "30/01/2025"
+  },
+  {
+    "senator_id": "senator_arroyo_muñoz_roberto",
+    "senator_name": "Arroyo Muñoz, Roberto",
+    "law_id": "law_17796_06",
+    "role": "principal",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_castro_bascuñán_josé_miguel",
+    "senator_name": "Castro Bascuñán, José Miguel",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_guzmán_zepeda_jorge",
+    "senator_name": "Guzmán Zepeda, Jorge",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_lee_flores_enrique",
+    "senator_name": "Lee Flores, Enrique",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_olivera_de_la_fuente_erika",
+    "senator_name": "Olivera De La Fuente, Erika",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_ximena",
+    "senator_name": "Ossandón Irarrázabal, Ximena",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_santibáñez_novoa_marisela",
+    "senator_name": "Santibáñez Novoa, Marisela",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_sulantay_olivares_marco_antonio",
+    "senator_name": "Sulantay Olivares, Marco Antonio",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_tapia_ramos_cristián",
+    "senator_name": "Tapia Ramos, Cristián",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_teao_drago_hotuiti",
+    "senator_name": "Teao Drago, Hotuiti",
+    "law_id": "law_17796_06",
+    "role": "co_sponsor",
+    "date": "22/08/2025"
+  },
+  {
+    "senator_id": "senator_campillai_rojas_fabiola",
+    "senator_name": "Campillai Rojas, Fabiola",
+    "law_id": "law_17975_17",
+    "role": "principal",
+    "date": "21/11/2025"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_17975_17",
+    "role": "co_sponsor",
+    "date": "21/11/2025"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "senator_name": "Rincón González, Ximena",
+    "law_id": "law_17975_17",
+    "role": "co_sponsor",
+    "date": "21/11/2025"
+  },
+  {
+    "senator_id": "senator_walker_prieto_matías",
+    "senator_name": "Walker Prieto, Matías",
+    "law_id": "law_17975_17",
+    "role": "co_sponsor",
+    "date": "21/11/2025"
+  },
+  {
+    "senator_id": "senator_edwards_silva_rojo",
+    "senator_name": "Edwards Silva, Rojo",
+    "law_id": "law_18067_06",
+    "role": "principal",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_núñez_urrutia_paulina",
+    "senator_name": "Núñez Urrutia, Paulina",
+    "law_id": "law_18067_06",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_prohens_espinosa_rafael",
+    "senator_name": "Prohens Espinosa, Rafael",
+    "law_id": "law_18067_06",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_bórquez_montecinos_fernando",
+    "senator_name": "Bórquez Montecinos, Fernando",
+    "law_id": "law_18068_13",
+    "role": "principal",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_bravo_salinas_marta",
+    "senator_name": "Bravo Salinas, Marta",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_cornejo_lagos_eduardo",
+    "senator_name": "Cornejo Lagos, Eduardo",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_lilayu_vivanco_daniel",
+    "senator_name": "Lilayu Vivanco, Daniel",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_moreira_barros_cristhian",
+    "senator_name": "Moreira Barros, Cristhian",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_pérez_cartes_marlene",
+    "senator_name": "Pérez Cartes, Marlene",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_sulantay_olivares_marco_antonio",
+    "senator_name": "Sulantay Olivares, Marco Antonio",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_teao_drago_hotuiti",
+    "senator_name": "Teao Drago, Hotuiti",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_von_mühlenbrock_zamora_gastón",
+    "senator_name": "Von Mühlenbrock Zamora, Gastón",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_weisse_novoa_flor",
+    "senator_name": "Weisse Novoa, Flor",
+    "law_id": "law_18068_13",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_chahuán_chahuán_francisco",
+    "senator_name": "Chahuán Chahuán, Francisco",
+    "law_id": "law_18069_07",
+    "role": "principal",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_moreira_barros_iván",
+    "senator_name": "Moreira Barros, Iván",
+    "law_id": "law_18069_07",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_núñez_urrutia_paulina",
+    "senator_name": "Núñez Urrutia, Paulina",
+    "law_id": "law_18069_07",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_sanhueza_dueñas_gustavo",
+    "senator_name": "Sanhueza Dueñas, Gustavo",
+    "law_id": "law_18069_07",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_van_rysselberghe_herrera_enrique",
+    "senator_name": "Van Rysselberghe Herrera, Enrique",
+    "law_id": "law_18069_07",
+    "role": "co_sponsor",
+    "date": "20/01/2026"
+  },
+  {
+    "senator_id": "senator_sepúlveda_orbenes_alejandra",
+    "senator_name": "Sepúlveda Orbenes, Alejandra",
+    "law_id": "law_18070_37",
+    "role": "principal",
+    "date": "21/01/2026"
+  },
+  {
+    "senator_id": "senator_velásquez_núñez_esteban",
+    "senator_name": "Velásquez Núñez, Esteban",
+    "law_id": "law_18070_37",
+    "role": "co_sponsor",
+    "date": "21/01/2026"
   }
 ]

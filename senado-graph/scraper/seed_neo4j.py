@@ -142,6 +142,89 @@ class Neo4jSeeder:
 
         print("Authorship relationships seeded")
 
+    def seed_votes(self, votes: list):
+        """Seed voting records into Neo4j."""
+        print(f"Seeding {len(votes)} voting records...")
+
+        # Pre-process senator names for better matching
+        query = """
+        UNWIND $votes AS vote
+        MATCH (l:Law {boletin: vote.law_boletin})
+        MATCH (s:Senator)
+        WHERE 
+            // Try exact match first
+            s.name = vote.senator_name
+            OR
+            // Match where senator name is "LastNames, FirstName" 
+            // and vote name is "LastInitials., FirstName"
+            // Extract first name from vote name (after the last space)
+            vote.senator_name = split(s.name, ', ')[1] + 
+                CASE 
+                    WHEN split(vote.senator_name, ' ')[-1] = split(s.name, ', ')[1] THEN split(vote.senator_name, ' ')[0]
+                    ELSE ''
+                END
+            OR
+            // Try matching just the first name
+            split(vote.senator_name, ' ')[-1] = split(s.name, ', ')[1]
+        MERGE (s)-[v:VOTED_ON]->(l)
+        SET v.session = vote.session,
+            v.date = vote.date,
+            v.vote = vote.vote,
+            v.topic = vote.topic
+        """
+
+        with self.driver.session() as session:
+            result = session.run(query, votes=votes)
+            summary = result.consume()
+            print(
+                f"Created {summary.counters.relationships_created} VOTED_ON relationships"
+            )
+
+        print("Votes seeded")
+
+    def calculate_voting_similarity(self, min_common_votes: int = 5):
+        """Calculate VOTED_SAME relationships based on actual voting patterns."""
+        print("Calculating voting similarity between senators...")
+
+        query = """
+        // Get all senators who voted on the same laws
+        MATCH (s1:Senator)-[v1:VOTED_ON]->(l:Law)<-[v2:VOTED_ON]-(s2:Senator)
+        WHERE s1 <> s2 AND v1.vote = v2.vote
+
+        // Group by senator pairs and count common votes
+        WITH s1, s2, count(*) AS common_votes
+        WHERE common_votes >= $min_common_votes
+
+        // Calculate agreement percentage
+        MATCH (s1)-[v1:VOTED_ON]->(l:Law)
+        WITH s1, s2, common_votes, count(v1) AS total_s1
+        MATCH (s2)-[v2:VOTED_ON]->(l)
+        WITH s1, s2, common_votes, total_s1, count(v2) AS total_s2
+
+        // Calculate Jaccard similarity: intersection / union
+        WITH s1, s2, common_votes, total_s1, total_s2,
+             (toFloat(common_votes) / (total_s1 + total_s2 - common_votes)) AS agreement
+
+        // Create relationship with agreement score
+        CREATE (s1)-[r:VOTED_SAME]->(s2)
+        SET r.agreement = agreement
+
+        RETURN count(r) AS relationships_created
+        """
+
+        with self.driver.session() as session:
+            result = session.run(query, min_common_votes=min_common_votes)
+            record = result.single()
+            if record:
+                count = record[0]
+                print(
+                    f"Created {count} VOTED_SAME relationships based on {min_common_votes}+ common votes"
+                )
+            else:
+                print("No VOTED_SAME relationships created")
+
+        print("Voting similarity calculated")
+
 
 def load_mock_data():
     """Load mock data for testing when scraping fails."""
@@ -350,14 +433,28 @@ def main():
                             }
                         )
 
+        # Load voting data if available
+        try:
+            with open(f"{data_dir}/votes.json", "r", encoding="utf-8") as f:
+                votes = json.load(f)
+        except FileNotFoundError:
+            print("No voting data found, skipping...")
+            votes = []
+
         # Seed data
         seeder.seed_parties(parties)
         seeder.seed_senators(senators)
         seeder.seed_laws(laws)
         seeder.seed_law_authorships(authorships)
 
-        # Create sample relationships
-        seeder.create_sample_relationships()
+        # Seed voting data if available
+        if votes:
+            seeder.seed_votes(votes)
+            # Calculate real voting similarity instead of using mock data
+            seeder.calculate_voting_similarity(min_common_votes=3)
+        else:
+            # Create sample relationships
+            seeder.create_sample_relationships()
 
         print("Seeding complete!")
 

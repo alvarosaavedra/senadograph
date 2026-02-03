@@ -3,6 +3,7 @@
 ## Phase 1: Theme & Visual Design Foundation
 
 ### 1.1 Create Custom Tailwind Theme
+
 - Configure custom color palette with vibrant gradients:
   - Primary: Purple-to-pink gradient (#8b5cf6 → #ec4899)
   - Secondary: Cyan-to-blue gradient (#06b6d4 → #3b82f6)
@@ -14,6 +15,7 @@
 - Add custom shadows and glow effects
 
 ### 1.2 Update Layout with Dashboard Style
+
 - Create animated stats cards:
   - Senators count with party breakdown
   - Active laws with status distribution
@@ -25,6 +27,7 @@
 ## Phase 2: Enhanced Graph Data Model
 
 ### 2.1 Extend Graph Query (`queries.ts`)
+
 ```typescript
 // Update getInitialGraphData() to include:
 - Law nodes (with status-based colors)
@@ -40,6 +43,7 @@
 ```
 
 ### 2.2 Update Types
+
 - Add optional properties to GraphNode:
   - `status` for laws
   - `ideology` for parties
@@ -49,6 +53,7 @@
 ## Phase 3: Cytoscape Graph Enhancements
 
 ### 3.1 Enhanced Node Styling (`CytoscapeGraph.svelte`)
+
 - **Senators:** Circular nodes (45px) with:
   - Party color background
   - White border with glow effect on hover
@@ -73,6 +78,7 @@
     - Professional College: Indigo
 
 ### 3.2 Enhanced Edge Styling
+
 - **AUTHORED:** Solid blue line with arrow (2px)
 - **MEMBER_OF:** Dashed purple line (1.5px)
 - **BELONGS_TO:** Thin gray line to party center (1px)
@@ -84,6 +90,7 @@
   - Add agreement label on hover
 
 ### 3.3 Interactive Features
+
 - Click on node to show details panel (slide-in from right)
 - Hover to highlight connected nodes and dim others
 - Double-click to expand/collapse clusters
@@ -93,6 +100,7 @@
 ## Phase 4: New Graph UI Components
 
 ### 4.1 Graph Legend Panel (`GraphLegend.svelte`)
+
 - Floating panel with draggable position
 - Toggle visibility
 - Legend items for all node/edge types
@@ -100,6 +108,7 @@
 - Entity count badges
 
 ### 4.2 Node Details Panel (`NodeDetailsPanel.svelte`)
+
 - Slide-in panel from right side
 - Shows detailed info based on node type:
   - **Senator:** Photo, party, region, committees, authored laws, voting patterns
@@ -111,6 +120,7 @@
 - Close button and keyboard support (Escape)
 
 ### 4.3 Enhanced Filter Panel (`FilterPanel.svelte`)
+
 - Add entity type toggles:
   - [x] Senators
   - [x] Laws
@@ -123,6 +133,7 @@
 - Apply/Reset buttons with animation
 
 ### 4.4 Enhanced Graph Controls (`GraphControls.svelte`)
+
 - Update styling with vibrant gradient buttons
 - Add new controls:
   - Toggle entity types
@@ -134,6 +145,7 @@
 ## Phase 5: Page Improvements
 
 ### 5.1 Home Page Dashboard (`+page.svelte`)
+
 - Replace generic hero with stats cards grid:
   ```
   ┌─────────────┬─────────────┬─────────────┬─────────────┐
@@ -146,12 +158,14 @@
 - Enhanced search bar with glassmorphism
 
 ### 5.2 Update Senator Detail Page (`senador/[id]/+page.svelte`)
+
 - Add mini graph showing senator's connections
 - Show voting pattern visualization
 - Add party-colored accents
 - Add animated transitions
 
 ### 5.3 Add About/Stats Page (`sobre/+page.svelte`)
+
 - Project description
 - Data sources
 - Methodology
@@ -160,6 +174,7 @@
 ## Phase 6: Polish & Animations
 
 ### 6.1 Add Global Animations
+
 - Page transitions (fade-in)
 - Card hover effects (scale, lift, glow)
 - Graph load animation
@@ -167,12 +182,14 @@
 - Skeleton loaders for data
 
 ### 6.2 Accessibility Improvements
+
 - Keyboard navigation for graph
 - ARIA labels for interactive elements
 - Focus indicators
 - Screen reader support
 
 ### 6.3 Responsive Design
+
 - Mobile-optimized graph controls
 - Collapsible panels on small screens
 - Touch gestures for graph interaction

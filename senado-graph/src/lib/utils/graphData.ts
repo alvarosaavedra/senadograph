@@ -42,6 +42,30 @@ export async function getFilteredGraphData(
 
     const senatorsResult = await session.run(query, params);
 
+    // Get law nodes with optional status filter
+    let lawQuery = `
+      MATCH (l:Law)
+    `;
+
+    if (filters.lawStatuses && filters.lawStatuses.length > 0) {
+      lawQuery += ` WHERE l.status IN $lawStatuses`;
+      params.lawStatuses = filters.lawStatuses;
+    }
+
+    lawQuery += `
+      RETURN l {
+        .id,
+        .boletin,
+        .title,
+        .titleEn,
+        .status,
+        .topic
+      } AS law
+      LIMIT 200
+    `;
+
+    const lawsResult = await session.run(lawQuery, params);
+
     // Get relationships
     let relQuery = `
       MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
@@ -59,7 +83,7 @@ export async function getFilteredGraphData(
 
     const relationshipsResult = await session.run(relQuery, params);
 
-    const nodes = senatorsResult.records.map((record: Neo4jRecord) => ({
+    const senatorNodes = senatorsResult.records.map((record: Neo4jRecord) => ({
       data: {
         id: record.get("senator").id,
         label: record.get("senator").name,
@@ -69,6 +93,18 @@ export async function getFilteredGraphData(
         region: record.get("senator").region,
       },
     }));
+
+    const lawNodes = lawsResult.records.map((record: Neo4jRecord) => ({
+      data: {
+        id: record.get("law").id,
+        label: record.get("law").boletin,
+        type: "law" as const,
+        status: record.get("law").status,
+        topic: record.get("law").topic,
+      },
+    }));
+
+    const nodes = [...senatorNodes, ...lawNodes];
 
     const edges = relationshipsResult.records.map(
       (record: Neo4jRecord, index: number) => ({

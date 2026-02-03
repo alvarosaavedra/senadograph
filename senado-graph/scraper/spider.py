@@ -4,7 +4,7 @@ import requests
 import time
 import re
 from bs4 import BeautifulSoup
-from typing import List, Optional
+from typing import List, Optional, Any
 from urllib.parse import urljoin
 
 from config import (
@@ -14,6 +14,9 @@ from config import (
     LOBBY_URL,
     REQUEST_TIMEOUT,
     REQUEST_DELAY,
+    MAX_RETRIES,
+    INITIAL_BACKOFF,
+    MAX_BACKOFF,
     IMAGES_DIR,
 )
 from models import Senator, Party, Law, Committee
@@ -22,24 +25,119 @@ from models import Senator, Party, Law, Committee
 class SenateScraper:
     """Scraper for Chilean Senate website."""
 
-    def __init__(self):
+    def __init__(
+        self,
+        max_retries: int = 5,
+        initial_backoff: float = 1.0,
+        max_backoff: float = 60.0,
+    ):
         self.session = requests.Session()
         self.session.headers.update(
             {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
             }
         )
+        self.max_retries = max_retries
+        self.initial_backoff = initial_backoff
+        self.max_backoff = max_backoff
 
     def _get(self, url: str) -> Optional[BeautifulSoup]:
         """Make a GET request and return BeautifulSoup object."""
-        try:
-            response = self.session.get(url, timeout=REQUEST_TIMEOUT)
-            response.raise_for_status()
-            time.sleep(REQUEST_DELAY)
-            return BeautifulSoup(response.content, "html.parser")
-        except Exception as e:
-            print(f"Error fetching {url}: {e}")
-            return None
+        return self._get_with_retry(url, return_json=False)
+
+    def _get_with_retry(self, url: str, return_json: bool = False) -> Optional[Any]:
+        """Make a GET request with exponential backoff retry."""
+        from typing import Any
+
+        attempt = 0
+        backoff = self.initial_backoff
+
+        while attempt < self.max_retries:
+            try:
+                response = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                response.raise_for_status()
+
+                if return_json:
+                    return response.content
+
+                time.sleep(REQUEST_DELAY)
+                return BeautifulSoup(response.content, "html.parser")
+
+            except requests.exceptions.Timeout as e:
+                attempt += 1
+                if attempt >= self.max_retries:
+                    print(
+                        f"Error: Max retries ({self.max_retries}) exceeded for {url}: {e}"
+                    )
+                    return None
+
+                wait_time = min(backoff, self.max_backoff)
+                print(
+                    f"Timeout on attempt {attempt}/{self.max_retries} for {url}. "
+                    f"Retrying in {wait_time:.1f}s..."
+                )
+                time.sleep(wait_time)
+                backoff *= 2
+
+            except requests.exceptions.RequestException as e:
+                attempt += 1
+                if attempt >= self.max_retries:
+                    print(f"Error fetching {url}: {e}")
+                    return None
+
+                wait_time = min(backoff, self.max_backoff)
+                print(
+                    f"Request failed (attempt {attempt}/{self.max_retries}) for {url}: {e}. "
+                    f"Retrying in {wait_time:.1f}s..."
+                )
+                time.sleep(wait_time)
+                backoff *= 2
+
+        return None
+
+    def _get_api_response(self, url: str) -> Optional[bytes]:
+        """Get API response content with retry logic."""
+        attempt = 0
+        backoff = self.initial_backoff
+
+        while attempt < self.max_retries:
+            try:
+                response = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                response.raise_for_status()
+                time.sleep(REQUEST_DELAY)
+                return response.content
+
+            except requests.exceptions.Timeout as e:
+                attempt += 1
+                if attempt >= self.max_retries:
+                    print(
+                        f"Error: Max retries ({self.max_retries}) exceeded for {url}: {e}"
+                    )
+                    return None
+
+                wait_time = min(backoff, self.max_backoff)
+                print(
+                    f"API timeout on attempt {attempt}/{self.max_retries} for {url}. "
+                    f"Retrying in {wait_time:.1f}s..."
+                )
+                time.sleep(wait_time)
+                backoff *= 2
+
+            except requests.exceptions.RequestException as e:
+                attempt += 1
+                if attempt >= self.max_retries:
+                    print(f"Error fetching API {url}: {e}")
+                    return None
+
+                wait_time = min(backoff, self.max_backoff)
+                print(
+                    f"API request failed (attempt {attempt}/{self.max_retries}) for {url}: {e}. "
+                    f"Retrying in {wait_time:.1f}s..."
+                )
+                time.sleep(wait_time)
+                backoff *= 2
+
+        return None
 
     def scrape_senators(self) -> List[Senator]:
         """Scrape list of all senators."""
@@ -207,7 +305,9 @@ class SenateScraper:
 
         return parties
 
-    def scrape_laws(self, limit: int = 100) -> tuple[List[Law], List[dict]]:
+    def scrape_laws(
+        self, limit: Optional[int] = None, days: int = 30
+    ) -> tuple[List[Law], List[dict], List[dict]]:
         """Scrape legislative projects from Senate API."""
         import xml.etree.ElementTree as ET
         from datetime import datetime, timedelta
@@ -215,7 +315,10 @@ class SenateScraper:
 
         laws = []
         authorships = []
-        print(f"Scraping up to {limit} laws from Senate API...")
+        if limit:
+            print(f"Scraping up to {limit} laws from Senate API...")
+        else:
+            print(f"Scraping all laws from the last {days} days...")
 
         try:
             base_api_url = "https://tramitacion.senado.cl/wspublico/tramitacion.php"
@@ -224,15 +327,15 @@ class SenateScraper:
             current_date = datetime.now()
             days_checked = 0
 
-            while len(laws) < limit and days_checked < 30:
+            while (limit is None or len(laws) < limit) and days_checked < days:
                 date_str = current_date.strftime("%d/%m/%Y")
                 url = f"{base_api_url}?fecha={date_str}"
 
                 print(f"Fetching laws from {date_str}...")
-                response = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                response_content = self._get_api_response(url)
 
-                if response.status_code == 200:
-                    root = ET.fromstring(response.content)
+                if response_content:
+                    root = ET.fromstring(response_content)
                     proyectos = root.findall(".//proyecto")
 
                     for proj in proyectos:
@@ -315,7 +418,7 @@ class SenateScraper:
                                             }
                                         )
 
-                            if len(laws) >= limit:
+                            if limit and len(laws) >= limit:
                                 break
 
                         except Exception as e:
@@ -329,8 +432,17 @@ class SenateScraper:
         except Exception as e:
             print(f"Error scraping laws: {e}")
 
-        print(f"Found {len(laws)} laws with {len(authorships)} authorships")
-        return laws, authorships
+        # Scrape voting data for each law (optional, for laws that have votes)
+        votes = []
+        for law in laws[:20]:  # Limit to first 20 to avoid too many API calls
+            print(f"Scraping voting data for {law.boletin}...")
+            law_votes = self.scrape_law_voting(law.boletin)
+            votes.extend(law_votes)
+
+        print(
+            f"Found {len(laws)} laws with {len(authorships)} authorships and {len(votes)} votes"
+        )
+        return laws, authorships, votes
 
     def _extract_id_from_url(self, url: str, prefix: str) -> str:
         """Extract ID from URL."""
@@ -379,11 +491,86 @@ class SenateScraper:
             return "withdrawn"
         return "in_discussion"
 
+    def scrape_law_voting(self, boletin: str) -> List[dict]:
+        """Scrape voting data for a specific law by boletin number."""
+        import xml.etree.ElementTree as ET
+
+        # Extract the numeric part from boletin (e.g., "10795-33" -> "10795")
+        boletin_number = boletin.split("-")[0]
+
+        url = f"https://tramitacion.senado.cl/wspublico/tramitacion.php?boletin={boletin_number}"
+
+        response_content = self._get_api_response(url)
+        if not response_content:
+            return []
+
+        votes = []
+        try:
+            root = ET.fromstring(response_content)
+
+            # Find all votaciones (voting sessions)
+            votaciones = root.findall(".//votaciones/votacion")
+            for votacion in votaciones:
+                session = votacion.find("SESION")
+                fecha = votacion.find("FECHA")
+                tema = votacion.find("TEMA")
+
+                detalle = votacion.find("DETALLE_VOTACION")
+                if detalle is not None:
+                    # Find individual senator votes
+                    for voto in detalle.findall("VOTO"):
+                        parlamentario = voto.find("PARLAMENTARIO")
+                        seleccion = voto.find("SELECCION")
+
+                        if parlamentario is not None and parlamentario.text:
+                            votes.append(
+                                {
+                                    "law_boletin": boletin,
+                                    "session": session.text
+                                    if session is not None
+                                    else "",
+                                    "date": fecha.text if fecha is not None else "",
+                                    "topic": tema.text if tema is not None else "",
+                                    "senator_name": parlamentario.text,
+                                    "vote": self._normalize_vote(
+                                        seleccion.text if seleccion is not None else ""
+                                    ),
+                                }
+                            )
+
+        except Exception as e:
+            print(f"Error parsing voting data for boletin {boletin}: {e}")
+
+        return votes
+
+    def _normalize_vote(self, vote: Optional[str]) -> str:
+        """Normalize vote to standard values."""
+        if not vote:
+            return "absent"
+        vote_lower = vote.lower()
+        if vote_lower == "si":
+            return "favor"
+        elif vote_lower == "no":
+            return "against"
+        elif "abstenc" in vote_lower:
+            return "abstained"
+        elif "pareo" in vote_lower:
+            return "paired"
+        return "absent"
+
 
 def main():
     """Main scraping function."""
-    print("Starting Senate scraper...")
-    scraper = SenateScraper()
+    print("Starting Senate scraper with exponential backoff retry...")
+    print(
+        f"Retry configuration: {MAX_RETRIES} max retries, "
+        f"{INITIAL_BACKOFF}s initial backoff, {MAX_BACKOFF}s max backoff"
+    )
+    scraper = SenateScraper(
+        max_retries=MAX_RETRIES,
+        initial_backoff=INITIAL_BACKOFF,
+        max_backoff=MAX_BACKOFF,
+    )
 
     # Scrape senators first (we'll extract parties from them)
     print("Scraping senators...")
@@ -397,8 +584,8 @@ def main():
 
     # Scrape laws
     print("Scraping laws...")
-    laws, authorships = scraper.scrape_laws(limit=50)
-    print(f"Found {len(laws)} laws")
+    laws, authorships, votes = scraper.scrape_laws(days=30)
+    print(f"Found {len(laws)} laws with {len(votes)} votes")
 
     # Save to JSON files for inspection
     import json
@@ -418,6 +605,9 @@ def main():
 
     with open(f"{data_dir}/authorships.json", "w", encoding="utf-8") as f:
         json.dump(authorships, f, ensure_ascii=False, indent=2)
+
+    with open(f"{data_dir}/votes.json", "w", encoding="utf-8") as f:
+        json.dump(votes, f, ensure_ascii=False, indent=2)
 
     print("Scraping complete! Data saved to data/ directory")
 

@@ -11,7 +11,7 @@ export const load: PageServerLoad = async () => {
   try {
     const [senators, graphData, parties, committees] = await Promise.all([
       getAllSenators(),
-      getInitialGraphData(),
+      getInitialGraphData(["approved", "rejected", "withdrawn"]),
       getAllParties(),
       getAllCommittees(),
     ]);

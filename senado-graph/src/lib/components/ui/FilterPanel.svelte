@@ -3,7 +3,9 @@
 
   export let parties: { id: string; name: string; color?: string }[] = [];
   export let committees: { id: string; name: string }[] = [];
+  export let currentFilters: GraphFilters = {};
   export let onApplyFilters: (filters: GraphFilters) => void;
+  export let onClose: () => void;
 
   let selectedParties: string[] = [];
   let selectedCommittee: string = '';
@@ -18,6 +20,40 @@
   let agreementMax: number = 100;
   let lobbyistTypes: LobbyistType[] = ['company', 'union', 'ngo', 'professional_college'];
   let selectedLobbyistTypes: LobbyistType[] = [];
+
+  // Sync with currentFilters when it changes
+  $: if (currentFilters.parties) {
+    selectedParties = currentFilters.parties;
+  }
+  $: if (currentFilters.committees && currentFilters.committees.length > 0) {
+    selectedCommittee = currentFilters.committees[0];
+  } else if (!currentFilters.committees) {
+    selectedCommittee = '';
+  }
+  $: if (currentFilters.dateRange) {
+    startDate = currentFilters.dateRange.start;
+    endDate = currentFilters.dateRange.end;
+  }
+  $: if (currentFilters.activeOnly !== undefined) {
+    activeOnly = currentFilters.activeOnly;
+  }
+  $: if (currentFilters.entityTypes) {
+    entityTypes = currentFilters.entityTypes;
+  }
+  $: if (currentFilters.lawStatuses) {
+    selectedLawStatuses = currentFilters.lawStatuses;
+  } else {
+    selectedLawStatuses = [];
+  }
+  $: if (currentFilters.agreementRange) {
+    agreementMin = Math.round(currentFilters.agreementRange.min * 100);
+    agreementMax = Math.round(currentFilters.agreementRange.max * 100);
+  }
+  $: if (currentFilters.lobbyistTypes) {
+    selectedLobbyistTypes = currentFilters.lobbyistTypes;
+  } else {
+    selectedLobbyistTypes = [];
+  }
 
   function handleApply() {
     const filters: GraphFilters = {
@@ -34,6 +70,7 @@
       lobbyistTypes: selectedLobbyistTypes.length > 0 ? selectedLobbyistTypes : undefined
     };
     onApplyFilters(filters);
+    onClose();
   }
 
   function handleClear() {
@@ -83,8 +120,18 @@
   }
 </script>
 
-<div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow">
-  <h3 class="text-xl font-bold gradient-text mb-6">
+<div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow relative">
+  <button
+    on:click={onClose}
+    class="absolute top-4 right-4 p-1 rounded-lg hover:bg-gray-100 transition-colors"
+    aria-label="Close filters"
+  >
+    <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <h3 class="text-xl font-bold gradient-text mb-6 pr-8">
     Filters
   </h3>
 

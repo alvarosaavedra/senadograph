@@ -148,7 +148,9 @@ export async function getAllCommittees(): Promise<Committee[]> {
   }
 }
 
-export async function getInitialGraphData(): Promise<GraphData> {
+export async function getInitialGraphData(
+  lawStatuses?: string[],
+): Promise<GraphData> {
   if (useMockData()) {
     return getMockGraphData();
   }
@@ -171,6 +173,32 @@ export async function getInitialGraphData(): Promise<GraphData> {
       } AS senator, p.color AS color
     `);
 
+    // Get law nodes with optional status filter
+    let lawQuery = `
+      MATCH (l:Law)
+    `;
+
+    const lawParams: Record<string, unknown> = {};
+
+    if (lawStatuses && lawStatuses.length > 0) {
+      lawQuery += ` WHERE l.status IN $lawStatuses`;
+      lawParams.lawStatuses = lawStatuses;
+    }
+
+    lawQuery += `
+      RETURN l {
+        .id,
+        .boletin,
+        .title,
+        .titleEn,
+        .status,
+        .topic
+      } AS law
+      LIMIT 200
+    `;
+
+    const lawsResult = await session.run(lawQuery, lawParams);
+
     // Get relationships between senators (voting patterns)
     const relationshipsResult = await session.run(`
       MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
@@ -179,7 +207,7 @@ export async function getInitialGraphData(): Promise<GraphData> {
       LIMIT 100
     `);
 
-    const nodes = senatorsResult.records.map((record) => ({
+    const senatorNodes = senatorsResult.records.map((record) => ({
       data: {
         id: record.get("senator").id,
         label: record.get("senator").name,
@@ -189,6 +217,18 @@ export async function getInitialGraphData(): Promise<GraphData> {
         region: record.get("senator").region,
       },
     }));
+
+    const lawNodes = lawsResult.records.map((record) => ({
+      data: {
+        id: record.get("law").id,
+        label: record.get("law").boletin,
+        type: "law" as const,
+        status: record.get("law").status,
+        topic: record.get("law").topic,
+      },
+    }));
+
+    const nodes = [...senatorNodes, ...lawNodes];
 
     const edges = relationshipsResult.records.map((record, index) => ({
       data: {

@@ -22,14 +22,17 @@
    let searchResults: SearchResult[] = [];
    let showNodeDetails = false;
    let selectedNode: any = null;
+   let currentFilters: GraphFilters = {
+    lawStatuses: ['approved', 'rejected', 'withdrawn']
+   };
 
    $: ({ senators, graphData, parties, committees } = data);
 
-    // Initialize currentGraphData when data loads
-    $: if (graphData && !currentGraphData) {
-      console.log('Page: Initializing currentGraphData', graphData);
-      currentGraphData = graphData;
-    }
+     // Initialize currentGraphData when data loads
+     $: if (graphData && !currentGraphData) {
+       console.log('Page: Initializing currentGraphData', graphData);
+       currentGraphData = graphData;
+     }
 
   $: partyBreakdown = parties.map(p => ({
     name: p.shortName,
@@ -122,6 +125,7 @@
   $: connectedNodes = selectedNode ? getConnectedNodes(selectedNode.id) : [];
 
   async function handleApplyFilters(filters: GraphFilters) {
+    currentFilters = filters;
     updateFilters(filters);
 
     try {
@@ -245,33 +249,41 @@
    </p>
 </div>
 
-<!-- Filter Panel -->
-{#if showFilters}
-  <div class="mb-6 animate-fade-in-up">
-    <FilterPanel
-      {parties}
-      {committees}
-      onApplyFilters={handleApplyFilters}
-    />
-  </div>
-{/if}
-
-<!-- Graph Visualization -->
-<div class="glass-panel rounded-2xl overflow-hidden mb-8 animate-fade-in-up" style="animation-delay: 600ms;">
-   <div class="relative h-[700px]">
-     <CytoscapeGraph
-       bind:this={graphComponent}
-       graphData={currentGraphData || graphData}
-       onNodeClick={handleNodeClick}
-     />
-     <GraphControls
-       onZoomIn={() => graphComponent?.zoomIn()}
-       onZoomOut={() => graphComponent?.zoomOut()}
-       onFit={() => graphComponent?.fit()}
-       onResetLayout={() => graphComponent?.resetLayout()}
-     />
+ <!-- Filter Panel Overlay -->
+ {#if showFilters}
+   <div class="fixed inset-0 z-50 animate-fade-in">
+     <div
+       class="absolute inset-0 bg-black/30 backdrop-blur-sm"
+       on:click={() => showFilters = false}
+     ></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <FilterPanel
+          {parties}
+          {committees}
+          currentFilters={currentFilters}
+          onApplyFilters={handleApplyFilters}
+          onClose={() => showFilters = false}
+        />
+      </div>
    </div>
-</div>
+ {/if}
+
+ <!-- Graph Visualization -->
+ <div class="glass-panel rounded-2xl overflow-hidden mb-8 animate-fade-in-up" style="animation-delay: 600ms;">
+    <div class="relative h-[700px]">
+      <CytoscapeGraph
+        bind:this={graphComponent}
+        graphData={currentGraphData || graphData}
+        onNodeClick={handleNodeClick}
+      />
+      <GraphControls
+        onZoomIn={() => graphComponent?.zoomIn()}
+        onZoomOut={() => graphComponent?.zoomOut()}
+        onFit={() => graphComponent?.fit()}
+        onResetLayout={() => graphComponent?.resetLayout()}
+      />
+    </div>
+ </div>
 
 <!-- Senator List -->
 <div class="glass-panel rounded-2xl overflow-hidden animate-fade-in-up" style="animation-delay: 700ms;">
