@@ -1,0 +1,130 @@
+[
+  {
+    "senator_id": "senator_galilea_vial_rodrigo",
+    "lobbyist_id": "lobbyist_aguirre_aguilar_kenis",
+    "senator_name": "Galilea Vial, Rodrigo",
+    "lobbyist_name": "aguirre aguilar kenis",
+    "date": "2026-01-12",
+    "topic": "Se discuten aspectos del Boletín N°17777, que establece incentivos tributarios a la producción de hidrógeno verde y sus derivados. A la reunión asisten los asesores del senador, los abogados Gonzalo Vásquez y José Pedro Ríos."
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "lobbyist_id": "lobbyist_bello_michelle_paz",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "lobbyist_name": "bello michelle paz",
+    "date": "2026-01-06",
+    "topic": "Dar a conocer la RedPreventiva para aunar esfuerzos en el trabajo comunitario sobre prevención"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "lobbyist_id": "lobbyist_errazuriz_sebastian",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "lobbyist_name": "errazuriz sebastian",
+    "date": "2026-01-06",
+    "topic": "Dar a conocer la RedPreventiva para aunar esfuerzos en el trabajo comunitario sobre prevención"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "lobbyist_id": "lobbyist_hojman_acelovici_pablo",
+    "senator_name": "Rincón González, Ximena",
+    "lobbyist_name": "hojman acelovici pablo",
+    "date": "2026-01-15",
+    "topic": "Explicar los proyecto de hidrógeno verde en el norte del País."
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "lobbyist_id": "lobbyist_caceres_araneda_marisol_alejandra",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "lobbyist_name": "caceres araneda marisol alejandra",
+    "date": "2026-01-20",
+    "topic": "Proyecto de Ley que traslada Gendarmería al Ministerio de Seguridad Pública"
+  },
+  {
+    "senator_id": "senator_ossandón_irarrázabal_manuel_josé",
+    "lobbyist_id": "lobbyist_castro_gomez_andrea",
+    "senator_name": "Ossandón Irarrázabal, Manuel José",
+    "lobbyist_name": "castro gomez andrea",
+    "date": "2026-01-20",
+    "topic": "Proyecto de Ley que traslada Gendarmería al Ministerio de Seguridad Pública"
+  },
+  {
+    "senator_id": "senator_garcía_ruminot_josé",
+    "lobbyist_id": "lobbyist_cornejo_rojas_pablo",
+    "senator_name": "García Ruminot, José",
+    "lobbyist_name": "cornejo rojas pablo",
+    "date": "2026-01-13",
+    "topic": "Proyecto de ley sala cuna"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "lobbyist_id": "lobbyist_monje_parada_tamara_andrea",
+    "senator_name": "Rincón González, Ximena",
+    "lobbyist_name": "monje parada tamara andrea",
+    "date": "2026-01-09",
+    "topic": "Reunión con Fiscal Regional del Maule, Julio Contardo Escobar; por caso de estafas habitacionales en el que participa la Senadora y el Fiscal acompañado de sus equipos."
+  },
+  {
+    "senator_id": "senator_salas_amaya_andrés_horacio",
+    "lobbyist_id": "lobbyist_montes_mery_juan_pablo",
+    "senator_name": "Salas Amaya, Andrés Horacio",
+    "lobbyist_name": "montes mery juan pablo",
+    "date": "2026-01-26",
+    "topic": "Presentación de Propuesta Inmobiliaria."
+  },
+  {
+    "senator_id": "senator_salas_amaya_andrés_horacio",
+    "lobbyist_id": "lobbyist_rivas_rubilar_hebert_eduardo",
+    "senator_name": "Salas Amaya, Andrés Horacio",
+    "lobbyist_name": "rivas rubilar hebert eduardo",
+    "date": "2026-01-26",
+    "topic": "Presentación de Propuesta Inmobiliaria."
+  },
+  {
+    "senator_id": "senator_vodanovic_rojas_paulina",
+    "lobbyist_id": "lobbyist_robles_anselme_andrès_eduardo",
+    "senator_name": "Vodanovic Rojas, Paulina",
+    "lobbyist_name": "robles anselme andrès eduardo",
+    "date": "2026-01-13",
+    "topic": "contaminacion Lago Vichuquen"
+  },
+  {
+    "senator_id": "senator_salas_amaya_andrés_horacio",
+    "lobbyist_id": "lobbyist_sainz_ramon",
+    "senator_name": "Salas Amaya, Andrés Horacio",
+    "lobbyist_name": "sainz ramon",
+    "date": "2026-01-26",
+    "topic": "Presentación de Propuesta Inmobiliaria."
+  },
+  {
+    "senator_id": "senator_salas_amaya_andrés_horacio",
+    "lobbyist_id": "lobbyist_salas_amaya_andrés",
+    "senator_name": "Salas Amaya, Andrés Horacio",
+    "lobbyist_name": "salas amaya andrés",
+    "date": "2026-01-26",
+    "topic": "Presentación de Propuesta Inmobiliaria."
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "lobbyist_id": "lobbyist_santelices_valenzuela_iván",
+    "senator_name": "Rincón González, Ximena",
+    "lobbyist_name": "santelices valenzuela iván",
+    "date": "2026-01-09",
+    "topic": "Reunión con Fiscal Regional del Maule, Julio Contardo Escobar; por caso de estafas habitacionales en el que participa la Senadora y el Fiscal acompañado de sus equipos."
+  },
+  {
+    "senator_id": "senator_vodanovic_rojas_paulina",
+    "lobbyist_id": "lobbyist_sepùlveda_villarroel_juan_leopoldo",
+    "senator_name": "Vodanovic Rojas, Paulina",
+    "lobbyist_name": "sepùlveda villarroel juan leopoldo",
+    "date": "2026-01-13",
+    "topic": "contaminacion Lago Vichuquen"
+  },
+  {
+    "senator_id": "senator_gatica_bertin_maría_josé",
+    "lobbyist_id": "lobbyist_vargas_rodrigo",
+    "senator_name": "Gatica Bertin, María José",
+    "lobbyist_name": "vargas rodrigo",
+    "date": "2026-01-19",
+    "topic": "rReformulación de la ley de plantas municipales y las modificaciones propuestas para mejorar las condiciones laborales de los funcionarios municipales"
+  }
+]

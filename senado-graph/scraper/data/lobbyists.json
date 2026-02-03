@@ -1,0 +1,130 @@
+[
+  {
+    "id": "lobbyist_aguirre_aguilar_kenis",
+    "name": "Aguirre Aguilar, Kenis",
+    "type": "organization",
+    "industry": "energy",
+    "registration_date": "12/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-12 con Galilea Vial, Rodrigo)"
+  },
+  {
+    "id": "lobbyist_bello_michelle_paz",
+    "name": "Bello, Michelle Paz",
+    "type": "organization",
+    "industry": "labor",
+    "registration_date": "06/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-06 con Ossandón Irarrázabal, Manuel José)"
+  },
+  {
+    "id": "lobbyist_errazuriz_sebastian",
+    "name": "Errazuriz, Sebastian",
+    "type": "organization",
+    "industry": "labor",
+    "registration_date": "06/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-06 con Ossandón Irarrázabal, Manuel José)"
+  },
+  {
+    "id": "lobbyist_hojman_acelovici_pablo",
+    "name": "Hojman Acelovici, Pablo",
+    "type": "organization",
+    "industry": "energy",
+    "registration_date": "15/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-15 con Rincón González, Ximena)"
+  },
+  {
+    "id": "lobbyist_caceres_araneda_marisol_alejandra",
+    "name": "Caceres Araneda, Marisol Alejandra",
+    "type": "organization",
+    "industry": "justice",
+    "registration_date": "20/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-20 con Ossandón Irarrázabal, Manuel José)"
+  },
+  {
+    "id": "lobbyist_castro_gomez_andrea",
+    "name": "Castro Gomez, Andrea",
+    "type": "organization",
+    "industry": "justice",
+    "registration_date": "20/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-20 con Ossandón Irarrázabal, Manuel José)"
+  },
+  {
+    "id": "lobbyist_cornejo_rojas_pablo",
+    "name": "Cornejo Rojas, Pablo",
+    "type": "organization",
+    "industry": "justice",
+    "registration_date": "13/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-13 con García Ruminot, José)"
+  },
+  {
+    "id": "lobbyist_monje_parada_tamara_andrea",
+    "name": "Monje Parada, Tamara Andrea",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "09/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-09 con Rincón González, Ximena)"
+  },
+  {
+    "id": "lobbyist_montes_mery_juan_pablo",
+    "name": "Montes Mery, Juan Pablo",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "26/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-26 con Salas Amaya, Andrés Horacio)"
+  },
+  {
+    "id": "lobbyist_rivas_rubilar_hebert_eduardo",
+    "name": "Rivas Rubilar, Hebert Eduardo",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "26/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-26 con Salas Amaya, Andrés Horacio)"
+  },
+  {
+    "id": "lobbyist_robles_anselme_andrès_eduardo",
+    "name": "Robles Anselme, Andrès Eduardo",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "13/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-13 con Vodanovic Rojas, Paulina)"
+  },
+  {
+    "id": "lobbyist_sainz_ramon",
+    "name": "Sainz, Ramon",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "26/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-26 con Salas Amaya, Andrés Horacio)"
+  },
+  {
+    "id": "lobbyist_salas_amaya_andrés",
+    "name": "Salas Amaya, Andrés",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "26/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-26 con Salas Amaya, Andrés Horacio)"
+  },
+  {
+    "id": "lobbyist_santelices_valenzuela_iván",
+    "name": "Santelices Valenzuela, Iván",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "09/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-09 con Rincón González, Ximena)"
+  },
+  {
+    "id": "lobbyist_sepùlveda_villarroel_juan_leopoldo",
+    "name": "Sepùlveda Villarroel, Juan Leopoldo",
+    "type": "organization",
+    "industry": "other",
+    "registration_date": "13/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-13 con Vodanovic Rojas, Paulina)"
+  },
+  {
+    "id": "lobbyist_vargas_rodrigo",
+    "name": "Vargas, Rodrigo",
+    "type": "organization",
+    "industry": "labor",
+    "registration_date": "19/01/2026",
+    "origin": "Inscripción automática (Reunión realizada el 2026-01-19 con Gatica Bertin, María José)"
+  }
+]

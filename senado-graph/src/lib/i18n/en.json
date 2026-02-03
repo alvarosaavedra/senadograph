@@ -17,7 +17,32 @@
     "topic": "Topic",
     "activeOnly": "Active Only",
     "apply": "Apply",
-    "clear": "Clear"
+    "clear": "Clear",
+    "presets": {
+      "title": "Presets",
+      "select": "Select preset",
+      "reset": "Reset to default"
+    },
+    "polarization": {
+      "name": "Partisan Polarization",
+      "description": "Visualize how parties vote differently and identify party boundaries"
+    },
+    "cross-party": {
+      "name": "Cross-Party Allies",
+      "description": "Find senators who collaborate across party lines despite different affiliations"
+    },
+    "power-brokers": {
+      "name": "Power Brokers",
+      "description": "Identify most influential senators through authored laws, committees, and connections"
+    },
+    "industry-influence": {
+      "name": "Industry Influence",
+      "description": "Reveal which industries/lobbyists influence which senators"
+    },
+    "legislative-collaboration": {
+      "name": "Legislative Collaboration",
+      "description": "Show collaboration patterns through law authorship and voting patterns"
+    }
   },
   "search": {
     "placeholder": "Search senators, laws, parties...",

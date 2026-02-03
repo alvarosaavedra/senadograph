@@ -1,0 +1,98 @@
+[
+  {
+    "id": "party_independiente",
+    "name": "Independiente",
+    "nameEn": null,
+    "shortName": "Independiente",
+    "color": "#757575",
+    "ideology": null
+  },
+  {
+    "id": "party_ppd",
+    "name": "P.P.D.",
+    "nameEn": null,
+    "shortName": "P.P.D.",
+    "color": "#ff6600",
+    "ideology": null
+  },
+  {
+    "id": "party_ps",
+    "name": "P.S.",
+    "nameEn": null,
+    "shortName": "P.S.",
+    "color": "#e4002b",
+    "ideology": null
+  },
+  {
+    "id": "party_social_cristiano",
+    "name": "Social Cristiano",
+    "nameEn": null,
+    "shortName": "Social Cristiano",
+    "color": "#7b1fa2",
+    "ideology": null
+  },
+  {
+    "id": "party_rn",
+    "name": "R.N.",
+    "nameEn": null,
+    "shortName": "R.N.",
+    "color": "#0054a6",
+    "ideology": null
+  },
+  {
+    "id": "party_udi",
+    "name": "U.D.I.",
+    "nameEn": null,
+    "shortName": "U.D.I.",
+    "color": "#1a237e",
+    "ideology": null
+  },
+  {
+    "id": "party_evópoli",
+    "name": "Evópoli",
+    "nameEn": null,
+    "shortName": "Evópoli",
+    "color": "#ffc107",
+    "ideology": null
+  },
+  {
+    "id": "party_pdc",
+    "name": "P.D.C.",
+    "nameEn": null,
+    "shortName": "P.D.C.",
+    "color": "#0066cc",
+    "ideology": null
+  },
+  {
+    "id": "party_revolución_democrática",
+    "name": "Revolución Democrática",
+    "nameEn": null,
+    "shortName": "Revolución Democrática",
+    "color": "#388e3c",
+    "ideology": null
+  },
+  {
+    "id": "party_pc",
+    "name": "P.C",
+    "nameEn": null,
+    "shortName": "P.C",
+    "color": "#d32f2f",
+    "ideology": null
+  },
+  {
+    "id": "party_demócratas",
+    "name": "Demócratas",
+    "nameEn": null,
+    "shortName": "Demócratas",
+    "color": "#1976d2",
+    "ideology": null
+  },
+  {
+    "id": "party_frevs",
+    "name": "F.R.E.V.S.",
+    "nameEn": null,
+    "shortName": "F.R.E.V.S.",
+    "color": "#f57c00",
+    "ideology": null
+  }
+]

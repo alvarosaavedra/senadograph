@@ -134,3 +134,12 @@ export interface GraphFilters {
   };
   lobbyistTypes?: LobbyistType[];
 }
+
+export interface FilterPreset {
+  id: string;
+  nameEs: string;
+  nameEn: string;
+  descriptionEs: string;
+  descriptionEn: string;
+  filters: GraphFilters;
+}

@@ -17,7 +17,32 @@
     "topic": "Tema",
     "activeOnly": "Solo Activos",
     "apply": "Aplicar",
-    "clear": "Limpiar"
+    "clear": "Limpiar",
+    "presets": {
+      "title": "Plantillas",
+      "select": "Seleccionar plantilla",
+      "reset": "Restablecer por defecto"
+    },
+    "polarization": {
+      "name": "Polarización Partidista",
+      "description": "Visualice cómo los partidos votan de manera diferente e identifique los límites entre partidos"
+    },
+    "cross-party": {
+      "name": "Alianzas Transpartidistas",
+      "description": "Encuentre senadores que colaboran a través de las líneas partidistas a pesar de diferentes afiliaciones"
+    },
+    "power-brokers": {
+      "name": "Mediadores de Poder",
+      "description": "Identifique los senadores más influyentes a través de leyes autorizadas, comités y conexiones"
+    },
+    "industry-influence": {
+      "name": "Influencia Industrial",
+      "description": "Revele qué industrias/lobistas influyen en qué senadores"
+    },
+    "legislative-collaboration": {
+      "name": "Colaboración Legislativa",
+      "description": "Muestre patrones de colaboración a través de la autoría de leyes y patrones de votación"
+    }
   },
   "search": {
     "placeholder": "Buscar senadores, leyes, partidos...",

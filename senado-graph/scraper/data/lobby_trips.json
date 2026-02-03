@@ -1,0 +1,222 @@
+[
+  {
+    "senator_id": "senator_sánchez_reyes_javier_gonzalo",
+    "lobbyist_id": "lobbyist_california_council_of_land_trusts",
+    "senator_name": "Sánchez Reyes, Javier Gonzalo",
+    "lobbyist_name": "California Council of Land Trusts",
+    "destination": "San Francisco, California, Estados Unidos",
+    "purpose": "Chile California Conservation Conference",
+    "cost": 933120,
+    "funded_by": "California Council of Land Trusts",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "lobbyist_id": "lobbyist_california_council_of_lands_trusts",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "lobbyist_name": "California Council of Lands Trusts",
+    "destination": "San Francisco, California, Estados Unidos",
+    "purpose": "Chile California Conservation Conference",
+    "cost": 933120,
+    "funded_by": "California Council of Lands Trusts",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_guillier_álvarez_alejandro",
+    "lobbyist_id": "lobbyist_presidenta_confederación",
+    "senator_name": "Guillier Álvarez, Alejandro",
+    "lobbyist_name": "Presidenta Confederación",
+    "destination": "Sao Paulo, Brasil",
+    "purpose": "21° Conferencia Nacional Dos Bancari@s",
+    "cost": 0,
+    "funded_by": "Presidenta Confederación",
+    "invited_by": "Presidenta de la Confederación Nacional de Trabajadores del Ramo Financiero - CUT, de Brasil"
+  },
+  {
+    "senator_id": "senator_zaldívar_larraín_andrés",
+    "lobbyist_id": "lobbyist_universidad_católica_andres_bello_instituto_de_est",
+    "senator_name": "Zaldívar Larraín, Andrés",
+    "lobbyist_name": "Universidad Católica Andres Bello, Instituto de Estudios superiores y de Administración;Instituto de estudios Parlamentarios Fermin Toro;  Unión Europea",
+    "destination": "Caracas , Venezuela",
+    "purpose": "Seminario, sobre Programa de formación para Legisladores",
+    "cost": 0,
+    "funded_by": "Universidad Católica Andres Bello, Instituto de Estudios superiores y de Administración;Instituto de estudios Parlamentarios Fermin Toro;  Unión Europea",
+    "invited_by": "Unión Europea"
+  },
+  {
+    "senator_id": "senator_allende_bussi_isabel",
+    "lobbyist_id": "lobbyist_fundación_once_para_la_solidaridad_con_personas_ci",
+    "senator_name": "Allende Bussi, Isabel",
+    "lobbyist_name": "Fundación ONCE para la Solidaridad con Personas Ciegas de América Latina",
+    "destination": "Madrid - España",
+    "purpose": "Reunión ordinaria de Patronato",
+    "cost": 3222556,
+    "funded_by": "Fundación ONCE para la Solidaridad con Personas Ciegas de América Latina",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "lobbyist_id": "lobbyist_gran_asamblea_nacional_de_turquia",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "lobbyist_name": "Gran Asamblea Nacional de Turquia",
+    "destination": "Estambul, Turquia",
+    "purpose": "Segunda Conferencia de la Asociación de Parlamentarios por Palestina",
+    "cost": 1297800,
+    "funded_by": "Gran Asamblea Nacional de Turquia",
+    "invited_by": "Liga de Parlamentarios por Jerusalen"
+  },
+  {
+    "senator_id": "senator_rincón_gonzález_ximena",
+    "lobbyist_id": "lobbyist_aerodromo_curicó",
+    "senator_name": "Rincón González, Ximena",
+    "lobbyist_name": "Aerodromo Curicó",
+    "destination": "Talca",
+    "purpose": "mostrar por dondé ira el By Pass",
+    "cost": 0,
+    "funded_by": "Aerodromo Curicó",
+    "invited_by": "Aerodromo Curicó"
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "lobbyist_id": "lobbyist_climate_parlament",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "lobbyist_name": "Climate Parlament",
+    "destination": "Lucerna, Suiza",
+    "purpose": "Foro Parlamentario Internacional sobre Energías Renovables",
+    "cost": 1517901,
+    "funded_by": "Climate Parlament",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_allende_bussi_isabel",
+    "lobbyist_id": "lobbyist_fundación_once_para_la_cooperación_e_inclusión_soc",
+    "senator_name": "Allende Bussi, Isabel",
+    "lobbyist_name": "Fundación ONCE para la Cooperación e Inclusión Social de Personas con Discapacidad",
+    "destination": "Madrid - España",
+    "purpose": "Reunión Patronato Fundación ONCE",
+    "cost": 4573525,
+    "funded_by": "Fundación ONCE para la Cooperación e Inclusión Social de Personas con Discapacidad",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "lobbyist_id": "lobbyist_partido_socialista_de_chile",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "lobbyist_name": "Partido Socialista de Chile",
+    "destination": "Madrid, España",
+    "purpose": "Elecciones del PSOE",
+    "cost": 747900,
+    "funded_by": "Partido Socialista de Chile",
+    "invited_by": "Partido Socialista de Chile"
+  },
+  {
+    "senator_id": "senator_coloma_correa_juan_antonio",
+    "lobbyist_id": "lobbyist_parlamento_de_marruecos",
+    "senator_name": "Coloma Correa, Juan Antonio",
+    "lobbyist_name": "Parlamento de Marruecos",
+    "destination": "Marruecos",
+    "purpose": "Conocer el funcionamiento del Poder Legislativo, del Gobierno y de la Comisión de Derechos Humanos en dicha Nación",
+    "cost": 0,
+    "funded_by": "Parlamento de Marruecos",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_huenchumilla_jaramillo_francisco",
+    "lobbyist_id": "lobbyist_consejo_episcopal_latonoamericano_comisión_pontifi",
+    "senator_name": "Huenchumilla Jaramillo, Francisco",
+    "lobbyist_name": "Consejo Episcopal Latonoamericano - Comisión Pontificia para América Latina",
+    "destination": "Asunción",
+    "purpose": "Encuentro de católicos con responsabilidades políticas al servicio a  los pueblos del Cono Sur Latinoamericano",
+    "cost": 0,
+    "funded_by": "Consejo Episcopal Latonoamericano - Comisión Pontificia para América Latina",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_guillier_álvarez_alejandro",
+    "lobbyist_id": "lobbyist_onu_medioambiente",
+    "senator_name": "Guillier Álvarez, Alejandro",
+    "lobbyist_name": "ONU Medioambiente",
+    "destination": "Buenos Aires, Argentina",
+    "purpose": "ONU Medioambiente",
+    "cost": 0,
+    "funded_by": "ONU Medioambiente",
+    "invited_by": "ONU Medioambiente, Oficina Coordinación Cambio Climático"
+  },
+  {
+    "senator_id": "senator_guillier_álvarez_alejandro",
+    "lobbyist_id": "lobbyist_onu_medio_ambienteoficina_para_américa_latina_y_el",
+    "senator_name": "Guillier Álvarez, Alejandro",
+    "lobbyist_name": "ONU MEDIO AMBIENTEOficina para América Latina y el Caribe",
+    "destination": "Costa Rica, Centro de Convenciones de Costa Rica, ubicado en San José",
+    "purpose": "Panelista en evento",
+    "cost": 0,
+    "funded_by": "ONU MEDIO AMBIENTEOficina para América Latina y el Caribe",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_provoste_campillay_yasna",
+    "lobbyist_id": "lobbyist_comunidad_judia_de_chile",
+    "senator_name": "Provoste Campillay, Yasna",
+    "lobbyist_name": "COMUNIDAD JUDIA DE CHILE",
+    "destination": "ISRAEL",
+    "purpose": "Gira de trabajo en la cual, se pueda reforzar y estrechar vinculos y relaciones bilaterales de cooperación entre Chile e Israel, temas claves de interés de Chiles, como el uso del agua, la agricultura, la tecnología y el emprendimiento y mostrar la complejidad y la diversidad de la sociedad israeli y de Medio Oriente",
+    "cost": 8495375,
+    "funded_by": "COMUNIDAD JUDIA DE CHILE",
+    "invited_by": "COMUNIDAD JUDIA DE CHILE"
+  },
+  {
+    "senator_id": "senator_macaya_danus_javier",
+    "lobbyist_id": "lobbyist_javier_macaya_danus",
+    "senator_name": "Macaya Danus, Javier",
+    "lobbyist_name": "JAVIER MACAYA DANUS",
+    "destination": "ISRAEL",
+    "purpose": "REUNIONES DE TRABAJO BILATERAL COOPERACION CHILE E ISRAEL COMO INTEGRANTE GRUPO CHILENO ISRAELI",
+    "cost": 0,
+    "funded_by": "JAVIER MACAYA DANUS",
+    "invited_by": "COMUNIDAD JUDIA DE CHILE"
+  },
+  {
+    "senator_id": "senator_keitel_bianchi_sebastián",
+    "lobbyist_id": "lobbyist_sebastián_keitel_bianchi",
+    "senator_name": "Keitel Bianchi, Sebastián",
+    "lobbyist_name": "Sebastián Keitel Bianchi",
+    "destination": "Glasgow, Gran Bretaña",
+    "purpose": "Asistir al Mundial de Atletismo Bajo Techo",
+    "cost": 0,
+    "funded_by": "Sebastián Keitel Bianchi",
+    "invited_by": "FEDERACIÓN ATLÉTICA DE CHILE"
+  },
+  {
+    "senator_id": "senator_de_urresti_longton_alfonso",
+    "lobbyist_id": "lobbyist_climate_parliament",
+    "senator_name": "De Urresti Longton, Alfonso",
+    "lobbyist_name": "Climate Parliament",
+    "destination": "Estambul, Turquia",
+    "purpose": "Dialogo sobre Inversiones Verdes",
+    "cost": 3900000,
+    "funded_by": "Climate Parliament",
+    "invited_by": ""
+  },
+  {
+    "senator_id": "senator_pugh_olavarría_kenneth",
+    "lobbyist_id": "lobbyist_alianza_digi_américas",
+    "senator_name": "Pugh Olavarría, Kenneth",
+    "lobbyist_name": "Alianza Digi Américas",
+    "destination": "Brasil",
+    "purpose": "Cumbre Latam Cisso 2025 Ciberseguridad",
+    "cost": 0,
+    "funded_by": "Alianza Digi Américas",
+    "invited_by": "Alianza Digi Américas"
+  },
+  {
+    "senator_id": "senator_guzmán_uribe_raúl",
+    "lobbyist_id": "lobbyist_senado_de_la_republica",
+    "senator_name": "Guzmán Uribe, Raúl",
+    "lobbyist_name": "SENADO DE LA REPUBLICA",
+    "destination": "Washington, Estados Unidos",
+    "purpose": "LegisTech Seminar 3rd Edition, Inteligencia Artificial e Innovación en los parlamentos",
+    "cost": 2207394,
+    "funded_by": "SENADO DE LA REPUBLICA",
+    "invited_by": ""
+  }
+]
