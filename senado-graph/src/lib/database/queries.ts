@@ -51,7 +51,14 @@ export async function getAllSenators(): Promise<Senator[]> {
       } AS senator
     `);
 
-    return result.records.map((record) => record.get("senator"));
+    const senators = result.records.map((record) => record.get("senator"));
+
+    if (senators.length === 0) {
+      console.warn("Database returned no senators, falling back to mock data");
+      return getMockSenators();
+    }
+
+    return senators;
   } finally {
     await session.close();
   }
@@ -118,7 +125,14 @@ export async function getAllParties(): Promise<Party[]> {
       } AS party
     `);
 
-    return result.records.map((record) => record.get("party"));
+    const parties = result.records.map((record) => record.get("party"));
+
+    if (parties.length === 0) {
+      console.warn("Database returned no parties, falling back to mock data");
+      return getMockParties();
+    }
+
+    return parties;
   } finally {
     await session.close();
   }
@@ -142,7 +156,14 @@ export async function getAllCommittees(): Promise<Committee[]> {
       } AS committee
     `);
 
-    return result.records.map((record) => record.get("committee"));
+    const committees = result.records.map((record) => record.get("committee"));
+
+    if (committees.length === 0) {
+      console.warn("Database returned no committees, falling back to mock data");
+      return getMockCommittees();
+    }
+
+    return committees;
   } finally {
     await session.close();
   }
@@ -338,6 +359,12 @@ export async function getInitialGraphData(
       ...committeeNodes,
       ...lobbyistNodes,
     ];
+
+    // If database is empty (no nodes), fall back to mock data
+    if (nodes.length === 0) {
+      console.warn("Graph: Database returned no data, falling back to mock data");
+      return getMockGraphData();
+    }
 
     let edgeIndex = 0;
 
