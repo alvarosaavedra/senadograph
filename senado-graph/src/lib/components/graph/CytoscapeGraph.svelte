@@ -176,7 +176,23 @@
                   'curve-style': 'bezier',
                   'opacity': 0.5,
                   'transition-property': 'width, opacity, line-color',
-                  'transition-duration': 200
+                  'transition-duration': 200,
+                  'label': '',
+                  'font-size': '10px',
+                  'text-background-color': '#ffffff',
+                  'text-background-opacity': 0.8,
+                  'text-background-padding': '2px',
+                  'text-margin-y': -10
+                }
+              },
+              {
+                selector: 'edge:hover',
+                style: {
+                  'width': 3,
+                  'opacity': 0.9,
+                  'label': 'data(type)',
+                  'color': '#374151',
+                  'font-weight': 'bold'
                 }
               },
               {
@@ -190,6 +206,14 @@
                 }
               },
               {
+                selector: 'edge[type="authored"]:hover',
+                style: {
+                  'width': 4,
+                  'opacity': 1,
+                  'line-color': '#2563eb'
+                }
+              },
+              {
                 selector: 'edge[type="member_of"]',
                 style: {
                   'width': 1.5,
@@ -199,11 +223,27 @@
                 }
               },
               {
+                selector: 'edge[type="member_of"]:hover',
+                style: {
+                  'width': 3,
+                  'opacity': 1,
+                  'line-color': '#7c3aed'
+                }
+              },
+              {
                 selector: 'edge[type="belongs_to"]',
                 style: {
                   'width': 1,
                   'line-color': '#94a3b8',
                   'opacity': 0.4
+                }
+              },
+              {
+                selector: 'edge[type="belongs_to"]:hover',
+                style: {
+                  'width': 2.5,
+                  'opacity': 0.8,
+                  'line-color': '#64748b'
                 }
               },
               {
@@ -216,11 +256,27 @@
                 }
               },
               {
+                selector: 'edge[type="lobby"]:hover',
+                style: {
+                  'width': 3.5,
+                  'opacity': 1,
+                  'line-color': '#ea580c'
+                }
+              },
+              {
                 selector: 'edge[type="voted_same"]',
                 style: {
                   'width': 2.5,
                   'line-color': '#10b981',
                   'opacity': 0.5
+                }
+              },
+              {
+                selector: 'edge[type="voted_same"]:hover',
+                style: {
+                  'width': 4,
+                  'opacity': 1,
+                  'line-color': '#059669'
                 }
               },
               {
@@ -290,13 +346,13 @@
       animationEasing: 'ease-out',
       fit: true,
       padding: 50,
-      nodeRepulsion: 8000,
-      idealEdgeLength: 100,
+      nodeRepulsion: 10000,
+      idealEdgeLength: 150,
       edgeElasticity: 0.45,
       gravity: 0.1,
       numIter: 2500,
       randomize: true,
-      componentSpacing: 150,
+      componentSpacing: 200,
       nestingFactor: 0.1,
       nodeOverlap: 10,
       initialTemp: 200,
