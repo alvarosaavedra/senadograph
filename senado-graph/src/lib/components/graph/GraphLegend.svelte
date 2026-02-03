@@ -167,7 +167,7 @@
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-0.5 bg-purple-500 border-t border-dashed"></div>
+              <div class="w-8 h-0.5 bg-purple-500" style="background: repeating-linear-gradient(90deg, #8b5cf6, #8b5cf6 4px, transparent 4px, transparent 6px);"></div>
               <span>Member of</span>
             </div>
             {#if edgeCounts.member_of}
@@ -189,7 +189,7 @@
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-0.5 bg-orange-500 border-t border-dotted"></div>
+              <div class="w-8 h-0.5 bg-orange-500" style="background: repeating-linear-gradient(90deg, #f97316, #f97316 2px, transparent 2px, transparent 4px);"></div>
               <span>Lobby</span>
             </div>
             {#if edgeCounts.lobby}
