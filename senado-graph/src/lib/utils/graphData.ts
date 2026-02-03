@@ -458,8 +458,7 @@ export async function getFilteredGraphData(
 
     // Filter edges to only include those where both source and target exist
     const validEdges = edges.filter(
-      (edge) =>
-        nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
+      (edge) => nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
     );
 
     console.log(

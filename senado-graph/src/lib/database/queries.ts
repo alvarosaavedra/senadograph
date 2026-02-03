@@ -159,7 +159,9 @@ export async function getAllCommittees(): Promise<Committee[]> {
     const committees = result.records.map((record) => record.get("committee"));
 
     if (committees.length === 0) {
-      console.warn("Database returned no committees, falling back to mock data");
+      console.warn(
+        "Database returned no committees, falling back to mock data",
+      );
       return getMockCommittees();
     }
 
@@ -362,7 +364,9 @@ export async function getInitialGraphData(
 
     // If database is empty (no nodes), fall back to mock data
     if (nodes.length === 0) {
-      console.warn("Graph: Database returned no data, falling back to mock data");
+      console.warn(
+        "Graph: Database returned no data, falling back to mock data",
+      );
       return getMockGraphData();
     }
 
@@ -438,8 +442,7 @@ export async function getInitialGraphData(
 
     // Filter edges to only include those where both source and target exist
     const validEdges = edges.filter(
-      (edge) =>
-        nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
+      (edge) => nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
     );
 
     console.log(

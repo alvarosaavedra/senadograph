@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GraphFilters, NodeType, LawStatus, LobbyistType, EdgeType } from '$lib/types';
   import PresetSelector from './PresetSelector.svelte';
+  import { applyPreset } from '$lib/config/presets';
 
   export let parties: { id: string; name: string; color?: string }[] = [];
   export let committees: { id: string; name: string }[] = [];
@@ -92,7 +93,6 @@
   }
 
   function handleApplyPreset(presetId: string) {
-    const { applyPreset } = import('$lib/config/presets');
     const presetFilters = applyPreset(presetId);
     if (presetFilters) {
       onApplyFilters(presetFilters);
