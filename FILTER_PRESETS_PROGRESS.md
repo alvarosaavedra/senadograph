@@ -128,6 +128,29 @@ Implementing a preset system for graph filters to enable users to quickly find i
 
 ---
 
+## UI Improvements
+
+After initial implementation, UI was enhanced for better visual appeal and usability:
+
+### Design Changes
+- **Card-based Layout**: Replaced dropdown with clickable preset cards
+- **Icons**: Added emoji icons for each preset:
+  - ⚡ Partisan Polarization
+  - 🤝 Cross-Party Allies
+  - 🏛️ Power Brokers
+  - 💼 Industry Influence
+  - 📜 Legislative Collaboration
+- **Inline Descriptions**: Show descriptions directly on preset cards
+- **Visual Container**: Added gradient background and border to presets section
+- **Interactive States**: Better hover effects, active states, and transitions
+- **Apply Button**: Enhanced styling with check icon and hover effects
+
+### Commits
+- `feat: Improve preset UI design with card-based layout`
+- `feat: Add visual container for presets section`
+
+---
+
 ## Implementation Summary
 
 All 5 phases completed successfully:
