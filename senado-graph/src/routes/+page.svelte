@@ -35,14 +35,20 @@
        currentGraphData = graphData;
      }
 
-  $: partyBreakdown = parties.map(p => ({
-    name: p.shortName,
-    count: senators.filter(s => s.party === p.shortName).length,
-    color: p.color
-  })).sort((a, b) => b.count - a.count);
+  $: partyBreakdown = (() => {
+    const dataToUse = currentGraphData || graphData;
+    const visibleParties = dataToUse?.nodes?.filter(n => n.data.type === 'party') || [];
+    const visibleSenators = dataToUse?.nodes?.filter(n => n.data.type === 'senator') || [];
+    return visibleParties.map(p => ({
+      name: p.data.label,
+      count: visibleSenators.filter(s => s.data.party === p.data.label).length,
+      color: p.data.color
+    })).filter(p => p.count > 0).sort((a, b) => b.count - a.count);
+  })();
 
    $: lawStatusBreakdown = (() => {
-     const laws = graphData?.nodes?.filter(n => n.data.type === 'law') || [];
+     const dataToUse = currentGraphData || graphData;
+     const laws = dataToUse?.nodes?.filter(n => n.data.type === 'law') || [];
      const statusCounts = { approved: 0, in_discussion: 0, rejected: 0, withdrawn: 0 };
      laws.forEach(law => {
        const status = law.data.status;
@@ -55,7 +61,7 @@
        { status: 'in_discussion', count: statusCounts.in_discussion },
        { status: 'rejected', count: statusCounts.rejected },
        { status: 'withdrawn', count: statusCounts.withdrawn }
-     ];
+     ].filter(s => s.count > 0);
    })();
 
    $: nodeCounts = {
@@ -215,10 +221,10 @@
 
  <!-- Stats Cards -->
 <StatsCards
-   totalSenators={senators.length}
-   totalParties={parties.length}
-   totalLaws={graphData?.nodes?.filter(n => n.data.type === 'law').length || 0}
-   totalCommittees={committees.length}
+   totalSenators={nodeCounts.senators}
+   totalParties={nodeCounts.parties}
+   totalLaws={nodeCounts.laws}
+   totalCommittees={nodeCounts.committees}
    {partyBreakdown}
    {lawStatusBreakdown}
  />
