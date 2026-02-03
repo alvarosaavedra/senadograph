@@ -52,6 +52,80 @@ class SenateScraper:
         self.initial_backoff = initial_backoff
         self.max_backoff = max_backoff
 
+    def _is_within_days(self, date_str: str, days: int = 30) -> bool:
+        """Check if a date string is within the last N days from today.
+
+        Args:
+            date_str: Date string in various formats (DD/MM/YYYY, YYYY-MM-DD, etc.)
+            days: Number of days to look back (default 30)
+
+        Returns:
+            True if date is within the last N days, False if older or parsing fails
+        """
+        from datetime import datetime, timedelta
+
+        if not date_str or not date_str.strip():
+            return True  # Include if no date provided
+
+        date_str = date_str.strip()
+        parsed_date = None
+
+        # Try various date formats
+        formats_to_try = [
+            "%d/%m/%Y",  # DD/MM/YYYY
+            "%Y-%m-%d",  # YYYY-MM-DD
+            "%d-%m-%Y",  # DD-MM-YYYY
+            "%d.%m.%Y",  # DD.MM.YYYY
+            "%m/%d/%Y",  # MM/DD/YYYY
+            "%Y/%m/%d",  # YYYY/MM/DD
+        ]
+
+        for fmt in formats_to_try:
+            try:
+                parsed_date = datetime.strptime(date_str, fmt)
+                break
+            except ValueError:
+                continue
+
+        # If none of the formats worked, try extracting date with regex
+        if parsed_date is None:
+            import re
+
+            # Try to find date patterns like 25/01/2024 or 2024-01-25
+            patterns = [
+                r"(\d{2})[/-](\d{2})[/-](\d{4})",  # DD/MM/YYYY or DD-MM-YYYY
+                r"(\d{4})[/-](\d{2})[/-](\d{2})",  # YYYY-MM-DD or YYYY/MM/DD
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, date_str)
+                if match:
+                    try:
+                        if len(match.group(3)) == 4:  # DD/MM/YYYY
+                            parsed_date = datetime(
+                                int(match.group(3)),
+                                int(match.group(2)),
+                                int(match.group(1)),
+                            )
+                        else:  # YYYY/MM/DD
+                            parsed_date = datetime(
+                                int(match.group(1)),
+                                int(match.group(2)),
+                                int(match.group(3)),
+                            )
+                        break
+                    except ValueError:
+                        continue
+
+        # If we still couldn't parse, include the data by default
+        if parsed_date is None:
+            return True
+
+        # Calculate the cutoff date
+        cutoff_date = datetime.now() - timedelta(days=days)
+
+        # Return True if date is within range (not older than cutoff)
+        return parsed_date >= cutoff_date
+
     def _get(self, url: str) -> Optional[BeautifulSoup]:
         """Make a GET request and return BeautifulSoup object."""
         return self._get_with_retry(url, return_json=False)
@@ -570,16 +644,24 @@ class SenateScraper:
         return "absent"
 
     def scrape_lobbyists(
-        self, years: Optional[List[int]] = None
+        self, years: Optional[List[int]] = None, days: int = 30
     ) -> tuple[List[dict], List[dict]]:
-        """Scrape lobbyist registrations and meetings."""
+        """Scrape lobbyist registrations and meetings.
+
+        Args:
+            years: List of years to scrape (if None, only current year is used)
+            days: Only include data from the last N days (default 30)
+        """
         lobbyists = []
         meetings = []
+        from datetime import datetime
 
+        # Only use current year for date-based filtering
+        current_year = datetime.now().year
         if years is None:
-            years = [2024, 2025, 2026]
+            years = [current_year]
 
-        print(f"Scraping lobbyist data for years: {years}...")
+        print(f"Scraping lobbyist data for years: {years}, last {days} days only...")
 
         for year in years:
             url = f"{LOBBY_LOBBYISTS_URL}&ano={year}"
@@ -615,6 +697,10 @@ class SenateScraper:
                         origin = tds[2].get_text(strip=True)
                         activity = tds[3].get_text(strip=True)
 
+                        # Filter by registration date
+                        if not self._is_within_days(date, days):
+                            continue
+
                         lobbyist_id = f"lobbyist_{self._sanitize_id(name)}"
 
                         lobbyist = {
@@ -632,7 +718,10 @@ class SenateScraper:
                             meeting = self._parse_meeting_from_origin(
                                 lobbyist_id, origin, date, activity
                             )
-                            if meeting:
+                            # Filter meetings by meeting date
+                            if meeting and self._is_within_days(
+                                meeting.get("date", ""), days
+                            ):
                                 meetings.append(meeting)
 
             except Exception as e:
@@ -641,7 +730,9 @@ class SenateScraper:
 
             time.sleep(REQUEST_DELAY)
 
-        print(f"Found {len(lobbyists)} lobbyists and {len(meetings)} meetings")
+        print(
+            f"Found {len(lobbyists)} lobbyists and {len(meetings)} meetings (last {days} days)"
+        )
         return lobbyists, meetings
 
     def _parse_meeting_from_origin(
@@ -696,11 +787,17 @@ class SenateScraper:
 
         return "other"
 
-    def scrape_trips(self) -> List[dict]:
-        """Scrape lobbyist-funded trips."""
+    def scrape_trips(self, days: int = 30) -> List[dict]:
+        """Scrape lobbyist-funded trips.
+
+        Args:
+            days: Only include trips from the last N days (default 30)
+                  Note: The trips table may not have a date column visible.
+                  If no date is found, trips are included by default.
+        """
         trips = []
 
-        print("Scraping lobbyist-funded trips...")
+        print(f"Scraping lobbyist-funded trips (last {days} days)...")
         soup = self._get(LOBBY_TRIPS_URL)
 
         if not soup:
@@ -711,6 +808,20 @@ class SenateScraper:
             if not table:
                 print("No trips table found")
                 return trips
+
+            # Check headers to find date column if it exists
+            thead = table.find("thead")
+            headers = []
+            date_column_index = -1
+            if thead:
+                header_cells = thead.find_all("th")
+                headers = [th.get_text(strip=True).lower() for th in header_cells]
+                for idx, header in enumerate(headers):
+                    if any(
+                        keyword in header for keyword in ["fecha", "date", "ingreso"]
+                    ):
+                        date_column_index = idx
+                        break
 
             tbody = table.find("tbody")
             if not tbody:
@@ -729,6 +840,12 @@ class SenateScraper:
                 cost_text = tds[3].get_text(strip=True)
                 funded_by = tds[4].get_text(strip=True)
                 invited_by = tds[5].get_text(strip=True)
+
+                # Check for date filtering if a date column was identified
+                if date_column_index >= 0 and date_column_index < len(tds):
+                    trip_date = tds[date_column_index].get_text(strip=True)
+                    if trip_date and not self._is_within_days(trip_date, days):
+                        continue
 
                 cost = self._parse_cost(cost_text)
                 senator_id = f"senator_{self._sanitize_id(senator_name)}"
@@ -751,14 +868,18 @@ class SenateScraper:
         except Exception as e:
             print(f"Error parsing trips table: {e}")
 
-        print(f"Found {len(trips)} trips")
+        print(f"Found {len(trips)} trips (last {days} days)")
         return trips
 
-    def scrape_donations(self) -> List[dict]:
-        """Scrape donations received by senators."""
+    def scrape_donations(self, days: int = 30) -> List[dict]:
+        """Scrape donations received by senators.
+
+        Args:
+            days: Only include donations from the last N days (default 30)
+        """
         donations = []
 
-        print("Scraping donations...")
+        print(f"Scraping donations (last {days} days)...")
         soup = self._get(LOBBY_DONATIONS_URL)
 
         if not soup:
@@ -787,6 +908,10 @@ class SenateScraper:
                 item = tds[3].get_text(strip=True)
                 donor = tds[4].get_text(strip=True)
 
+                # Filter by donation date
+                if not self._is_within_days(date, days):
+                    continue
+
                 senator_id = f"senator_{self._sanitize_id(senator_name)}"
                 lobbyist_id = f"lobbyist_{self._sanitize_id(donor)}"
 
@@ -806,7 +931,7 @@ class SenateScraper:
         except Exception as e:
             print(f"Error parsing donations table: {e}")
 
-        print(f"Found {len(donations)} donations")
+        print(f"Found {len(donations)} donations (last {days} days)")
         return donations
 
     def _parse_cost(self, cost_text: str) -> int:
@@ -848,11 +973,11 @@ def main():
     laws, authorships, votes = scraper.scrape_laws(days=30)
     print(f"Found {len(laws)} laws with {len(votes)} votes")
 
-    # Scrape lobby data
+    # Scrape lobby data (last 30 days only)
     print("\nScraping lobby data...")
-    lobbyists, meetings = scraper.scrape_lobbyists(years=[2024, 2025, 2026])
-    trips = scraper.scrape_trips()
-    donations = scraper.scrape_donations()
+    lobbyists, meetings = scraper.scrape_lobbyists(days=30)
+    trips = scraper.scrape_trips(days=30)
+    donations = scraper.scrape_donations(days=30)
 
     # Save to JSON files for inspection
     import json
