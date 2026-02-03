@@ -146,10 +146,10 @@
   }
 </script>
 
-<div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow relative">
+<div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow relative max-h-[85vh] flex flex-col">
   <button
     on:click={onClose}
-    class="absolute top-4 right-4 p-1 rounded-lg hover:bg-gray-100 transition-colors"
+    class="absolute top-4 right-4 p-1 rounded-lg hover:bg-gray-100 transition-colors z-10"
     aria-label="Close filters"
   >
     <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,11 +157,11 @@
     </svg>
   </button>
 
-  <h3 class="text-xl font-bold gradient-text mb-6 pr-8">
+  <h3 class="text-xl font-bold gradient-text mb-4 pr-8 flex-shrink-0">
     Filters
   </h3>
 
-  <div class="space-y-5">
+  <div class="space-y-4 overflow-y-auto pr-2 flex-1">
     <!-- Entity Types -->
     <div>
       <span class="block text-sm font-medium text-gray-700 mb-3">
@@ -182,25 +182,24 @@
 
     <!-- Connection Types -->
     <div>
-      <span class="block text-sm font-medium text-gray-700 mb-3">
-        Show Connection Types
+      <span class="block text-sm font-medium text-gray-700 mb-2">
+        Connection Types
       </span>
-      <div class="space-y-3">
+      <div class="grid grid-cols-2 gap-2">
         {#each relationshipTypesConfig as config}
-          <div class="relative">
-            <button
-              on:click={() => toggleRelationshipType(config.type)}
-              class="w-full px-3 py-2 rounded-lg text-xs font-medium transition-all duration-300 border flex items-center gap-2"
-              class:authored={config.type === 'authored'}
-              style="background-color: {selectedRelationshipTypes.includes(config.type) ? config.color : 'transparent'}; color: {selectedRelationshipTypes.includes(config.type) ? 'white' : '#374151'}; border-color: {config.color}"
-            >
-              <span class="w-2 h-2 rounded-full" style="background-color: {selectedRelationshipTypes.includes(config.type) ? 'white' : config.color}"></span>
-              {config.label}
-            </button>
-            <span class="text-xs text-gray-500 mt-1 block pl-1">{config.description}</span>
-          </div>
+          <button
+            on:click={() => toggleRelationshipType(config.type)}
+            class="px-2 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border flex items-center gap-1.5"
+            class:authored={config.type === 'authored'}
+            style="background-color: {selectedRelationshipTypes.includes(config.type) ? config.color : 'transparent'}; color: {selectedRelationshipTypes.includes(config.type) ? 'white' : '#374151'}; border-color: {config.color}"
+            title={config.description}
+          >
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background-color: {selectedRelationshipTypes.includes(config.type) ? 'white' : config.color}"></span>
+            <span class="truncate">{config.label}</span>
+          </button>
         {/each}
       </div>
+      <p class="text-xs text-gray-500 mt-2 italic">Hover over buttons for descriptions</p>
     </div>
 
     <!-- Parties -->
