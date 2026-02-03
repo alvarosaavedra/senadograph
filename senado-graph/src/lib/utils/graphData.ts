@@ -353,6 +353,45 @@ export async function getFilteredGraphData(
       });
     }
 
+    // Get VOTED_ON edges (senator → law) - only if both entity types are enabled
+    if (
+      activeEdgeTypes.includes("voted_on") &&
+      entityTypes.includes("senator") &&
+      entityTypes.includes("law")
+    ) {
+      let votedOnQuery = `
+        MATCH (s:Senator)-[v:VOTED_ON]->(l:Law)
+        WHERE s.active = true
+      `;
+
+      // Use party shortName for filtering
+      if (filters.parties && filters.parties.length > 0) {
+        votedOnQuery += ` AND s.party IN $parties`;
+      }
+
+      if (filters.lawStatuses && filters.lawStatuses.length > 0) {
+        votedOnQuery += ` AND l.status IN $lawStatuses`;
+      }
+
+      votedOnQuery += `
+        RETURN s.id AS source, l.id AS target, v.vote AS vote
+        LIMIT 100
+      `;
+
+      const votedOnResult = await session.run(votedOnQuery, params);
+      votedOnResult.records.forEach((record: Neo4jRecord) => {
+        edges.push({
+          data: {
+            id: `edge_${edgeIndex++}`,
+            source: record.get("source"),
+            target: record.get("target"),
+            type: "voted_on" as EdgeType,
+            vote: record.get("vote"),
+          },
+        });
+      });
+    }
+
     const senatorNodes = senatorsResult.records.map((record: Neo4jRecord) => ({
       data: {
         id: record.get("senator").id,
