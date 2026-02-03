@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GraphFilters, NodeType, LawStatus, LobbyistType } from '$lib/types';
+  import type { GraphFilters, NodeType, LawStatus, LobbyistType, EdgeType } from '$lib/types';
 
   export let parties: { id: string; name: string; color?: string }[] = [];
   export let committees: { id: string; name: string }[] = [];
@@ -20,6 +20,16 @@
   let agreementMax: number = 100;
   let lobbyistTypes: LobbyistType[] = ['company', 'union', 'ngo', 'professional_college'];
   let selectedLobbyistTypes: LobbyistType[] = [];
+
+  // Relationship types
+  const relationshipTypesConfig: { type: EdgeType; label: string; color: string }[] = [
+    { type: 'authored', label: 'Authored', color: '#3b82f6' },
+    { type: 'belongs_to', label: 'Belongs to', color: '#94a3b8' },
+    { type: 'member_of', label: 'Member of', color: '#8b5cf6' },
+    { type: 'lobby', label: 'Lobby', color: '#f97316' },
+    { type: 'voted_same', label: 'Voting agreement', color: '#10b981' }
+  ];
+  let selectedRelationshipTypes: EdgeType[] = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
 
   // Sync with currentFilters when it changes
   $: if (currentFilters.parties) {
@@ -54,6 +64,11 @@
   } else {
     selectedLobbyistTypes = [];
   }
+  $: if (currentFilters.relationshipTypes) {
+    selectedRelationshipTypes = currentFilters.relationshipTypes;
+  } else {
+    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
+  }
 
   function handleApply() {
     const filters: GraphFilters = {
@@ -67,7 +82,8 @@
       entityTypes,
       lawStatuses: selectedLawStatuses.length > 0 ? selectedLawStatuses : undefined,
       agreementRange: { min: agreementMin / 100, max: agreementMax / 100 },
-      lobbyistTypes: selectedLobbyistTypes.length > 0 ? selectedLobbyistTypes : undefined
+      lobbyistTypes: selectedLobbyistTypes.length > 0 ? selectedLobbyistTypes : undefined,
+      relationshipTypes: selectedRelationshipTypes
     };
     onApplyFilters(filters);
     onClose();
@@ -84,6 +100,7 @@
     agreementMin = 0;
     agreementMax = 100;
     selectedLobbyistTypes = [];
+    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
     onApplyFilters({});
   }
 
@@ -118,6 +135,14 @@
       selectedLobbyistTypes = [...selectedLobbyistTypes, type];
     }
   }
+
+  function toggleRelationshipType(type: EdgeType) {
+    if (selectedRelationshipTypes.includes(type)) {
+      selectedRelationshipTypes = selectedRelationshipTypes.filter((t) => t !== type);
+    } else {
+      selectedRelationshipTypes = [...selectedRelationshipTypes, type];
+    }
+  }
 </script>
 
 <div class="glass-panel rounded-2xl p-6 w-full max-w-md animate-fade-in-up shadow-glow relative">
@@ -149,6 +174,25 @@
             class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200"
           >
             {type.replace('_', ' ').replace('senator', 'Senator').replace('law', 'Law').replace('party', 'Party').replace('committee', 'Committee').replace('lobbyist', 'Lobbyist')}
+          </button>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Connection Types -->
+    <div>
+      <span class="block text-sm font-medium text-gray-700 mb-3">
+        Show Connection Types
+      </span>
+      <div class="flex flex-wrap gap-2">
+        {#each relationshipTypesConfig as config}
+          <button
+            on:click={() => toggleRelationshipType(config.type)}
+            class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200 flex items-center gap-2"
+            style="background-color: {selectedRelationshipTypes.includes(config.type) ? config.color : 'transparent'}; color: {selectedRelationshipTypes.includes(config.type) ? 'white' : '#374151'}; border-color: {config.color}"
+          >
+            <span class="w-2 h-2 rounded-full" style="background-color: {selectedRelationshipTypes.includes(config.type) ? 'white' : config.color}"></span>
+            {config.label}
           </button>
         {/each}
       </div>
