@@ -75,7 +75,8 @@ export type EdgeType =
   | "member_of"
   | "belongs_to"
   | "lobby"
-  | "voted_same";
+  | "voted_same"
+  | "voted_on";
 
 export interface GraphNode {
   data: {
@@ -104,6 +105,7 @@ export interface GraphEdge {
     type: EdgeType;
     agreement?: number;
     strength?: number;
+    vote?: VoteType;
     [key: string]: unknown;
   };
 }

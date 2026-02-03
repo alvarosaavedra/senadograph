@@ -13,6 +13,7 @@
     belongs_to?: number;
     lobby?: number;
     voted_same?: number;
+    voted_on?: number;
   } = {};
 
   let isDragging: boolean = false;
@@ -206,6 +207,17 @@
             {#if edgeCounts.voted_same}
               <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
                 {edgeCounts.voted_same}
+              </span>
+            {/if}
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-0.5 bg-red-500"></div>
+              <span>Voted on law</span>
+            </div>
+            {#if edgeCounts.voted_on}
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                {edgeCounts.voted_on}
               </span>
             {/if}
           </div>

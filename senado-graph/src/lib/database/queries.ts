@@ -274,6 +274,14 @@ export async function getInitialGraphData(
       LIMIT 50
     `);
 
+    // Get VOTED_ON edges (senator → law)
+    const votedOnResult = await session.run(`
+      MATCH (s:Senator)-[v:VOTED_ON]->(l:Law)
+      WHERE s.active = true
+      RETURN s.id AS source, l.id AS target, v.vote AS vote
+      LIMIT 100
+    `);
+
     const senatorNodes = senatorsResult.records.map((record) => ({
       data: {
         id: record.get("senator").id,
@@ -379,12 +387,23 @@ export async function getInitialGraphData(
       },
     }));
 
+    const votedOnEdges = votedOnResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "voted_on" as EdgeType,
+        vote: record.get("vote"),
+      },
+    }));
+
     const edges = [
       ...authoredEdges,
       ...belongsToEdges,
       ...memberOfEdges,
       ...lobbyEdges,
       ...votedSameEdges,
+      ...votedOnEdges,
     ];
 
     return { nodes, edges };

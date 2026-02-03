@@ -468,6 +468,97 @@ export function getMockGraphData(): GraphData {
         type: "lobby" as const,
       },
     },
+    // VOTED_ON edges (senator → law)
+    {
+      data: {
+        id: "edge_23",
+        source: "senator_001",
+        target: "law_12345",
+        type: "voted_on" as const,
+        vote: "favor" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_24",
+        source: "senator_002",
+        target: "law_12345",
+        type: "voted_on" as const,
+        vote: "against" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_25",
+        source: "senator_003",
+        target: "law_12345",
+        type: "voted_on" as const,
+        vote: "abstained" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_26",
+        source: "senator_004",
+        target: "law_12345",
+        type: "voted_on" as const,
+        vote: "favor" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_27",
+        source: "senator_005",
+        target: "law_12345",
+        type: "voted_on" as const,
+        vote: "absent" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_28",
+        source: "senator_001",
+        target: "law_12346",
+        type: "voted_on" as const,
+        vote: "favor" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_29",
+        source: "senator_002",
+        target: "law_12346",
+        type: "voted_on" as const,
+        vote: "favor" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_30",
+        source: "senator_003",
+        target: "law_12347",
+        type: "voted_on" as const,
+        vote: "against" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_31",
+        source: "senator_004",
+        target: "law_12347",
+        type: "voted_on" as const,
+        vote: "favor" as const,
+      },
+    },
+    {
+      data: {
+        id: "edge_32",
+        source: "senator_005",
+        target: "law_12347",
+        type: "voted_on" as const,
+        vote: "abstained" as const,
+      },
+    },
   ];
 
   return { nodes, edges };

@@ -24,7 +24,7 @@
    let selectedNode: any = null;
    let currentFilters: GraphFilters = {
     lawStatuses: ['approved', 'rejected', 'withdrawn'],
-    relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same']
+    relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same', 'voted_on']
    };
 
    $: ({ senators, graphData, parties, committees } = data);
@@ -66,13 +66,14 @@
     lobbyists: (currentGraphData || graphData)?.nodes?.filter(n => n.data.type === 'lobbyist').length || 0
   };
 
-  $: edgeCounts = {
+   $: edgeCounts = {
     authored: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'authored').length || 0,
     member_of: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'member_of').length || 0,
     belongs_to: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'belongs_to').length || 0,
     lobby: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'lobby').length || 0,
-    voted_same: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'voted_same').length || 0
-  };
+    voted_same: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'voted_same').length || 0,
+    voted_on: (currentGraphData || graphData)?.edges?.filter(e => e.data.type === 'voted_on').length || 0
+   };
 
   $: if (graphData) {
     console.log('Page: graphData available, setting currentGraphData', graphData);
@@ -147,7 +148,7 @@
     clearFilters();
     currentFilters = {
       lawStatuses: ['approved', 'rejected', 'withdrawn'],
-      relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same']
+      relationshipTypes: ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same', 'voted_on']
     };
     currentGraphData = graphData;
   }

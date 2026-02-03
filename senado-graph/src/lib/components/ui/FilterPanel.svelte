@@ -22,14 +22,15 @@
   let selectedLobbyistTypes: LobbyistType[] = [];
 
   // Relationship types
-  const relationshipTypesConfig: { type: EdgeType; label: string; color: string }[] = [
-    { type: 'authored', label: 'Authored', color: '#3b82f6' },
-    { type: 'belongs_to', label: 'Belongs to', color: '#94a3b8' },
-    { type: 'member_of', label: 'Member of', color: '#8b5cf6' },
-    { type: 'lobby', label: 'Lobby', color: '#f97316' },
-    { type: 'voted_same', label: 'Voting agreement', color: '#10b981' }
+  const relationshipTypesConfig: { type: EdgeType; label: string; color: string; description: string }[] = [
+    { type: 'authored', label: 'Authored', color: '#3b82f6', description: 'Senators who authored a law' },
+    { type: 'belongs_to', label: 'Belongs to', color: '#94a3b8', description: 'Senator party membership' },
+    { type: 'member_of', label: 'Member of', color: '#8b5cf6', description: 'Committee membership' },
+    { type: 'lobby', label: 'Lobby', color: '#f97316', description: 'Lobbyist influence on senators' },
+    { type: 'voted_same', label: 'Voting agreement', color: '#10b981', description: 'Similar voting patterns between senators' },
+    { type: 'voted_on', label: 'Voted on', color: '#ef4444', description: 'How senators voted on laws' }
   ];
-  let selectedRelationshipTypes: EdgeType[] = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
+  let selectedRelationshipTypes: EdgeType[] = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same', 'voted_on'];
 
   // Sync with currentFilters when it changes
   $: if (currentFilters.parties) {
@@ -67,7 +68,7 @@
   $: if (currentFilters.relationshipTypes) {
     selectedRelationshipTypes = currentFilters.relationshipTypes;
   } else {
-    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
+    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same', 'voted_on'];
   }
 
   function handleApply() {
@@ -100,7 +101,7 @@
     agreementMin = 0;
     agreementMax = 100;
     selectedLobbyistTypes = [];
-    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same'];
+    selectedRelationshipTypes = ['authored', 'belongs_to', 'member_of', 'lobby', 'voted_same', 'voted_on'];
     onApplyFilters({});
   }
 
@@ -184,16 +185,20 @@
       <span class="block text-sm font-medium text-gray-700 mb-3">
         Show Connection Types
       </span>
-      <div class="flex flex-wrap gap-2">
+      <div class="space-y-3">
         {#each relationshipTypesConfig as config}
-          <button
-            on:click={() => toggleRelationshipType(config.type)}
-            class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 border border-gray-200 flex items-center gap-2"
-            style="background-color: {selectedRelationshipTypes.includes(config.type) ? config.color : 'transparent'}; color: {selectedRelationshipTypes.includes(config.type) ? 'white' : '#374151'}; border-color: {config.color}"
-          >
-            <span class="w-2 h-2 rounded-full" style="background-color: {selectedRelationshipTypes.includes(config.type) ? 'white' : config.color}"></span>
-            {config.label}
-          </button>
+          <div class="relative">
+            <button
+              on:click={() => toggleRelationshipType(config.type)}
+              class="w-full px-3 py-2 rounded-lg text-xs font-medium transition-all duration-300 border flex items-center gap-2"
+              class:authored={config.type === 'authored'}
+              style="background-color: {selectedRelationshipTypes.includes(config.type) ? config.color : 'transparent'}; color: {selectedRelationshipTypes.includes(config.type) ? 'white' : '#374151'}; border-color: {config.color}"
+            >
+              <span class="w-2 h-2 rounded-full" style="background-color: {selectedRelationshipTypes.includes(config.type) ? 'white' : config.color}"></span>
+              {config.label}
+            </button>
+            <span class="text-xs text-gray-500 mt-1 block pl-1">{config.description}</span>
+          </div>
         {/each}
       </div>
     </div>
@@ -352,5 +357,9 @@
 <style>
   .active {
     @apply bg-gradient-primary text-white border-transparent;
+  }
+  .authored {
+    @apply font-bold shadow-sm;
+    transform: scale(1.02);
   }
 </style>

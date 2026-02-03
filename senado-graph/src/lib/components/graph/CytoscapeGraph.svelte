@@ -281,6 +281,51 @@
                 }
               },
               {
+                selector: 'edge[type="voted_on"]',
+                style: {
+                  'width': 3,
+                  'line-color': '#6b7280',
+                  'target-arrow-shape': 'triangle',
+                  'target-arrow-color': '#6b7280',
+                  'opacity': 0.7
+                }
+              },
+              {
+                selector: 'edge[type="voted_on"][vote="favor"]',
+                style: {
+                  'line-color': '#22c55e',
+                  'target-arrow-color': '#22c55e'
+                }
+              },
+              {
+                selector: 'edge[type="voted_on"][vote="against"]',
+                style: {
+                  'line-color': '#ef4444',
+                  'target-arrow-color': '#ef4444'
+                }
+              },
+              {
+                selector: 'edge[type="voted_on"][vote="abstained"]',
+                style: {
+                  'line-color': '#eab308',
+                  'target-arrow-color': '#eab308'
+                }
+              },
+              {
+                selector: 'edge[type="voted_on"][vote="absent"]',
+                style: {
+                  'line-color': '#6b7280',
+                  'target-arrow-color': '#6b7280'
+                }
+              },
+              {
+                selector: 'edge[type="voted_on"]:hover',
+                style: {
+                  'width': 4,
+                  'opacity': 1
+                }
+              },
+              {
                 selector: ':selected',
                 style: {
                   'border-width': 4,
