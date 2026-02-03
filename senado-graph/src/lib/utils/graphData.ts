@@ -71,11 +71,11 @@ export async function getFilteredGraphData(
     let partyQuery = `
       MATCH (p:Party)
     `;
-    
+
     if (filters.parties && filters.parties.length > 0) {
       partyQuery += ` WHERE p.id IN $parties`;
     }
-    
+
     partyQuery += `
       OPTIONAL MATCH (s:Senator)-[:BELONGS_TO]->(p)
       WHERE s.active = true
@@ -95,12 +95,12 @@ export async function getFilteredGraphData(
     let committeeQuery = `
       MATCH (c:Committee)
     `;
-    
+
     if (filters.committees && filters.committees.length > 0) {
       committeeQuery += ` WHERE c.id IN $committees`;
       params.committees = filters.committees;
     }
-    
+
     committeeQuery += `
       RETURN c {
         .id,
@@ -115,12 +115,12 @@ export async function getFilteredGraphData(
     let lobbyistQuery = `
       MATCH (l:Lobbyist)
     `;
-    
+
     if (filters.lobbyistTypes && filters.lobbyistTypes.length > 0) {
       lobbyistQuery += ` WHERE l.type IN $lobbyistTypes`;
       params.lobbyistTypes = filters.lobbyistTypes;
     }
-    
+
     lobbyistQuery += `
       RETURN l {
         .id,
@@ -152,15 +152,15 @@ export async function getFilteredGraphData(
         MATCH (s:Senator)-[:AUTHORED]->(l:Law)
         WHERE s.active = true
       `;
-      
+
       if (filters.parties && filters.parties.length > 0) {
         authoredQuery += ` AND s.party IN $parties`;
       }
-      
+
       if (filters.lawStatuses && filters.lawStatuses.length > 0) {
         authoredQuery += ` AND l.status IN $lawStatuses`;
       }
-      
+
       authoredQuery += ` RETURN s.id AS source, l.id AS target`;
 
       const authoredResult = await session.run(authoredQuery, params);
@@ -182,11 +182,11 @@ export async function getFilteredGraphData(
         MATCH (s:Senator)-[:BELONGS_TO]->(p:Party)
         WHERE s.active = true
       `;
-      
+
       if (filters.parties && filters.parties.length > 0) {
         belongsToQuery += ` AND s.party IN $parties AND p.id IN $parties`;
       }
-      
+
       belongsToQuery += ` RETURN s.id AS source, p.id AS target`;
 
       const belongsToResult = await session.run(belongsToQuery, params);
@@ -208,15 +208,15 @@ export async function getFilteredGraphData(
         MATCH (s:Senator)-[:MEMBER_OF]->(c:Committee)
         WHERE s.active = true
       `;
-      
+
       if (filters.parties && filters.parties.length > 0) {
         memberOfQuery += ` AND s.party IN $parties`;
       }
-      
+
       if (filters.committees && filters.committees.length > 0) {
         memberOfQuery += ` AND c.id IN $committees`;
       }
-      
+
       memberOfQuery += ` RETURN s.id AS source, c.id AS target`;
 
       const memberOfResult = await session.run(memberOfQuery, params);
@@ -238,15 +238,15 @@ export async function getFilteredGraphData(
         MATCH (l:Lobbyist)-[:LOBBY]->(s:Senator)
         WHERE s.active = true
       `;
-      
+
       if (filters.parties && filters.parties.length > 0) {
         lobbyQuery += ` AND s.party IN $parties`;
       }
-      
+
       if (filters.lobbyistTypes && filters.lobbyistTypes.length > 0) {
         lobbyQuery += ` AND l.type IN $lobbyistTypes`;
       }
-      
+
       lobbyQuery += ` RETURN l.id AS source, s.id AS target LIMIT 50`;
 
       const lobbyResult = await session.run(lobbyQuery, params);
@@ -268,17 +268,17 @@ export async function getFilteredGraphData(
         MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
         WHERE s1.id < s2.id AND v.agreement > 0.7
       `;
-      
+
       if (filters.parties && filters.parties.length > 0) {
         votedSameQuery += ` AND s1.party IN $parties AND s2.party IN $parties`;
       }
-      
+
       if (filters.agreementRange) {
         votedSameQuery += ` AND v.agreement >= $minAgreement AND v.agreement <= $maxAgreement`;
         params.minAgreement = filters.agreementRange.min;
         params.maxAgreement = filters.agreementRange.max;
       }
-      
+
       votedSameQuery += `
         RETURN s1.id AS source, s2.id AS target, v.agreement AS agreement
         LIMIT 50
@@ -330,22 +330,26 @@ export async function getFilteredGraphData(
       },
     }));
 
-    const committeeNodes = committeesResult.records.map((record: Neo4jRecord) => ({
-      data: {
-        id: record.get("committee").id,
-        label: record.get("committee").name,
-        type: "committee" as const,
-      },
-    }));
+    const committeeNodes = committeesResult.records.map(
+      (record: Neo4jRecord) => ({
+        data: {
+          id: record.get("committee").id,
+          label: record.get("committee").name,
+          type: "committee" as const,
+        },
+      }),
+    );
 
-    const lobbyistNodes = lobbyistsResult.records.map((record: Neo4jRecord) => ({
-      data: {
-        id: record.get("lobbyist").id,
-        label: record.get("lobbyist").name,
-        type: "lobbyist" as const,
-        lobbyistType: record.get("lobbyist").type,
-      },
-    }));
+    const lobbyistNodes = lobbyistsResult.records.map(
+      (record: Neo4jRecord) => ({
+        data: {
+          id: record.get("lobbyist").id,
+          label: record.get("lobbyist").name,
+          type: "lobbyist" as const,
+          lobbyistType: record.get("lobbyist").type,
+        },
+      }),
+    );
 
     const nodes = [
       ...senatorNodes,
