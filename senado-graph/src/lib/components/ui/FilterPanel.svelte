@@ -177,7 +177,7 @@
 
   <div class="space-y-4 overflow-y-auto pr-2 flex-1">
     <!-- Presets -->
-    <div class="border-b border-gray-200 pb-4">
+    <div class="p-4 bg-gradient-primary/5 rounded-xl border border-primary-200/50 mb-4">
       <PresetSelector
         onApplyPreset={handleApplyPreset}
         onReset={handlePresetReset}
