@@ -1,10 +1,23 @@
 <script lang="ts">
-  import { setupI18n, _ } from '$lib/i18n';
+  import { setupI18n } from '$lib/i18n';
+  import { _ } from 'svelte-i18n';
   import LanguageToggle from '$lib/components/ui/LanguageToggle.svelte';
   import '../app.css';
+  import { onMount } from 'svelte';
 
-  setupI18n();
+  let isReady = false;
+
+  onMount(async () => {
+    await setupI18n();
+    isReady = true;
+  });
 </script>
+
+{#if !isReady}
+  <div class="min-h-screen flex items-center justify-center bg-gradient-page">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+  </div>
+{:else}
 
 <div class="min-h-screen bg-gradient-page flex flex-col">
   <!-- Header -->
@@ -81,3 +94,4 @@
     </div>
   </footer>
 </div>
+{/if}
