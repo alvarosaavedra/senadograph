@@ -7,7 +7,8 @@
     "home": "Inicio",
     "about": "Sobre",
     "senators": "Senadores",
-    "laws": "Proyectos de Ley"
+    "laws": "Proyectos de Ley",
+    "graph": "Gráfico"
   },
   "filters": {
     "title": "Filtros",
@@ -91,5 +92,16 @@
   "language": {
     "es": "Español",
     "en": "Inglés"
+  },
+  "clustering": {
+    "title": "Grupos de Votación",
+    "showColors": "Mostrar Grupos",
+    "hideColors": "Ocultar Grupos",
+    "noClusters": "No se detectaron grupos de votación. Ajuste los filtros para mostrar más relaciones de votación.",
+    "senators": "senadores",
+    "dominantParty": "Partido dominante",
+    "cohesion": "Cohesión",
+    "partyDistribution": "Distribución partidista",
+    "description": "Los grupos se detectan según patrones de similitud de votación utilizando el algoritmo Louvain. Los senadores en el mismo grupo tienden a votar de manera similar en múltiples proyectos de ley."
   }
 }

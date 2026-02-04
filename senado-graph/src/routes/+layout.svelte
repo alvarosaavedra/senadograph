@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { setupI18n } from '$lib/i18n';
+  import { setupI18n, _ } from '$lib/i18n';
   import LanguageToggle from '$lib/components/ui/LanguageToggle.svelte';
   import '../app.css';
 
@@ -24,10 +24,13 @@
         <!-- Navigation -->
         <nav class="flex items-center space-x-6">
           <a href="/" class="text-gray-700 hover:text-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 hover:bg-primary-50">
-            Home
+            {$_('nav.home')}
+          </a>
+          <a href="/grafico" class="text-gray-700 hover:text-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 hover:bg-primary-50">
+            {$_('nav.graph')}
           </a>
           <a href="/sobre" class="text-gray-700 hover:text-primary-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 hover:bg-primary-50">
-            About
+            {$_('nav.about')}
           </a>
           <LanguageToggle />
         </nav>

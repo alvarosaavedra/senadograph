@@ -5,6 +5,8 @@
 
   export let graphData: GraphData;
   export let onNodeClick: (nodeId: string, type: string) => void = () => {};
+  export let showClusterColors: boolean = false;
+  export let selectedCluster: number | null = null;
 
   let container: HTMLElement;
   let cy: cytoscape.Core;
@@ -76,6 +78,12 @@
                   'height': 45,
                   'background-color': 'data(color)',
                   'background-blacken': 0
+                }
+              },
+              {
+                selector: 'node[type="senator"][clusterColor]',
+                style: {
+                  'background-color': showClusterColors ? 'data(clusterColor)' : 'data(color)'
                 }
               },
               {
@@ -341,12 +349,29 @@
                   'border-opacity': 1
                 }
               },
-              {
-                selector: '.dimmed',
-                style: {
-                  'opacity': 0.3
-                }
-              }
+               {
+                 selector: '.dimmed',
+                 style: {
+                   'opacity': 0.3
+                 }
+               },
+               {
+                 selector: '.cluster-dimmed',
+                 style: {
+                   'opacity': 0.15,
+                   'background-blacken': 0.3
+                 }
+               },
+               {
+                 selector: '.cluster-highlight',
+                 style: {
+                   'border-width': 5,
+                   'border-color': '#ffffff',
+                   'border-opacity': 1,
+                   'width': 55,
+                   'height': 55
+                 }
+               }
             ]
           });
           console.log('Cytoscape: initialized successfully');
@@ -422,10 +447,66 @@
     neighborhood.removeClass('dimmed');
   }
 
-  function clearHighlight() {
-    if (!cy) return;
-    cy.elements().removeClass('dimmed');
-  }
+   function clearHighlight() {
+     if (!cy) return;
+     cy.elements().removeClass('dimmed');
+   }
+
+   function updateClusterHighlight() {
+     if (!cy) return;
+     
+     // Remove existing cluster styles
+     cy.elements().removeClass('cluster-dimmed cluster-highlight');
+     
+     if (selectedCluster !== null) {
+       // Dim all nodes not in selected cluster
+       cy.nodes().forEach(node => {
+         const nodeClusterId = node.data('clusterId');
+         const nodeType = node.data('type');
+         
+         if (nodeType === 'senator') {
+           if (nodeClusterId !== selectedCluster) {
+             node.addClass('cluster-dimmed');
+           } else {
+             node.addClass('cluster-highlight');
+           }
+         } else {
+           // Dim non-senator nodes when cluster is selected
+           node.addClass('cluster-dimmed');
+         }
+       });
+       
+       // Dim edges not connected to selected cluster
+       cy.edges().forEach(edge => {
+         const source = edge.source();
+         const target = edge.target();
+         const sourceCluster = source.data('clusterId');
+         const targetCluster = target.data('clusterId');
+         
+         if (sourceCluster !== selectedCluster || targetCluster !== selectedCluster) {
+           edge.addClass('cluster-dimmed');
+         }
+       });
+     }
+     
+     // Update cluster colors if enabled
+     if (showClusterColors) {
+       cy.nodes('[clusterColor]').forEach(node => {
+         const clusterColor = node.data('clusterColor');
+         if (clusterColor) {
+           node.style('background-color', clusterColor);
+         }
+       });
+     } else {
+       // Revert to party colors
+       cy.nodes('[type="senator"]').forEach(node => {
+         const partyColor = node.data('color');
+         if (partyColor) {
+           node.style('background-color', partyColor);
+         }
+       });
+     }
+   }
   
   function updateGraph() {
     if (!cy || !graphData) return;
@@ -489,11 +570,17 @@
      initCytoscape();
    }
 
-    // Update graph when data changes (if already initialized)
-    $: if (graphData && container && isInitialized && cy && graphData.nodes?.length > 0) {
-     console.log('Cytoscape: Reactive update triggered');
-     updateGraph();
-   }
+     // Update graph when data changes (if already initialized)
+     $: if (graphData && container && isInitialized && cy && graphData.nodes?.length > 0) {
+      console.log('Cytoscape: Reactive update triggered');
+      updateGraph();
+    }
+
+    // Update cluster visualization when cluster props change
+    $: if (isInitialized && cy && (showClusterColors !== undefined || selectedCluster !== undefined)) {
+      console.log('Cytoscape: Cluster update triggered', { showClusterColors, selectedCluster });
+      updateClusterHighlight();
+    }
 </script>
 
 <div bind:this={container} class="w-full h-full min-h-[500px]"></div>

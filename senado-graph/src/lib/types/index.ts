@@ -78,6 +78,16 @@ export type EdgeType =
   | "voted_same"
   | "voted_on";
 
+export interface ClusterInfo {
+  id: number;
+  name: string;
+  color: string;
+  size: number;
+  cohesion: number;
+  partyBreakdown: Record<string, number>;
+  avgAgreement: number;
+}
+
 export interface GraphNode {
   data: {
     id: string;
@@ -92,6 +102,8 @@ export interface GraphNode {
     region?: string;
     agreement?: number;
     memberCount?: number;
+    clusterId?: number;
+    clusterColor?: string;
     [key: string]: unknown;
   };
 }

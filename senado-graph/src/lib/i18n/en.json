@@ -7,7 +7,8 @@
     "home": "Home",
     "about": "About",
     "senators": "Senators",
-    "laws": "Law Projects"
+    "laws": "Law Projects",
+    "graph": "Graph"
   },
   "filters": {
     "title": "Filters",
@@ -91,5 +92,16 @@
   "language": {
     "es": "Spanish",
     "en": "English"
+  },
+  "clustering": {
+    "title": "Voting Clusters",
+    "showColors": "Show Clusters",
+    "hideColors": "Hide Clusters",
+    "noClusters": "No voting clusters detected. Try adjusting filters to show more voting relationships.",
+    "senators": "senators",
+    "dominantParty": "Dominant party",
+    "cohesion": "Cohesion",
+    "partyDistribution": "Party distribution",
+    "description": "Clusters are detected based on voting similarity patterns using the Louvain algorithm. Senators in the same cluster tend to vote similarly across multiple bills."
   }
 }

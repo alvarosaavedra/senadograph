@@ -717,3 +717,117 @@ export async function getLawStatusBreakdown(): Promise<{ status: string; count: 
     await session.close();
   }
 }
+
+/**
+ * Get all voting similarity data for cluster detection
+ * Returns complete graph data with all VOTED_SAME relationships
+ */
+export async function getVotingSimilarityGraph(): Promise<GraphData> {
+  if (useMockData()) {
+    return getMockGraphData();
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    // Get all active senators with their party colors
+    const senatorsResult = await session.run(`
+      MATCH (s:Senator)-[:BELONGS_TO]->(p:Party)
+      WHERE s.active = true
+      RETURN s {
+        .id,
+        .name,
+        .nameEn,
+        .party,
+        .region,
+        .active
+      } AS senator, p.color AS color
+    `);
+
+    // Get all VOTED_SAME edges with agreement scores
+    const votedSameResult = await session.run(`
+      MATCH (s1:Senator)-[v:VOTED_SAME]->(s2:Senator)
+      WHERE s1.id < s2.id
+      RETURN s1.id AS source, s2.id AS target, v.agreement AS agreement
+    `);
+
+    // Get laws for context
+    const lawsResult = await session.run(`
+      MATCH (l:Law)
+      RETURN l {
+        .id,
+        .boletin,
+        .title,
+        .titleEn,
+        .status,
+        .topic
+      } AS law
+      LIMIT 100
+    `);
+
+    const senatorNodes = senatorsResult.records.map((record) => ({
+      data: {
+        id: record.get("senator").id,
+        label: record.get("senator").name,
+        type: "senator" as const,
+        color: record.get("color"),
+        party: record.get("senator").party,
+        region: record.get("senator").region,
+      },
+    }));
+
+    const lawNodes = lawsResult.records.map((record) => ({
+      data: {
+        id: record.get("law").id,
+        label: record.get("law").boletin,
+        type: "law" as const,
+        status: record.get("law").status,
+        topic: record.get("law").topic,
+      },
+    }));
+
+    const nodes = [...senatorNodes, ...lawNodes];
+
+    let edgeIndex = 0;
+    const votedSameEdges = votedSameResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "voted_same" as EdgeType,
+        agreement: record.get("agreement"),
+      },
+    }));
+
+    // Get VOTED_ON edges for additional context
+    const votedOnResult = await session.run(`
+      MATCH (s:Senator)-[v:VOTED_ON]->(l:Law)
+      WHERE s.active = true
+      RETURN s.id AS source, l.id AS target, v.vote AS vote
+      LIMIT 200
+    `);
+
+    const votedOnEdges = votedOnResult.records.map((record) => ({
+      data: {
+        id: `edge_${edgeIndex++}`,
+        source: record.get("source"),
+        target: record.get("target"),
+        type: "voted_on" as EdgeType,
+        vote: record.get("vote"),
+      },
+    }));
+
+    const edges = [...votedSameEdges, ...votedOnEdges];
+
+    // Filter edges to only include valid nodes
+    const nodeIds = new Set(nodes.map((n) => n.data.id));
+    const validEdges = edges.filter(
+      (edge) => nodeIds.has(edge.data.source) && nodeIds.has(edge.data.target),
+    );
+
+    return { nodes, edges: validEdges };
+  } finally {
+    await session.close();
+  }
+}
