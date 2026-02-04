@@ -27,14 +27,26 @@
   // Cytoscape ref
   let cytoscapeRef: CytoscapeGraph;
 
-  // Initialize clustering on mount
+  // Initialize clustering on mount - show only senators and voted_same edges
   onMount(() => {
     if (votingGraphData && votingGraphData.edges.length > 0) {
       const result = detectVotingClusters(votingGraphData);
       clusters = result.clusters;
-      // Merge cluster data into initial graph data
+      
+      // Filter to show only senator nodes and voted_same edges
+      const senatorNodes = initialGraphData.nodes.filter(node => node.data.type === 'senator');
+      const senatorIds = new Set(senatorNodes.map(n => n.data.id));
+      
+      // Only keep voted_same edges between senators
+      const votingEdges = initialGraphData.edges.filter(edge => {
+        if (edge.data.type !== 'voted_same') return false;
+        // Ensure both source and target are senators
+        return senatorIds.has(edge.data.source) && senatorIds.has(edge.data.target);
+      });
+      
+      // Merge cluster data into senator nodes
       clusteredGraphData = {
-        nodes: initialGraphData.nodes.map(node => {
+        nodes: senatorNodes.map(node => {
           const clusteredNode = result.nodes.find(n => n.data.id === node.data.id);
           if (clusteredNode && clusteredNode.data.clusterId !== undefined) {
             return {
@@ -48,7 +60,7 @@
           }
           return node;
         }),
-        edges: initialGraphData.edges,
+        edges: votingEdges,
       };
     }
   });
@@ -147,25 +159,20 @@
         {:else if activeTab === 'details'}
           <div class="space-y-4">
             <div class="bg-blue-50 rounded-lg p-4">
-              <h4 class="font-semibold text-blue-900 mb-2">Graph Overview</h4>
+              <h4 class="font-semibold text-blue-900 mb-2">Voting Network</h4>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
                   <span class="text-blue-700">Senators:</span>
-                  <span class="font-medium">{clusteredGraphData.nodes.filter(n => n.data.type === 'senator').length}</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-blue-700">Laws:</span>
-                  <span class="font-medium">{clusteredGraphData.nodes.filter(n => n.data.type === 'law').length}</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-blue-700">Relationships:</span>
-                  <span class="font-medium">{clusteredGraphData.edges.length}</span>
+                  <span class="font-medium">{clusteredGraphData.nodes.length}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-blue-700">Voting Agreements:</span>
-                  <span class="font-medium">{clusteredGraphData.edges.filter(e => e.data.type === 'voted_same').length}</span>
+                  <span class="font-medium">{clusteredGraphData.edges.length}</span>
                 </div>
               </div>
+              <p class="text-xs text-blue-600 mt-3">
+                Showing only senators and their voting similarity relationships
+              </p>
             </div>
 
             <div class="bg-gray-50 rounded-lg p-4">
