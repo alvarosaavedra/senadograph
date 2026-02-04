@@ -226,7 +226,7 @@
     {/if}
 
     <!-- Legend Overlay - positioned on right side -->
-    <GraphLegend />
+    <GraphLegend {parties} />
 
     <!-- Floating Controls - positioned lower on the right side -->
     <div class="absolute bottom-4 right-40 z-30 flex flex-col gap-2">

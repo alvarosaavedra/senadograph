@@ -1,20 +1,14 @@
 <script lang="ts">
+  import type { Party } from '$lib/types';
+  
   export let isOpen: boolean = true;
   export let nodeCounts: {
     senators?: number;
-    laws?: number;
-    parties?: number;
-    committees?: number;
-    lobbyists?: number;
   } = {};
   export let edgeCounts: {
-    authored?: number;
-    member_of?: number;
-    belongs_to?: number;
-    lobby?: number;
     voted_same?: number;
-    voted_on?: number;
   } = {};
+  export let parties: Party[] = [];
 
   let panelElement: HTMLDivElement;
 
@@ -63,9 +57,31 @@
           </div>
         </div>
         <p class="text-xs text-gray-500 mt-2">
-          Each node represents a senator. Color indicates party or cluster.
+          Each node represents a senator
         </p>
       </div>
+
+      {#if parties.length > 0}
+        <div class="border-t border-white/20 pt-4">
+          <h4 class="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <svg class="w-4 h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            Party Colors
+          </h4>
+          <div class="space-y-1 text-sm">
+            {#each parties as party}
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full" style="background-color: {party.color}"></div>
+                <span class="text-gray-700">{party.shortName}</span>
+              </div>
+            {/each}
+          </div>
+          <p class="text-xs text-gray-500 mt-2">
+            Toggle cluster colors to see voting blocs
+          </p>
+        </div>
+      {/if}
 
       <div class="border-t border-white/20 pt-4">
         <h4 class="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
