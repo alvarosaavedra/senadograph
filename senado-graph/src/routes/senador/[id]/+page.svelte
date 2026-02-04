@@ -9,6 +9,7 @@
   <meta name="description" content="{senator.name} - {senator.party}, {senator.region}" />
 </svelte:head>
 
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <!-- Back Navigation -->
 <div class="mb-6">
   <a href="/" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
@@ -107,4 +108,5 @@
       </div>
     {/if}
   </div>
+</div>
 </div>
