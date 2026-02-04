@@ -407,35 +407,73 @@
      }
    }
   
-   function runLayout() {
-     if (!cy) return;
+    function runLayout() {
+      if (!cy) return;
 
-     // Use concentric layout for better visual separation
-     layout = cy.layout({
-       name: 'concentric',
-       animate: true,
-       animationDuration: 1500,
-       animationEasing: 'ease-out',
-       fit: true,
-       padding: 150,
-       minNodeSpacing: 80,
-       concentric: function(node) {
-         // Prioritize by type: parties in center, senators next, then others
-         const type = node.data('type');
-         if (type === 'party') return 4;
-         if (type === 'senator') return 3;
-         if (type === 'committee') return 2;
-         if (type === 'law') return 1;
-         return 0; // lobbyists outer ring
-       },
-       levelWidth: function(nodes) {
-         return 2; // Width of each concentric level
-       },
-       nodeDimensionsIncludeLabels: true
-     });
+      // Use force-directed layout optimized for voting patterns
+      layout = cy.layout({
+        name: 'cose',
+        animate: true,
+        animationDuration: 1500,
+        animationEasing: 'ease-out',
+        fit: true,
+        padding: 30,
+        
+        // Node repulsion
+        nodeRepulsion: function(node) {
+          const type = node.data('type');
+          // Senators repel more to spread out clusters
+          if (type === 'senator') return 8000;
+          // Other nodes repel less
+          return 4000;
+        },
+        
+        // Ideal edge length based on relationship type
+        idealEdgeLength: function(edge) {
+          const type = edge.data('type');
+          // Voting agreement edges should be shorter (closer nodes)
+          if (type === 'voted_same') return 60;
+          // Party membership edges
+          if (type === 'belongs_to') return 100;
+          // Other edges
+          return 120;
+        },
+        
+        // Edge elasticity
+        edgeElasticity: function(edge) {
+          const type = edge.data('type');
+          // Voting agreement edges are more rigid
+          if (type === 'voted_same') return 200;
+          return 100;
+        },
+        
+        // Gravity pulls nodes toward center
+        gravity: 0.5,
+        
+        // Number of iterations
+        numIter: 2000,
+        
+        // Initial temperature
+        initialTemp: 200,
+        
+        // Cooling factor
+        coolingFactor: 0.95,
+        
+        // Min temperature
+        minTemp: 1.0,
+        
+        // Component spacing
+        componentSpacing: 80,
+        
+        // Whether to randomize the layout
+        randomize: true,
+        
+        // Nesting factor
+        nestingFactor: 0.1,
+      });
 
-     layout.run();
-   }
+      layout.run();
+    }
 
   function highlightConnections(nodeId: string) {
     if (!cy) return;

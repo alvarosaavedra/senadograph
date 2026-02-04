@@ -113,7 +113,10 @@ function calculateCommunityWeights(
 
   graph.nodes.forEach((node) => {
     const currentWeight = weights.get(node.community) || 0;
-    weights.set(node.community, currentWeight + (nodeDegrees.get(node.id) || 0));
+    weights.set(
+      node.community,
+      currentWeight + (nodeDegrees.get(node.id) || 0),
+    );
   });
 
   return weights;
@@ -338,7 +341,7 @@ function calculateClusterStats(
   // Calculate average agreements
   clusters.forEach((cluster) => {
     const internalEdges = Object.values(cluster.partyBreakdown).reduce(
-      (sum, count) => sum + count * (count - 1) / 2,
+      (sum, count) => sum + (count * (count - 1)) / 2,
       0,
     );
     if (internalEdges > 0) {
@@ -353,9 +356,7 @@ function calculateClusterStats(
 /**
  * Detect voting pattern clusters using Louvain algorithm
  */
-export function detectVotingClusters(
-  graphData: GraphData,
-): {
+export function detectVotingClusters(graphData: GraphData): {
   nodes: GraphNode[];
   clusters: ClusterInfo[];
 } {
