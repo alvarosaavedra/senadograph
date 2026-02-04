@@ -382,31 +382,35 @@
      }
    }
   
-  function runLayout() {
-    if (!cy) return;
+   function runLayout() {
+     if (!cy) return;
 
-    layout = cy.layout({
-      name: 'cose',
-      animate: true,
-      animationDuration: 1500,
-      animationEasing: 'ease-out',
-      fit: true,
-      padding: 50,
-      nodeRepulsion: 100000,
-      idealEdgeLength: 250,
-      edgeElasticity: 0.45,
-      gravity: 0.1,
-      numIter: 2500,
-      randomize: true,
-      componentSpacing: 400,
-      nestingFactor: 0.1,
-      nodeOverlap: 0,
-      initialTemp: 200,
-      coolingFactor: 0.95
-    });
+     // Use concentric layout for better visual separation
+     layout = cy.layout({
+       name: 'concentric',
+       animate: true,
+       animationDuration: 1500,
+       animationEasing: 'ease-out',
+       fit: true,
+       padding: 150,
+       minNodeSpacing: 80,
+       concentric: function(node) {
+         // Prioritize by type: parties in center, senators next, then others
+         const type = node.data('type');
+         if (type === 'party') return 4;
+         if (type === 'senator') return 3;
+         if (type === 'committee') return 2;
+         if (type === 'law') return 1;
+         return 0; // lobbyists outer ring
+       },
+       levelWidth: function(nodes) {
+         return 2; // Width of each concentric level
+       },
+       nodeDimensionsIncludeLabels: true
+     });
 
-    layout.run();
-  }
+     layout.run();
+   }
 
   function highlightConnections(nodeId: string) {
     if (!cy) return;

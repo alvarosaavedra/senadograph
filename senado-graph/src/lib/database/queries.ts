@@ -217,7 +217,6 @@ export async function getInitialGraphData(
         .status,
         .topic
       } AS law
-      LIMIT 50
     `;
 
     const lawsResult = await session.run(lawQuery, lawParams);
@@ -580,6 +579,140 @@ export async function getAuthorsForLaw(lawId: string): Promise<Senator[]> {
     );
 
     return result.records.map((record) => record.get("senator"));
+  } finally {
+    await session.close();
+  }
+}
+
+// Individual stat queries for StatsCards
+export async function getSenatorCount(): Promise<number> {
+  if (useMockData()) {
+    return getMockSenators().length;
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (s:Senator)
+      RETURN count(s) AS count
+    `);
+    return result.records[0].get("count").toNumber();
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getPartyCount(): Promise<number> {
+  if (useMockData()) {
+    return getMockParties().length;
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (p:Party)
+      RETURN count(p) AS count
+    `);
+    return result.records[0].get("count").toNumber();
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getLawCount(): Promise<number> {
+  if (useMockData()) {
+    return 150; // Mock data has 3 laws but let's use a realistic number
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (l:Law)
+      RETURN count(l) AS count
+    `);
+    return result.records[0].get("count").toNumber();
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getCommitteeCount(): Promise<number> {
+  if (useMockData()) {
+    return getMockCommittees().length;
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (c:Committee)
+      RETURN count(c) AS count
+    `);
+    return result.records[0].get("count").toNumber();
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getPartyBreakdown(): Promise<{ name: string; count: number; color: string }[]> {
+  if (useMockData()) {
+    const parties = getMockParties();
+    const senators = getMockSenators();
+    return parties.map(p => ({
+      name: p.shortName,
+      count: senators.filter(s => s.party === p.shortName).length,
+      color: p.color
+    })).filter(p => p.count > 0).sort((a, b) => b.count - a.count);
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (p:Party)
+      OPTIONAL MATCH (s:Senator)-[:BELONGS_TO]->(p)
+      RETURN p.shortName AS name, p.color AS color, count(s) AS count
+      ORDER BY count DESC
+    `);
+    return result.records.map(record => ({
+      name: record.get("name"),
+      color: record.get("color"),
+      count: record.get("count").toNumber()
+    })).filter(p => p.count > 0);
+  } finally {
+    await session.close();
+  }
+}
+
+export async function getLawStatusBreakdown(): Promise<{ status: string; count: number }[]> {
+  if (useMockData()) {
+    return [
+      { status: 'approved', count: 1 },
+      { status: 'in_discussion', count: 2 }
+    ];
+  }
+
+  const driver = getDriver()!;
+  const session = driver.session();
+
+  try {
+    const result = await session.run(`
+      MATCH (l:Law)
+      RETURN l.status AS status, count(l) AS count
+      ORDER BY count DESC
+    `);
+    return result.records.map(record => ({
+      status: record.get("status"),
+      count: record.get("count").toNumber()
+    })).filter(s => s.count > 0);
   } finally {
     await session.close();
   }
