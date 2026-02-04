@@ -79,8 +79,8 @@
   <meta name="description" content="Explore Chilean Senate voting pattern clusters" />
 </svelte:head>
 
-<!-- Full-screen container -->
-<div class="fixed inset-0 top-20 flex">
+<!-- Full-height container -->
+<div class="h-full flex">
   <!-- Sidebar - collapsible -->
   {#if sidebarOpen}
     <div class="w-80 bg-white shadow-xl flex flex-col z-20 border-r border-gray-200 transition-all duration-300">
@@ -225,7 +225,7 @@
           onZoomIn={() => cytoscapeRef?.zoomIn()}
           onZoomOut={() => cytoscapeRef?.zoomOut()}
           onFit={() => cytoscapeRef?.fit()}
-          onReset={() => cytoscapeRef?.resetLayout()}
+          onResetLayout={() => cytoscapeRef?.resetLayout()}
         />
       </div>
     </div>
