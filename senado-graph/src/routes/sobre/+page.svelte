@@ -42,6 +42,7 @@
   <meta name="description" content="Learn about the Chilean Senate Relationship Visualization project" />
 </svelte:head>
 
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <!-- Header -->
 <div class="mb-12 animate-fade-in-down">
   <h1 class="section-title">About SenadoGraph</h1>
@@ -352,3 +353,4 @@
     </div>
   </div>
 {/if}
+</div>
