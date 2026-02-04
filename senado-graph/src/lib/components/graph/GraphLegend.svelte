@@ -16,57 +16,18 @@
     voted_on?: number;
   } = {};
 
-  let isDragging: boolean = false;
-  let dragOffset: { x: number; y: number } = { x: 0, y: 0 };
-  let position: { x: number; y: number } = { x: 20, y: 20 };
   let panelElement: HTMLDivElement;
-  let headerElement: HTMLDivElement;
 
-  function startDrag(e: MouseEvent | TouchEvent) {
-    if (!(e.target instanceof Element)) return;
-    if (!headerElement.contains(e.target)) return;
-
-    isDragging = true;
-
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
-    dragOffset = {
-      x: clientX - position.x,
-      y: clientY - position.y
-    };
-  }
-
-  function drag(e: MouseEvent | TouchEvent) {
-    if (!isDragging) return;
-
-    e.preventDefault();
-
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
-    position = {
-      x: clientX - dragOffset.x,
-      y: clientY - dragOffset.y
-    };
-  }
-
-  function stopDrag() {
-    isDragging = false;
-  }
 </script>
 
 {#if isOpen}
   <div
-    class="fixed z-40 glass-panel rounded-xl shadow-glow p-4 max-w-sm animate-scale-in"
-    style="left: {position.x}px; top: {position.y}px;"
+    class="z-40 glass-panel rounded-xl shadow-glow p-4 max-w-sm animate-scale-in"
+    style="position: fixed; right: 20px; top: 20px;"
     bind:this={panelElement}
   >
     <div
-      bind:this={headerElement}
-      class="flex items-center justify-between mb-4 cursor-move select-none"
-      on:mousedown={startDrag}
-      on:touchstart={startDrag}
+      class="flex items-center justify-between mb-4"
     >
       <h3 class="text-lg font-bold gradient-text">Graph Legend</h3>
       <button
@@ -230,7 +191,7 @@
 {#if !isOpen}
   <button
     on:click={() => (isOpen = true)}
-    class="fixed z-40 top-4 right-4 glass-panel px-4 py-2 rounded-xl font-medium text-sm gradient-text hover:shadow-glow transition-all duration-300"
+    class="fixed z-40 bottom-4 right-4 glass-panel px-4 py-2 rounded-xl font-medium text-sm gradient-text hover:shadow-glow transition-all duration-300"
     aria-label="Open legend"
   >
     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -240,4 +201,4 @@
   </button>
 {/if}
 
-<svelte:window on:mousemove={drag} on:mouseup={stopDrag} on:touchmove={drag} on:touchend={stopDrag} />
+

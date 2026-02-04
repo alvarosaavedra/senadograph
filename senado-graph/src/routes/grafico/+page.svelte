@@ -218,10 +218,8 @@
       </button>
     {/if}
 
-    <!-- Legend Overlay -->
-    <div class="absolute bottom-4 right-4 z-30">
-      <GraphLegend />
-    </div>
+    <!-- Legend Overlay - positioned on right side -->
+    <GraphLegend />
 
     <!-- Floating Controls - positioned lower on the right side -->
     <div class="absolute bottom-4 right-40 z-30 flex flex-col gap-2">
