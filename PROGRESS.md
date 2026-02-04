@@ -53,6 +53,26 @@
 
 **Commit**: `feat: Phase 4 - Client-side features and UI components` ✓
 
+### Phase 4.5: Voting Pattern Clustering ✅ COMPLETED
+
+- [x] Louvain community detection algorithm
+- [x] Cluster statistics panel (size, cohesion, party breakdown)
+- [x] Cluster coloring toggle (party colors vs cluster colors)
+- [x] Cluster selection with highlight/dim effects
+- [x] Simplified graph view (senators + voting agreements only)
+- [x] Party colors in legend
+- [x] Full-screen graph layout
+- [x] i18n translations for clustering (ES/EN)
+
+**Commits**:
+- `feat: Implement voting pattern clustering with Louvain algorithm`
+- `feat: Improve graph layout and responsiveness`
+- `fix: Remove header/footer blocking graph visualization`
+- `fix: Position graph controls at bottom right`
+- `fix: Position legend on right side of screen`
+- `feat: Simplify graph to show only senators and voting agreements`
+- `feat: Add party colors to graph legend` ✓
+
 ### Phase 5: Polish (Week 5) ⏳ PENDING
 
 - [ ] Responsive design
@@ -95,4 +115,4 @@
 
 ---
 
-*Last Updated: February 2, 2026*
+*Last Updated: February 4, 2026*
