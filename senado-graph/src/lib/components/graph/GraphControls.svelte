@@ -5,7 +5,7 @@
   export let onResetLayout: () => void;
 </script>
 
-<div class="absolute bottom-4 right-4 flex flex-col gap-3 glass-panel rounded-2xl p-3 z-10 shadow-glow animate-fade-in-up" style="animation-delay: 700ms;">
+<div class="flex flex-col gap-3 glass-panel rounded-2xl p-3 z-10 shadow-glow animate-fade-in-up" style="animation-delay: 700ms;">
   <button
     on:click={onZoomIn}
     class="p-3 bg-gradient-primary text-white rounded-xl hover:scale-110 hover:shadow-glow transition-all duration-300"

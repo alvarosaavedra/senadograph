@@ -218,8 +218,13 @@
       </button>
     {/if}
 
-    <!-- Floating Controls -->
-    <div class="absolute top-4 right-4 z-30 flex flex-col gap-2">
+    <!-- Legend Overlay -->
+    <div class="absolute bottom-4 right-4 z-30">
+      <GraphLegend />
+    </div>
+
+    <!-- Floating Controls - positioned lower on the right side -->
+    <div class="absolute bottom-4 right-40 z-30 flex flex-col gap-2">
       <div class="bg-white shadow-lg rounded-lg p-2 border border-gray-200">
         <GraphControls
           onZoomIn={() => cytoscapeRef?.zoomIn()}
@@ -228,11 +233,6 @@
           onResetLayout={() => cytoscapeRef?.resetLayout()}
         />
       </div>
-    </div>
-
-    <!-- Legend Overlay -->
-    <div class="absolute bottom-4 right-4 z-30">
-      <GraphLegend />
     </div>
 
     <!-- Graph Canvas -->
